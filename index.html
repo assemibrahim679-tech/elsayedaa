@@ -553,6 +553,13 @@ audio{
   gap: 8px;
 }
 
+.action.active {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+  font-weight: bold;
+}
+
 .action:active{
   transform:scale(.97);
 }
@@ -671,6 +678,7 @@ footer{
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab(event, 'main')">الرئيسية</button>
     <button class="tab-btn" onclick="switchTab(event, 'azkar')">الأذكار والتسابيح</button>
+    <button class="tab-btn" onclick="switchTab(event, 'lectures')">دروس دينية</button>
     <button class="tab-btn" onclick="switchTab(event, 'prayers')">أوقات الصلاة</button>
     <button class="tab-btn" onclick="switchTab(event, 'qibla')">اتجاه القبلة</button>
     <button class="tab-btn" onclick="switchTab(event, 'calendar')">التقويم الهجري</button>
@@ -695,6 +703,16 @@ footer{
       <div class="hero-dua">
         "اللَّهُمَّ اغْفِرْ لَهَا وَارْحَمْهَا، وَعَافِهَا وَاعْفُ عَنْهَا، وَأَكْرِمْ نُزُلَهَا، وَوَسِّعْ مُدْخَلَهَا، وَاغْسِلْهَا بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ"
       </div>
+
+      <div class="visitor-badge" id="lastVisitBadge" style="margin:18px auto 0; display:inline-flex; width:fit-content;">
+        <span id="lastVisitText"></span>
+      </div>
+    </div>
+
+    <div id="fridayCard" class="card" style="display:none; text-align:center; margin:0 16px 16px; border: 2px solid #d4af37;">
+      <div style="font-size:28px;">🕌</div>
+      <div class="quran-title" style="margin-top:6px;">اليوم يوم الجمعة</div>
+      <div class="source" style="margin-top:6px;">"أَكْثِرُوا مِنَ الصَّلَاةِ عَلَيَّ يَوْمَ الْجُمُعَةِ" — لا تنسَ الإكثار من الصلاة على النبي ﷺ اليوم، وادعُ للفقيدة أيضًا</div>
     </div>
 
     <div class="divider"><span>۞</span></div>
@@ -721,6 +739,24 @@ footer{
         <div class="quran-note">صدقة جارية عن روح الفقيدة</div>
         <audio controls preload="none">
           <source src="https://server11.mp3quran.net/yasser/036.mp3" type="audio/mpeg">
+          متصفحك لا يدعم تشغيل الصوتيات.
+        </audio>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">سورة البقرة - اختر القارئ</div>
+      <div class="card quran-box">
+        <div class="quran-icon">📖</div>
+        <div class="quran-title">سورة البقرة</div>
+        <div class="quran-note">صدقة جارية عن روح الفقيدة</div>
+        <div class="reciter-picker" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:12px;">
+          <button class="action" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="loadBaqarahReciter('minsh', this)">المنشاوي</button>
+          <button class="action" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="loadBaqarahReciter('frs_a', this)">فارس عباد</button>
+          <button class="action" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="loadBaqarahReciter('maher', this)">ماهر المعيقلي</button>
+        </div>
+        <audio controls preload="none" id="baqarahPlayer">
+          <source id="baqarahSource" src="https://server10.mp3quran.net/download/minsh/002.mp3" type="audio/mpeg">
           متصفحك لا يدعم تشغيل الصوتيات.
         </audio>
       </div>
@@ -768,6 +804,15 @@ footer{
         <div class="source">إجمالي الدعوات التي قُدمت للفقيدة</div>
         <div class="dua-number" id="duaCount">0</div>
         <button class="dua-button" onclick="addDua()">🤲 أمّن على الدعاء (أضف دعوة)</button>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">تذكير يومي بالدعاء</div>
+      <div class="card" style="text-align:center;">
+        <div class="source" style="margin-top:0;">فعّل تذكير يومي يفكّرك تدخل تدعي لها وتقرأ يس</div>
+        <button class="dua-button" id="reminderBtn" onclick="setupDailyReminder()" style="margin-top:12px;">🔔 تفعيل التذكير اليومي</button>
+        <div class="source" id="reminderStatus"></div>
       </div>
     </section>
 
@@ -944,7 +989,93 @@ footer{
 
   </div>
 
-  <!-- TAB 3: PRAYER TIMES -->
+  <!-- TAB 3: RELIGIOUS LECTURES -->
+  <div id="tab-lectures" class="tab-content">
+    <div class="label">دروس دينية مؤثرة - فضيلة الشيخ سمير مصطفى</div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">الاستقامة</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/05_Smir_Mostafa_khotab_estikama(الاستقامــــة).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">الحياة الطيبة</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/10_Smir_Mostafa_khotab_ hyat.tybah(الحياة الطيبة).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">الميت البغيض</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/24_Smir_Mostafa_khotab_baghid(الميت البغيــــــض).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">رجل من أهل الجنة</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/41_Smir_Mostafa_khotab_r.mn.ahl.jannah(رجل من أهل الجنة).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">زاد المهاجر إلى الله</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/43_Smir_Mostafa_khotab_zad.muhajer(زاد المهاجر الي الله).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">شرح حديث الصراط</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/46_Smir_Mostafa_khotab_sirat(شرح حديث الصراط).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">قصة أصحاب الغار</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/52_Smir_Mostafa_khotab_elghar(قصة أصحاب الغار).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">لا تحسبوه شرًا لكم</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/57_Smir_Mostafa_khotab_la.ta7sabuh(لا تَحْسَبُوهُ شَرًّا لَكُمْ).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+
+    <div class="card quran-box">
+      <div class="quran-icon">🎙️</div>
+      <div class="quran-title">معارج القلوب</div>
+      <audio controls preload="none">
+        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/69_Smir_Mostafa_khotab_m3arig(معارج القلوب).mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوتيات.
+      </audio>
+    </div>
+  </div>
+
+  <!-- TAB 4: PRAYER TIMES -->
   <div id="tab-prayers" class="tab-content">
     <div class="label">مواقيت الصلاة اليومية</div>
     <div class="card" style="text-align: center;">
@@ -977,9 +1108,36 @@ footer{
         <div class="prayer-time" id="isha">--:--</div>
       </div>
     </div>
+
+    <div class="label" style="margin-top:24px;">أحاديث نبوية عن الصلاة</div>
+
+    <div class="azkar-card">
+      <div class="arabic">عَنِ ابْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: "بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلاَةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ"</div>
+      <div class="azkar-target">متفق عليه</div>
+    </div>
+
+    <div class="azkar-card">
+      <div class="arabic">عَنْ جَابِرٍ رَضِيَ اللَّهُ عَنْهُ قَالَ: سَمِعْتُ النَّبِيَّ ﷺ يَقُولُ: "إِنَّ بَيْنَ الرَّجُلِ وَبَيْنَ الشِّرْكِ وَالْكُفْرِ تَرْكَ الصَّلاَةِ"</div>
+      <div class="azkar-target">رواه مسلم</div>
+    </div>
+
+    <div class="azkar-card">
+      <div class="arabic">عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: "أَرَأَيْتُمْ لَوْ أَنَّ نَهْرًا بِبَابِ أَحَدِكُمْ يَغْتَسِلُ مِنْهُ كُلَّ يَوْمٍ خَمْسَ مَرَّاتٍ، هَلْ يَبْقَى مِنْ دَرَنِهِ شَيْءٌ؟ قَالُوا: لاَ يَبْقَى مِنْ دَرَنِهِ شَيْءٌ، قَالَ: فَذَلِكَ مَثَلُ الصَّلَوَاتِ الْخَمْسِ، يَمْحُو اللَّهُ بِهِنَّ الْخَطَايَا"</div>
+      <div class="azkar-target">متفق عليه</div>
+    </div>
+
+    <div class="azkar-card">
+      <div class="arabic">عَنْ بُرَيْدَةَ رَضِيَ اللَّهُ عَنْهُ قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: "الْعَهْدُ الَّذِي بَيْنَنَا وَبَيْنَهُمُ الصَّلاَةُ، فَمَنْ تَرَكَهَا فَقَدْ كَفَرَ"</div>
+      <div class="azkar-target">رواه أحمد والترمذي والنسائي</div>
+    </div>
+
+    <div class="azkar-card">
+      <div class="arabic">عَنْ أَبِي هُرَيْرَةَ رَضِيَ اللَّهُ عَنْهُ أَنَّ رَسُولَ اللَّهِ ﷺ قَالَ: "أَوَّلُ مَا يُحَاسَبُ بِهِ الْعَبْدُ يَوْمَ الْقِيَامَةِ صَلاَتُهُ، فَإِنْ صَلَحَتْ فَقَدْ أَفْلَحَ وَأَنْجَحَ، وَإِنْ فَسَدَتْ فَقَدْ خَابَ وَخَسِرَ"</div>
+      <div class="azkar-target">رواه الترمذي</div>
+    </div>
   </div>
 
-  <!-- TAB 4: QIBLA -->
+  <!-- TAB 5: QIBLA -->
   <div id="tab-qibla" class="tab-content">
     <div class="label">اتجاه القبلة المباشر</div>
     <div class="card qibla-box">
@@ -996,7 +1154,7 @@ footer{
     </div>
   </div>
 
-  <!-- TAB 5: CALENDAR -->
+  <!-- TAB 6: CALENDAR -->
   <div id="tab-calendar" class="tab-content">
     <div class="label">التقويم الهجري والأيام الفضيلة</div>
     
@@ -1041,6 +1199,7 @@ footer{
     </div>
   </div>
 
+
   <footer>
     <div class="final-dua">اللهم اغفر لها وارحمها ووسع مدخلها</div>
     <div class="note" style="margin-top: 10px;">انشر الموقع لتشارك في الأجر والثواب</div>
@@ -1057,13 +1216,23 @@ footer{
 <div class="toast" id="toast">تم النسخ بنجاح</div>
 
 <script>
+/* SAFE STORAGE HELPERS — some browsers/webviews (e.g. opening the file directly, or Acode's
+   preview) block localStorage/sessionStorage entirely and throw an error the moment they're
+   touched. Without this wrapper, that error stops every line of script written after it. */
+function safeGet(storage, key) {
+  try { return storage.getItem(key); } catch (e) { return null; }
+}
+function safeSet(storage, key, value) {
+  try { storage.setItem(key, value); } catch (e) { /* storage unavailable, skip silently */ }
+}
+
 /* REAL GLOBAL VISITOR COUNTER (CountAPI - no auth, no key, increments once per real page load) */
 async function fetchGlobalVisitors() {
   const visitorElem = document.getElementById('visitorCount');
   const COUNTER_KEY = 'assemibrahim679_elsayda_abdelaty_memorial'; // unique key so it never collides with anyone else's counter
 
   // Count each visitor only once per browser (sessionStorage) so refreshing the page doesn't inflate the number
-  const alreadyCountedThisSession = sessionStorage.getItem('visit_counted');
+  const alreadyCountedThisSession = safeGet(sessionStorage, 'visit_counted');
 
   try {
     const endpoint = alreadyCountedThisSession
@@ -1075,17 +1244,17 @@ async function fetchGlobalVisitors() {
 
     if (data && typeof data.value !== 'undefined') {
       visitorElem.textContent = Number(data.value).toLocaleString('ar-EG');
-      sessionStorage.setItem('visit_counted', '1');
+      safeSet(sessionStorage, 'visit_counted', '1');
     } else {
       throw new Error('Invalid response');
     }
   } catch (e) {
     // If the API is unreachable (offline / blocked), fall back to a locally-remembered count instead of a fake static number
-    let local = parseInt(localStorage.getItem('local_visit_fallback') || '0');
+    let local = parseInt(safeGet(localStorage, 'local_visit_fallback') || '0');
     if (!alreadyCountedThisSession) {
       local++;
-      localStorage.setItem('local_visit_fallback', local);
-      sessionStorage.setItem('visit_counted', '1');
+      safeSet(localStorage, 'local_visit_fallback', local);
+      safeSet(sessionStorage, 'visit_counted', '1');
     }
     visitorElem.textContent = local > 0 ? local.toLocaleString('ar-EG') : '—';
   }
@@ -1107,6 +1276,117 @@ function updateDeathCounter() {
   }
 }
 updateDeathCounter();
+
+/* SURAH AL-BAQARAH RECITER PICKER */
+function loadBaqarahReciter(reciterCode, btnEl) {
+  const player = document.getElementById("baqarahPlayer");
+  const source = document.getElementById("baqarahSource");
+  if (!player || !source) return;
+
+  const servers = { minsh: "server10", frs_a: "server8", maher: "server12" };
+  const server = servers[reciterCode] || "server10";
+  source.src = `https://${server}.mp3quran.net/download/${reciterCode}/002.mp3`;
+  player.load();
+
+  document.querySelectorAll(".reciter-picker .action").forEach(b => b.classList.remove("active"));
+  if (btnEl) btnEl.classList.add("active");
+}
+
+/* FRIDAY REMINDER (increase salawat on the Prophet ﷺ) */
+function showFridayCardIfNeeded() {
+  const card = document.getElementById("fridayCard");
+  if (!card) return;
+  const today = new Date().getDay(); // 5 = Friday
+  if (today === 5) {
+    card.style.display = "block";
+  }
+}
+showFridayCardIfNeeded();
+
+/* LAST VISIT RECORD */
+function updateLastVisit() {
+  const el = document.getElementById("lastVisitText");
+  if (!el) return;
+
+  const lastVisitStr = safeGet(localStorage, "last_visit");
+  const now = new Date();
+
+  if (lastVisitStr) {
+    const lastVisit = new Date(lastVisitStr);
+    const diffDays = Math.floor((now - lastVisit) / (1000 * 60 * 60 * 24));
+    if (diffDays <= 0) {
+      el.textContent = "🕊️ أول زيارة ليك اليوم";
+    } else if (diffDays === 1) {
+      el.textContent = "🕊️ معدية يوم من آخر زيارة ليك، جزاك الله خيرًا على رجوعك";
+    } else {
+      el.textContent = `🕊️ معدية ${diffDays} يوم من آخر زيارة ليك، جزاك الله خيرًا على رجوعك`;
+    }
+  } else {
+    el.textContent = "🕊️ أهلاً بأول زيارة ليك لهذه الصفحة";
+  }
+
+  safeSet(localStorage, "last_visit", now.toISOString());
+}
+updateLastVisit();
+
+/* DAILY REMINDER (browser notifications) */
+function setupDailyReminder() {
+  const status = document.getElementById("reminderStatus");
+  const btn = document.getElementById("reminderBtn");
+
+  if (!("Notification" in window)) {
+    if (status) status.textContent = "متصفحك لا يدعم الإشعارات";
+    return;
+  }
+
+  Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      safeSet(localStorage, "reminder_enabled", "1");
+      if (btn) btn.textContent = "🔔 التذكير مفعّل";
+      if (status) status.textContent = "هيوصلك تذكير يومي طالما الصفحة مفتوحة على جهازك";
+      showToast("تم تفعيل التذكير اليومي بإذن الله");
+      scheduleNextReminder();
+    } else {
+      if (status) status.textContent = "تم رفض إذن الإشعارات، يمكنك تفعيله من إعدادات المتصفح";
+    }
+  }).catch(() => {
+    if (status) status.textContent = "تعذّر تفعيل الإشعارات في هذا المتصفح";
+  });
+}
+
+function scheduleNextReminder() {
+  // Fires a reminder notification roughly once every 24 hours while the page stays open,
+  // and immediately if a full day already passed since the last one.
+  const lastReminderStr = safeGet(localStorage, "last_reminder_sent");
+  const now = Date.now();
+  const oneDay = 24 * 60 * 60 * 1000;
+  const lastReminder = lastReminderStr ? parseInt(lastReminderStr) : 0;
+  const msUntilNext = Math.max(oneDay - (now - lastReminder), 0);
+
+  setTimeout(function fireReminder() {
+    try {
+      if (Notification.permission === "granted") {
+        new Notification("صدقة جارية 🤲", {
+          body: "خُد دقيقة وادعِ للسيدة عبدالعاطي رحمها الله، واقرأ يس أو الأذكار",
+          icon: "teta-abdelaty.jpg"
+        });
+        safeSet(localStorage, "last_reminder_sent", Date.now().toString());
+      }
+    } catch (e) { /* notifications unsupported in this context, skip silently */ }
+    setTimeout(fireReminder, oneDay);
+  }, msUntilNext);
+}
+
+// If the reminder was already enabled in a previous visit, resume the schedule silently
+if (safeGet(localStorage, "reminder_enabled") === "1" && "Notification" in window && Notification.permission === "granted") {
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("reminderBtn");
+    const status = document.getElementById("reminderStatus");
+    if (btn) btn.textContent = "🔔 التذكير مفعّل";
+    if (status) status.textContent = "هيوصلك تذكير يومي طالما الصفحة مفتوحة على جهازك";
+  });
+  scheduleNextReminder();
+}
 
 /* DARK / LIGHT MODE TOGGLE */
 const themeBtn = document.getElementById("themeBtn");
@@ -1153,17 +1433,34 @@ function resetAllAzkar() {
   showToast("تم إعادة تصفير أذكار الصباح والمساء");
 }
 
-/* TASBIH COUNTERS & INDIVIDUAL RESET */
-let counts = { 1: 0, 2: 0, 3: 0 };
+/* TASBIH COUNTERS & INDIVIDUAL RESET (persisted so progress isn't lost on refresh) */
+let counts;
+try {
+  counts = JSON.parse(safeGet(localStorage, "tasbih_counts") || '{"1":0,"2":0,"3":0}');
+} catch (e) {
+  counts = { "1": 0, "2": 0, "3": 0 };
+}
+
+// Show saved counts on page load
+for (let key in counts) {
+  const el = document.getElementById(`count-${key}`);
+  if (el) el.textContent = counts[key];
+}
+
+function saveTasbihCounts() {
+  safeSet(localStorage, "tasbih_counts", JSON.stringify(counts));
+}
 
 function incBead(id) {
   counts[id]++;
   document.getElementById(`count-${id}`).textContent = counts[id];
+  saveTasbihCounts();
 }
 
 function resetBead(id) {
   counts[id] = 0;
   document.getElementById(`count-${id}`).textContent = 0;
+  saveTasbihCounts();
   showToast("تم إعادة ضبط هذا الذكر");
 }
 
@@ -1172,16 +1469,16 @@ function resetAllBeads() {
     counts[key] = 0;
     document.getElementById(`count-${key}`).textContent = 0;
   }
+  saveTasbihCounts();
   showToast("تم تصفير جميع التسابيح");
 }
 
-/* DUA COUNTER */
-let duaTotal = parseInt(localStorage.getItem("dua_count") || "0");
+/* DUA COUNTER (not saved - resets every time the page is opened) */
+let duaTotal = 0;
 document.getElementById("duaCount").textContent = duaTotal;
 
 function addDua() {
   duaTotal++;
-  localStorage.setItem("dua_count", duaTotal);
   document.getElementById("duaCount").textContent = duaTotal;
   showToast("جزاك الله خيرًا على الدعاء ❤️");
 }
