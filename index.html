@@ -662,6 +662,19 @@ footer{
 
 <body>
 
+<div id="entryOverlay" style="position:fixed; inset:0; z-index:9999; background:#0d2b22; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
+  <div style="font-size:44px; margin-bottom:10px;">🕊️</div>
+  <div style="font-family:'Amiri',serif; font-size:26px; color:#e3c988; margin-bottom:8px;">
+    صَلِّ عَلَى النَّبِيِّ ﷺ
+  </div>
+  <div style="font-family:'Tajawal',sans-serif; font-size:14px; color:#d9d9d9; max-width:320px; margin-bottom:28px;">
+    اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ، ثم ادخل الموقع وادعُ لصاحبة هذه الصفحة رحمها الله
+  </div>
+  <button id="entryBtn" style="background:#c9a24c; color:#0d2b22; border:none; padding:14px 48px; border-radius:30px; font-family:'Tajawal',sans-serif; font-size:16px; font-weight:bold; cursor:pointer;">
+    دخول
+  </button>
+</div>
+
 <div class="wrap">
 
   <div class="top-nav">
@@ -694,6 +707,14 @@ footer{
 
       <h1>السيدة عبدالعاطي</h1>
       <div class="rahima">رحمها الله ورزقها الفردوس الأعلى</div>
+
+      <div class="card" style="text-align:center; margin:16px 0; border: 1px solid var(--gold);">
+        <div style="font-size:15px; font-weight:bold; color:var(--gold-soft);">🕊️ اللهم صلِّ وسلم على سيدنا محمد ﷺ</div>
+        <audio controls preload="none" id="salawatAudio" style="margin-top:10px; width:100%;">
+          <source src="salawat-clip.mp3" type="audio/mpeg">
+          متصفحك لا يدعم تشغيل الصوتيات.
+        </audio>
+      </div>
 
       <div class="counter-box">
         <div class="counter-title">مرّ على انتقالها إلى رحمة الله (13-07-2026)</div>
@@ -1328,6 +1349,23 @@ function updateLastVisit() {
   safeSet(localStorage, "last_visit", now.toISOString());
 }
 updateLastVisit();
+
+/* SALAWAT REMINDER — plays the short uploaded clip when the visitor enters */
+const salawatAudio = document.getElementById("salawatAudio");
+
+/* ENTRY OVERLAY — shown to every visitor before entering the site */
+const entryOverlay = document.getElementById("entryOverlay");
+const entryBtn = document.getElementById("entryBtn");
+if (entryOverlay && entryBtn) {
+  document.body.style.overflow = "hidden";
+  entryBtn.addEventListener("click", () => {
+    entryOverlay.style.transition = "opacity 0.4s";
+    entryOverlay.style.opacity = "0";
+    setTimeout(() => { entryOverlay.style.display = "none"; }, 400);
+    document.body.style.overflow = "";
+    if (salawatAudio) salawatAudio.play().catch(() => {});
+  });
+}
 
 /* DAILY REMINDER (browser notifications) */
 function setupDailyReminder() {
