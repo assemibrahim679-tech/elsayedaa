@@ -6,6 +6,21 @@
 <meta name="theme-color" content="#0e2622">
 <meta name="description" content="صدقة جارية عن السيدة عبدالعاطي رحمها الله">
 
+<!-- Open Graph (Facebook, WhatsApp, Telegram, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="صدقة جارية - السيدة عبدالعاطي رحمها الله">
+<meta property="og:description" content="ادعُ للسيدة عبدالعاطي رحمها الله، واقرأ يس والقرآن، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها">
+<meta property="og:image" content="https://assemibrahim679-tech.github.io/elsayda/teta-abdelaty.jpg">
+<meta property="og:url" content="https://assemibrahim679-tech.github.io/elsayda/">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="صدقة جارية - السيدة عبدالعاطي">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="صدقة جارية - السيدة عبدالعاطي رحمها الله">
+<meta name="twitter:description" content="ادعُ للسيدة عبدالعاطي رحمها الله، واقرأ يس والقرآن، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها">
+<meta name="twitter:image" content="https://assemibrahim679-tech.github.io/elsayda/teta-abdelaty.jpg">
+
 <title>السيدة عبدالعاطي رحمها الله</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -657,13 +672,134 @@ footer{
   .share-grid{ grid-template-columns:1fr; }
   .whatsapp-direct { grid-column: span 1; }
 }
+/* ===== DESIGN & ANIMATION TOUCHES (BOLD VERSION) ===== */
+
+/* Slowly shifting animated background glow across the whole page */
+body {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(201,162,76,.14), transparent 38%),
+    var(--bg);
+  background-size: 200% 200%;
+  animation: bgDrift 14s ease-in-out infinite;
+}
+@keyframes bgDrift {
+  0%, 100% { background-position: 50% 0%; }
+  50%      { background-position: 50% 30%; }
+}
+
+/* Rotating halo ring + strong pulsing glow around her photo */
+.arch {
+  position: relative;
+  animation: archGlowStrong 3s ease-in-out infinite;
+}
+.arch::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--gold), transparent 30%, var(--gold-soft), transparent 70%, var(--gold));
+  animation: rotateHalo 6s linear infinite;
+  z-index: -1;
+  opacity: .55;
+}
+@keyframes rotateHalo {
+  to { transform: rotate(360deg); }
+}
+@keyframes archGlowStrong {
+  0%, 100% {
+    box-shadow: 0 0 0 7px var(--bg-deep), 0 0 45px rgba(201,162,76,.25);
+  }
+  50% {
+    box-shadow: 0 0 0 7px var(--bg-deep), 0 0 90px rgba(201,162,76,.6);
+  }
+}
+
+/* Shimmering gold gradient text for the main title */
+h1 {
+  background: linear-gradient(90deg, var(--gold-soft), #fff6de, var(--gold), var(--gold-soft));
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerText 4s linear infinite;
+}
+@keyframes shimmerText {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+/* Bigger, more visible floating light particles */
+.hero { position: relative; overflow: hidden; }
+.particle {
+  position: absolute;
+  bottom: -10px;
+  width: 9px;
+  height: 9px;
+  background: var(--gold-soft);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 10px 3px rgba(227,201,136,.7);
+  animation: floatUp 7s ease-in infinite;
+}
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 26%; animation-delay: 1.3s; }
+.particle:nth-child(3) { left: 46%; animation-delay: 2.4s; }
+.particle:nth-child(4) { left: 66%; animation-delay: 3.6s; }
+.particle:nth-child(5) { left: 84%; animation-delay: 4.9s; }
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: .5; }
+  100% { transform: translateY(-360px) scale(1.3); opacity: 0; }
+}
+
+/* Bold scroll-reveal: bigger movement + slight scale pop */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px) scale(0.94);
+  transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Smooth, more noticeable fade+slide when switching tabs */
+.tab-content.active {
+  animation: tabFadeIn .45s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes tabFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Strong breathing glow on the entry overlay icon */
+#entryOverlay .entry-icon {
+  animation: iconPulseStrong 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(227,201,136,.6));
+}
+@keyframes iconPulseStrong {
+  0%, 100% { transform: scale(1); opacity: .85; }
+  50%      { transform: scale(1.3); opacity: 1; }
+}
+
+/* Pulsing glow on the main call-to-action buttons to draw the eye */
+#entryBtn, .dua-button {
+  animation: ctaPulse 2s ease-in-out infinite;
+}
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201,162,76,.5); }
+  50%      { box-shadow: 0 0 0 10px rgba(201,162,76,0); }
+}
+
 </style>
 </head>
 
 <body>
 
 <div id="entryOverlay" style="position:fixed; inset:0; z-index:9999; background:#0d2b22; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
-  <div style="font-size:44px; margin-bottom:10px;">🕊️</div>
+  <div class="entry-icon" style="font-size:44px; margin-bottom:10px;">🕊️</div>
   <div style="font-family:'Amiri',serif; font-size:26px; color:#e3c988; margin-bottom:8px;">
     صَلِّ عَلَى النَّبِيِّ ﷺ
   </div>
@@ -701,6 +837,12 @@ footer{
   <div id="tab-main" class="tab-content active">
 
     <div class="hero">
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+
       <div class="arch">
         <img src="teta-abdelaty.jpg" alt="السيدة عبدالعاطي رحمها الله">
       </div>
@@ -1395,6 +1537,24 @@ function updateLastVisit() {
 }
 updateLastVisit();
 
+/* SCROLL-REVEAL ANIMATION for the main page's sections and cards */
+function initScrollReveal() {
+  const targets = document.querySelectorAll("#tab-main section, #tab-main .card");
+  targets.forEach(el => el.classList.add("reveal"));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  targets.forEach(el => observer.observe(el));
+}
+initScrollReveal();
+
 /* SALAWAT REMINDER — plays the short uploaded clip when the visitor enters */
 const salawatAudio = document.getElementById("salawatAudio");
 
@@ -1534,10 +1694,33 @@ function saveTasbihCounts() {
   safeSet(localStorage, "tasbih_counts", JSON.stringify(counts));
 }
 
+/* Soft "click" tone for the tasbih button — generated in-browser, no external file, never breaks */
+let tasbihAudioCtx = null;
+function playTasbihClick() {
+  try {
+    if (!tasbihAudioCtx) {
+      tasbihAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    const ctx = tasbihAudioCtx;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 0.08);
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.12);
+  } catch (e) { /* Web Audio unsupported, skip silently */ }
+}
+
 function incBead(id) {
   counts[id]++;
   document.getElementById(`count-${id}`).textContent = counts[id];
   saveTasbihCounts();
+  playTasbihClick();
 }
 
 function resetBead(id) {
