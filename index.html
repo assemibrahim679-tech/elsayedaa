@@ -672,9 +672,6 @@ footer{
   .share-grid{ grid-template-columns:1fr; }
   .whatsapp-direct { grid-column: span 1; }
 }
-/* ===== DESIGN & ANIMATION TOUCHES (BOLD VERSION) ===== */
-
-/* Slowly shifting animated background glow across the whole page */
 body {
   background:
     radial-gradient(circle at 50% -10%, rgba(201,162,76,.14), transparent 38%),
@@ -687,7 +684,6 @@ body {
   50%      { background-position: 50% 30%; }
 }
 
-/* Rotating halo ring + strong pulsing glow around her photo */
 .arch {
   position: relative;
   animation: archGlowStrong 3s ease-in-out infinite;
@@ -714,7 +710,6 @@ body {
   }
 }
 
-/* Shimmering gold gradient text for the main title */
 h1 {
   background: linear-gradient(90deg, var(--gold-soft), #fff6de, var(--gold), var(--gold-soft));
   background-size: 300% auto;
@@ -728,7 +723,6 @@ h1 {
   100% { background-position: 300% center; }
 }
 
-/* Bigger, more visible floating light particles */
 .hero { position: relative; overflow: hidden; }
 .particle {
   position: absolute;
@@ -754,7 +748,6 @@ h1 {
   100% { transform: translateY(-360px) scale(1.3); opacity: 0; }
 }
 
-/* Bold scroll-reveal: bigger movement + slight scale pop */
 .reveal {
   opacity: 0;
   transform: translateY(40px) scale(0.94);
@@ -765,7 +758,6 @@ h1 {
   transform: translateY(0) scale(1);
 }
 
-/* Smooth, more noticeable fade+slide when switching tabs */
 .tab-content.active {
   animation: tabFadeIn .45s cubic-bezier(.2,.8,.2,1);
 }
@@ -774,8 +766,94 @@ h1 {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Strong breathing glow on the entry overlay icon */
+#entryOverlay {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(201,162,76,.16) 0%, rgba(201,162,76,0) 42%),
+    radial-gradient(circle at 50% 100%, rgba(201,162,76,.10) 0%, rgba(201,162,76,0) 55%),
+    linear-gradient(160deg, #0a1f1a 0%, #0d2b22 45%, #0a221b 100%);
+  overflow: hidden;
+}
+
+#entryOverlay::before,
+#entryOverlay::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(227,201,136,.55), transparent);
+}
+#entryOverlay::before { top: 34px; }
+#entryOverlay::after  { bottom: 34px; }
+
+.entry-ornament {
+  font-size: 15px;
+  letter-spacing: 10px;
+  color: var(--gold);
+  opacity: .75;
+  margin-bottom: 18px;
+}
+
+.entry-frame {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.entry-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(227,201,136,.45);
+  animation: ringSpin 14s linear infinite;
+}
+.entry-frame::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  border: 1px dashed rgba(227,201,136,.3);
+  animation: ringSpin 20s linear infinite reverse;
+}
+@keyframes ringSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.entry-card {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+  border: 1px solid rgba(227,201,136,.3);
+  border-radius: 22px;
+  padding: 38px 28px 32px;
+  max-width: 360px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 20px 60px -18px rgba(0,0,0,.6);
+}
+
+.entry-title {
+  font-family:'Amiri',serif;
+  font-size: 27px;
+  color: var(--gold-soft);
+  margin-bottom: 10px;
+  text-shadow: 0 0 18px rgba(227,201,136,.35);
+}
+
+.entry-desc {
+  font-family:'Tajawal',sans-serif;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #d9d9d9;
+  max-width: 300px;
+  margin: 0 auto 30px;
+}
+
 #entryOverlay .entry-icon {
+  font-size: 40px;
   animation: iconPulseStrong 1.8s ease-in-out infinite;
   filter: drop-shadow(0 0 10px rgba(227,201,136,.6));
 }
@@ -784,7 +862,22 @@ h1 {
   50%      { transform: scale(1.3); opacity: 1; }
 }
 
-/* Pulsing glow on the main call-to-action buttons to draw the eye */
+#entryBtn {
+  background: linear-gradient(135deg, #e3c988, #c9a24c 55%, #a97f2f);
+  color: #0d2b22;
+  border: none;
+  padding: 15px 52px;
+  border-radius: 30px;
+  font-family:'Tajawal',sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px -6px rgba(201,162,76,.55);
+  transition: transform .25s ease;
+}
+#entryBtn:active { transform: scale(.96); }
+
 #entryBtn, .dua-button {
   animation: ctaPulse 2s ease-in-out infinite;
 }
@@ -798,17 +891,30 @@ h1 {
 
 <body>
 
-<div id="entryOverlay" style="position:fixed; inset:0; z-index:9999; background:#0d2b22; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
-  <div class="entry-icon" style="font-size:44px; margin-bottom:10px;">🕊️</div>
-  <div style="font-family:'Amiri',serif; font-size:26px; color:#e3c988; margin-bottom:8px;">
-    صَلِّ عَلَى النَّبِيِّ ﷺ
+<div id="entryOverlay" style="position:fixed; inset:0; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+
+  <div class="entry-card">
+    <div class="entry-ornament">۞ ✦ ۞</div>
+
+    <div class="entry-frame">
+      <div class="entry-icon">🕊️</div>
+    </div>
+
+    <div class="entry-title">صَلِّ عَلَى النَّبِيِّ ﷺ</div>
+
+    <div class="entry-desc">
+      اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ، ثم ادخل الموقع وادعُ لصاحبة هذه الصفحة رحمها الله
+    </div>
+
+    <button id="entryBtn">
+      ✨ دخول
+    </button>
   </div>
-  <div style="font-family:'Tajawal',sans-serif; font-size:14px; color:#d9d9d9; max-width:320px; margin-bottom:28px;">
-    اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ، ثم ادخل الموقع وادعُ لصاحبة هذه الصفحة رحمها الله
-  </div>
-  <button id="entryBtn" style="background:#c9a24c; color:#0d2b22; border:none; padding:14px 48px; border-radius:30px; font-family:'Tajawal',sans-serif; font-size:16px; font-weight:bold; cursor:pointer;">
-    دخول
-  </button>
 </div>
 
 <div class="wrap">
@@ -826,6 +932,7 @@ h1 {
 
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="switchTab(event, 'main')">الرئيسية</button>
+    <button class="tab-btn" onclick="switchTab(event, 'quran')">القرآن الكامل</button>
     <button class="tab-btn" onclick="switchTab(event, 'azkar')">الأذكار والتسابيح</button>
     <button class="tab-btn" onclick="switchTab(event, 'lectures')">دروس دينية</button>
     <button class="tab-btn" onclick="switchTab(event, 'prayers')">أوقات الصلاة</button>
@@ -881,6 +988,14 @@ h1 {
     <div class="divider"><span>۞</span></div>
 
     <section>
+      <div class="label">الصلاة القادمة</div>
+      <div class="counter-box">
+        <div class="counter-title" id="nextPrayerName">جاري تحديد الصلاة القادمة...</div>
+        <div class="days-num" id="nextPrayerCountdown">--:--:--</div>
+      </div>
+    </section>
+
+    <section>
       <div class="label">دعاء للمتوفاة</div>
       <div class="card">
         <div class="arabic">
@@ -891,37 +1006,6 @@ h1 {
         <div class="arabic">
           اللهم إنها في ذمتك وحبل جوارك، فَقِهِا من فتنة القبر وعذاب النار، وأنت أهل الوفاء والحق، فاغفر لها وارحمها إنك أنت الغفور الرحيم.
         </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="label">تلاوة قرآنية تريح القلوب</div>
-      <div class="card quran-box">
-        <div class="quran-icon">📖</div>
-        <div class="quran-title">سورة يس - بصوت خاشع</div>
-        <div class="quran-note">صدقة جارية عن روح الفقيدة</div>
-        <audio controls preload="none">
-          <source src="https://server11.mp3quran.net/yasser/036.mp3" type="audio/mpeg">
-          متصفحك لا يدعم تشغيل الصوتيات.
-        </audio>
-      </div>
-    </section>
-
-    <section>
-      <div class="label">سورة البقرة - اختر القارئ</div>
-      <div class="card quran-box">
-        <div class="quran-icon">📖</div>
-        <div class="quran-title">سورة البقرة</div>
-        <div class="quran-note">صدقة جارية عن روح الفقيدة</div>
-        <div class="reciter-picker" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:12px;">
-          <button class="action" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="loadBaqarahReciter('minsh', this)">المنشاوي</button>
-          <button class="action" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="loadBaqarahReciter('frs_a', this)">فارس عباد</button>
-          <button class="action" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="loadBaqarahReciter('maher', this)">ماهر المعيقلي</button>
-        </div>
-        <audio controls preload="none" id="baqarahPlayer">
-          <source id="baqarahSource" src="https://server10.mp3quran.net/download/minsh/002.mp3" type="audio/mpeg">
-          متصفحك لا يدعم تشغيل الصوتيات.
-        </audio>
       </div>
     </section>
 
@@ -994,6 +1078,36 @@ h1 {
       <div class="label">رمز QR للموقع</div>
       <div id="qrcode">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://assemibrahim679-tech.github.io/elsayedaa/" alt="QR Code">
+      </div>
+    </section>
+
+  </div>
+
+  <!-- TAB: القرآن الكامل -->
+  <div id="tab-quran" class="tab-content">
+
+    <section>
+      <div class="label">اختر القارئ</div>
+      <div class="reciter-picker" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;">
+        <button class="action quran-reciter-btn active" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('yasser', this)">ياسر الدوسري</button>
+        <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('minsh', this)">المنشاوي</button>
+        <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('frs_a', this)">فارس عباد</button>
+        <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('maher', this)">ماهر المعيقلي</button>
+        <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('ahmad_ajmi', this)">أحمد العجمي</button>
+        <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('husary', this)">الحصري</button>
+        <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('banna', this)">البنا</button>
+      </div>
+
+      <div class="label">اختر السورة</div>
+      <div class="card quran-box">
+        <div class="quran-icon">📖</div>
+        <select id="quranSurahSelect" onchange="loadFullQuranSurah()" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--line); background:var(--panel); color:var(--text-main); font-family:'Tajawal',sans-serif; font-size:15px; margin-bottom:14px;"></select>
+        <div class="quran-title" id="quranCurrentSurah">سورة الفاتحة</div>
+        <div class="quran-note">صدقة جارية عن روح الفقيدة</div>
+        <audio controls preload="none" id="fullQuranPlayer">
+          <source id="fullQuranSource" src="" type="audio/mpeg">
+          متصفحك لا يدعم تشغيل الصوتيات.
+        </audio>
       </div>
     </section>
 
@@ -1407,7 +1521,6 @@ h1 {
     </div>
   </div>
 
-
   <footer>
     <div class="final-dua">اللهم اغفر لها وارحمها ووسع مدخلها</div>
     <div class="note" style="margin-top: 10px;">انشر الموقع لتشارك في الأجر والثواب</div>
@@ -1424,22 +1537,18 @@ h1 {
 <div class="toast" id="toast">تم النسخ بنجاح</div>
 
 <script>
-/* SAFE STORAGE HELPERS — some browsers/webviews (e.g. opening the file directly, or Acode's
-   preview) block localStorage/sessionStorage entirely and throw an error the moment they're
-   touched. Without this wrapper, that error stops every line of script written after it. */
 function safeGet(storage, key) {
   try { return storage.getItem(key); } catch (e) { return null; }
 }
 function safeSet(storage, key, value) {
-  try { storage.setItem(key, value); } catch (e) { /* storage unavailable, skip silently */ }
+  try { storage.setItem(key, value); } catch (e) {}
 }
 
-/* REAL GLOBAL VISITOR COUNTER (CountAPI - no auth, no key, increments once per real page load) */
+// عداد الزوار
 async function fetchGlobalVisitors() {
   const visitorElem = document.getElementById('visitorCount');
   const COUNTER_KEY = 'assemibrahim679_elsayda_abdelaty_memorial'; // unique key so it never collides with anyone else's counter
 
-  // Count each visitor only once per browser (sessionStorage) so refreshing the page doesn't inflate the number
   const alreadyCountedThisSession = safeGet(sessionStorage, 'visit_counted');
 
   try {
@@ -1457,7 +1566,6 @@ async function fetchGlobalVisitors() {
       throw new Error('Invalid response');
     }
   } catch (e) {
-    // If the API is unreachable (offline / blocked), fall back to a locally-remembered count instead of a fake static number
     let local = parseInt(safeGet(localStorage, 'local_visit_fallback') || '0');
     if (!alreadyCountedThisSession) {
       local++;
@@ -1469,7 +1577,7 @@ async function fetchGlobalVisitors() {
 }
 fetchGlobalVisitors();
 
-/* DEATH COUNTER */
+// عداد الأيام
 function updateDeathCounter() {
   const deathDate = new Date("2026-07-13T00:00:00");
   const now = new Date();
@@ -1485,7 +1593,70 @@ function updateDeathCounter() {
 }
 updateDeathCounter();
 
-/* SURAH AL-BAQARAH RECITER PICKER */
+// القرآن الكامل
+const QURAN_SURAHS = [
+  "الفاتحة","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس",
+  "هود","يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه",
+  "الأنبياء","الحج","المؤمنون","النور","الفرقان","الشعراء","النمل","القصص","العنكبوت","الروم",
+  "لقمان","السجدة","الأحزاب","سبأ","فاطر","يس","الصافات","ص","الزمر","غافر",
+  "فصلت","الشورى","الزخرف","الدخان","الجاثية","الأحقاف","محمد","الفتح","الحجرات","ق",
+  "الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة","الحشر","الممتحنة",
+  "الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج",
+  "نوح","الجن","المزمل","المدثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس",
+  "التكوير","الانفطار","المطففين","الانشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد",
+  "الشمس","الليل","الضحى","الشرح","التين","العلق","القدر","البينة","الزلزلة","العاديات",
+  "القارعة","التكاثر","العصر","الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر",
+  "المسد","الإخلاص","الفلق","الناس"
+];
+
+const QURAN_RECITERS = {
+  yasser: (n) => `https://server11.mp3quran.net/yasser/${String(n).padStart(3,"0")}.mp3`,
+  minsh:  (n) => `https://server10.mp3quran.net/download/minsh/${String(n).padStart(3,"0")}.mp3`,
+  frs_a:  (n) => `https://server8.mp3quran.net/download/frs_a/${String(n).padStart(3,"0")}.mp3`,
+  maher:  (n) => `https://server12.mp3quran.net/download/maher/${String(n).padStart(3,"0")}.mp3`,
+  ahmad_ajmi: (n) => `https://server10.mp3quran.net/download/ajm/${String(n).padStart(3,"0")}.mp3`,
+  husary: (n) => `https://server13.mp3quran.net/husr/${String(n).padStart(3,"0")}.mp3`,
+  banna: (n) => `https://server8.mp3quran.net/bna/${String(n).padStart(3,"0")}.mp3`
+};
+
+let currentQuranReciter = "yasser";
+
+function populateQuranSurahList() {
+  const select = document.getElementById("quranSurahSelect");
+  if (!select) return;
+  QURAN_SURAHS.forEach((name, i) => {
+    const opt = document.createElement("option");
+    opt.value = i + 1;
+    opt.textContent = `${i + 1}. ${name}`;
+    select.appendChild(opt);
+  });
+}
+
+function setQuranReciter(reciterCode, btnEl) {
+  currentQuranReciter = reciterCode;
+  document.querySelectorAll(".quran-reciter-btn").forEach(b => b.classList.remove("active"));
+  if (btnEl) btnEl.classList.add("active");
+  loadFullQuranSurah();
+}
+
+function loadFullQuranSurah() {
+  const select = document.getElementById("quranSurahSelect");
+  const player = document.getElementById("fullQuranPlayer");
+  const source = document.getElementById("fullQuranSource");
+  const titleEl = document.getElementById("quranCurrentSurah");
+  if (!select || !player || !source) return;
+
+  const surahNum = parseInt(select.value || "1", 10);
+  const urlBuilder = QURAN_RECITERS[currentQuranReciter] || QURAN_RECITERS.yasser;
+
+  source.src = urlBuilder(surahNum);
+  player.load();
+  if (titleEl) titleEl.textContent = `سورة ${QURAN_SURAHS[surahNum - 1]}`;
+}
+
+populateQuranSurahList();
+loadFullQuranSurah();
+
 function loadBaqarahReciter(reciterCode, btnEl) {
   const player = document.getElementById("baqarahPlayer");
   const source = document.getElementById("baqarahSource");
@@ -1500,7 +1671,13 @@ function loadBaqarahReciter(reciterCode, btnEl) {
   if (btnEl) btnEl.classList.add("active");
 }
 
-/* FRIDAY REMINDER (increase salawat on the Prophet ﷺ) */
+function switchTabById(tabId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  const tab = document.getElementById('tab-' + tabId);
+  if (tab) tab.classList.add('active');
+}
+
 function showFridayCardIfNeeded() {
   const card = document.getElementById("fridayCard");
   if (!card) return;
@@ -1511,7 +1688,6 @@ function showFridayCardIfNeeded() {
 }
 showFridayCardIfNeeded();
 
-/* LAST VISIT RECORD */
 function updateLastVisit() {
   const el = document.getElementById("lastVisitText");
   if (!el) return;
@@ -1537,7 +1713,6 @@ function updateLastVisit() {
 }
 updateLastVisit();
 
-/* SCROLL-REVEAL ANIMATION for the main page's sections and cards */
 function initScrollReveal() {
   const targets = document.querySelectorAll("#tab-main section, #tab-main .card");
   targets.forEach(el => el.classList.add("reveal"));
@@ -1555,10 +1730,8 @@ function initScrollReveal() {
 }
 initScrollReveal();
 
-/* SALAWAT REMINDER — plays the short uploaded clip when the visitor enters */
 const salawatAudio = document.getElementById("salawatAudio");
 
-/* ENTRY OVERLAY — shown to every visitor before entering the site */
 const entryOverlay = document.getElementById("entryOverlay");
 const entryBtn = document.getElementById("entryBtn");
 if (entryOverlay && entryBtn) {
@@ -1572,7 +1745,6 @@ if (entryOverlay && entryBtn) {
   });
 }
 
-/* DAILY REMINDER (browser notifications) */
 function setupDailyReminder() {
   const status = document.getElementById("reminderStatus");
   const btn = document.getElementById("reminderBtn");
@@ -1598,8 +1770,6 @@ function setupDailyReminder() {
 }
 
 function scheduleNextReminder() {
-  // Fires a reminder notification roughly once every 24 hours while the page stays open,
-  // and immediately if a full day already passed since the last one.
   const lastReminderStr = safeGet(localStorage, "last_reminder_sent");
   const now = Date.now();
   const oneDay = 24 * 60 * 60 * 1000;
@@ -1615,12 +1785,11 @@ function scheduleNextReminder() {
         });
         safeSet(localStorage, "last_reminder_sent", Date.now().toString());
       }
-    } catch (e) { /* notifications unsupported in this context, skip silently */ }
+    } catch (e) {}
     setTimeout(fireReminder, oneDay);
   }, msUntilNext);
 }
 
-// If the reminder was already enabled in a previous visit, resume the schedule silently
 if (safeGet(localStorage, "reminder_enabled") === "1" && "Notification" in window && Notification.permission === "granted") {
   document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("reminderBtn");
@@ -1631,7 +1800,6 @@ if (safeGet(localStorage, "reminder_enabled") === "1" && "Notification" in windo
   scheduleNextReminder();
 }
 
-/* DARK / LIGHT MODE TOGGLE */
 const themeBtn = document.getElementById("themeBtn");
 const themeIcon = document.getElementById("themeIcon");
 const themeText = document.getElementById("themeText");
@@ -1643,7 +1811,6 @@ themeBtn.addEventListener("click", () => {
   themeText.textContent = isLight ? "الوضع النهاري" : "الوضع الليلي";
 });
 
-/* TABS NAVIGATION */
 function switchTab(evt, tabId) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
@@ -1652,7 +1819,6 @@ function switchTab(evt, tabId) {
   document.getElementById(`tab-${tabId}`).classList.add('active');
 }
 
-/* AZKAR COUNTER FUNCTION */
 function countAzkar(btn, max) {
   let countElem = btn.querySelector('.az-c');
   let current = parseInt(countElem.textContent);
@@ -1676,7 +1842,6 @@ function resetAllAzkar() {
   showToast("تم إعادة تصفير أذكار الصباح والمساء");
 }
 
-/* TASBIH COUNTERS & INDIVIDUAL RESET (persisted so progress isn't lost on refresh) */
 let counts;
 try {
   counts = JSON.parse(safeGet(localStorage, "tasbih_counts") || '{"1":0,"2":0,"3":0}');
@@ -1684,7 +1849,6 @@ try {
   counts = { "1": 0, "2": 0, "3": 0 };
 }
 
-// Show saved counts on page load
 for (let key in counts) {
   const el = document.getElementById(`count-${key}`);
   if (el) el.textContent = counts[key];
@@ -1694,7 +1858,6 @@ function saveTasbihCounts() {
   safeSet(localStorage, "tasbih_counts", JSON.stringify(counts));
 }
 
-/* Soft "click" tone for the tasbih button — generated in-browser, no external file, never breaks */
 let tasbihAudioCtx = null;
 function playTasbihClick() {
   try {
@@ -1713,7 +1876,7 @@ function playTasbihClick() {
     gain.connect(ctx.destination);
     osc.start();
     osc.stop(ctx.currentTime + 0.12);
-  } catch (e) { /* Web Audio unsupported, skip silently */ }
+  } catch (e) {}
 }
 
 function incBead(id) {
@@ -1739,7 +1902,6 @@ function resetAllBeads() {
   showToast("تم تصفير جميع التسابيح");
 }
 
-/* DUA COUNTER (not saved - resets every time the page is opened) */
 let duaTotal = 0;
 document.getElementById("duaCount").textContent = duaTotal;
 
@@ -1749,9 +1911,29 @@ function addDua() {
   showToast("جزاك الله خيرًا على الدعاء ❤️");
 }
 
-/* PRAYER TIMES & HIJRI CALENDAR */
 let userLat = 30.0444; // Default Cairo
 let userLng = 31.2357;
+
+let prayerTimingsToday = null;
+
+const PRAYER_LABELS = {
+  Fajr: "الفجر",
+  Sunrise: "الشروق",
+  Dhuhr: "الظهر",
+  Asr: "العصر",
+  Maghrib: "المغرب",
+  Isha: "العشاء"
+};
+const PRAYER_ORDER = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
+
+function to12Hour(timeStr) {
+  const clean = String(timeStr).split(" ")[0];
+  let [h, m] = clean.split(":").map(Number);
+  const period = h >= 12 ? "م" : "ص";
+  h = h % 12;
+  if (h === 0) h = 12;
+  return `${h}:${String(m).padStart(2, "0")} ${period}`;
+}
 
 function getPrayerTimesByCoords(lat, lng) {
   fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lng}&method=5`)
@@ -1759,20 +1941,66 @@ function getPrayerTimesByCoords(lat, lng) {
     .then(data => {
       if(data.code === 200) {
         const timings = data.data.timings;
-        document.getElementById('fajr').textContent = timings.Fajr;
-        document.getElementById('sunrise').textContent = timings.Sunrise;
-        document.getElementById('dhuhr').textContent = timings.Dhuhr;
-        document.getElementById('asr').textContent = timings.Asr;
-        document.getElementById('maghrib').textContent = timings.Maghrib;
-        document.getElementById('isha').textContent = timings.Isha;
+        document.getElementById('fajr').textContent = to12Hour(timings.Fajr);
+        document.getElementById('sunrise').textContent = to12Hour(timings.Sunrise);
+        document.getElementById('dhuhr').textContent = to12Hour(timings.Dhuhr);
+        document.getElementById('asr').textContent = to12Hour(timings.Asr);
+        document.getElementById('maghrib').textContent = to12Hour(timings.Maghrib);
+        document.getElementById('isha').textContent = to12Hour(timings.Isha);
         
         const hijri = data.data.date.hijri;
         const greg = data.data.date.gregorian;
         document.getElementById('hijriDateDisplay').textContent = `${hijri.day} ${hijri.month.ar} ${hijri.year} هـ`;
         document.getElementById('gregorianDateDisplay').textContent = `الموافق: ${greg.weekday.ar} ${greg.day} ${greg.month.en} ${greg.year} م`;
+
+        prayerTimingsToday = timings;
+        updateNextPrayerCountdown();
       }
     }).catch(e => console.log(e));
 }
+
+function parsePrayerTimeToday(timeStr) {
+  const clean = String(timeStr).split(" ")[0];
+  const parts = clean.split(":").map(Number);
+  const d = new Date();
+  d.setHours(parts[0], parts[1] || 0, 0, 0);
+  return d;
+}
+
+function updateNextPrayerCountdown() {
+  const nameEl = document.getElementById("nextPrayerName");
+  const countEl = document.getElementById("nextPrayerCountdown");
+  if (!nameEl || !countEl || !prayerTimingsToday) return;
+
+  const now = new Date();
+  let next = null;
+  let nextKey = null;
+
+  for (const key of PRAYER_ORDER) {
+    const t = parsePrayerTimeToday(prayerTimingsToday[key]);
+    if (t > now) {
+      next = t;
+      nextKey = key;
+      break;
+    }
+  }
+
+  if (!next) {
+    next = parsePrayerTimeToday(prayerTimingsToday["Fajr"]);
+    next.setDate(next.getDate() + 1);
+    nextKey = "Fajr";
+  }
+
+  const diff = Math.max(0, next - now);
+  const hours = Math.floor(diff / 3600000);
+  const minutes = Math.floor((diff % 3600000) / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+
+  nameEl.textContent = `الوقت المتبقي على صلاة ${PRAYER_LABELS[nextKey]}`;
+  countEl.textContent = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+setInterval(updateNextPrayerCountdown, 1000);
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(pos => {
@@ -1788,7 +2016,6 @@ if (navigator.geolocation) {
   getPrayerTimesByCoords(userLat, userLng);
 }
 
-/* ACCURATE QIBLA CALCULATOR FOR ANDROID & IOS */
 function calculateQibla(lat, lng) {
   const kaabaLat = 21.4225 * Math.PI / 180;
   const kaabaLng = 39.8262 * Math.PI / 180;
@@ -1845,7 +2072,6 @@ function startCompass() {
   }
 }
 
-/* SHARE & COPY LINK */
 const copyBtn = document.getElementById("copyBtn");
 copyBtn.addEventListener("click", function(){
   copyText(window.location.href);
@@ -1871,7 +2097,6 @@ function copyText(text){
   showToast("تم نسخ رابط الموقع ❤️");
 }
 
-/* TOAST */
 let toastTimer;
 function showToast(message){
   const toast = document.getElementById("toast");
@@ -1883,7 +2108,6 @@ function showToast(message){
   }, 2000);
 }
 
-/* TOP BUTTON */
 const topBtn = document.getElementById("topBtn");
 window.addEventListener("scroll", function(){
   if(window.scrollY > 400){
