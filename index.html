@@ -313,6 +313,11 @@ audio{
   margin-top:10px;
 }
 
+#quranRadioPlayer{
+  accent-color: var(--gold);
+  border-radius: 12px;
+}
+
 .external-link-btn {
   display: inline-flex;
   align-items: center;
@@ -878,6 +883,24 @@ h1 {
 }
 #entryBtn:active { transform: scale(.96); }
 
+.entry-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 88%;
+  text-align: center;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--gold-soft);
+  background: rgba(201,162,76,.10);
+  border: 1px solid rgba(201,162,76,.35);
+  padding: 8px 18px;
+  border-radius: 20px;
+}
+
 #entryBtn, .dua-button {
   animation: ctaPulse 2s ease-in-out infinite;
 }
@@ -887,6 +910,167 @@ h1 {
 }
 
 </style>
+
+<style id="modern-audio-controls">
+/* إخفاء مشغل الصوت الافتراضي القديم من المتصفح (لأن تنسيقه محدود جدًا خصوصًا على الموبايل) */
+audio.hh-native-audio {
+  display: none;
+}
+
+/* ============== مشغل صوت فاخر مخصص ============== */
+.hh-player {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(135deg, rgba(201,162,76,.14), rgba(201,162,76,.04));
+  box-shadow: 0 10px 28px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.06);
+  box-sizing: border-box;
+  transition: .25s ease;
+}
+.hh-player:hover {
+  box-shadow: 0 14px 34px rgba(0,0,0,.22), 0 0 0 3px rgba(201,162,76,.12);
+}
+
+.hh-player-btn {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold) 60%, #a97f2f);
+  box-shadow: 0 6px 18px -4px rgba(201,162,76,.65);
+  transition: transform .18s ease, box-shadow .18s ease;
+  position: relative;
+}
+.hh-player-btn:active {
+  transform: scale(.92);
+}
+.hh-player-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #102d27;
+}
+.hh-player-btn .hh-icon-pause { display: none; }
+.hh-player-btn.playing .hh-icon-play { display: none; }
+.hh-player-btn.playing .hh-icon-pause { display: block; }
+
+.hh-player-btn.loading svg { visibility: hidden; }
+.hh-player-btn.loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(16,45,39,.35);
+  border-top-color: #102d27;
+  animation: hh-spin .8s linear infinite;
+}
+@keyframes hh-spin { to { transform: rotate(360deg); } }
+
+.hh-player-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.hh-player-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.12);
+  cursor: pointer;
+  overflow: hidden;
+}
+body.light-mode .hh-player-track {
+  background: rgba(0,0,0,.10);
+}
+.hh-player-fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
+  transition: width .1s linear;
+}
+
+.hh-player-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ivory-dim);
+  font-family: 'Tajawal', sans-serif;
+  direction: ltr;
+}
+
+.hh-player-live {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--gold-soft);
+  font-weight: 700;
+}
+.hh-player-live .hh-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e0524a;
+  box-shadow: 0 0 0 0 rgba(224,82,74,.6);
+  animation: hh-live-pulse 1.6s ease-out infinite;
+}
+@keyframes hh-live-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(224,82,74,.55); }
+  70%  { box-shadow: 0 0 0 8px rgba(224,82,74,0); }
+  100% { box-shadow: 0 0 0 0 rgba(224,82,74,0); }
+}
+
+/* وضع الراديو المباشر: نخفي الشريط والوقت ونظهر شارة "بث مباشر" بدلاً منهم */
+.hh-player.hh-live-mode .hh-player-track,
+.hh-player.hh-live-mode .hh-player-meta {
+  display: none;
+}
+.hh-player.hh-live-mode .hh-player-live {
+  display: flex;
+}
+
+/* ============== نموذج "سيب رأيك" ============== */
+.feedback-input,
+.feedback-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text-main);
+  font-family: 'Tajawal', sans-serif;
+  font-size: 15px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  transition: .2s ease;
+}
+.feedback-textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+.feedback-input:focus,
+.feedback-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,162,76,.15);
+}
+</style>
+
 </head>
 
 <body>
@@ -915,6 +1099,10 @@ h1 {
       ✨ دخول
     </button>
   </div>
+
+  <div class="entry-hint">
+    متنساش تسيب رأيك في آخر الصفحة 🤍
+  </div>
 </div>
 
 <div class="wrap">
@@ -938,6 +1126,7 @@ h1 {
     <button class="tab-btn" onclick="switchTab(event, 'prayers')">أوقات الصلاة</button>
     <button class="tab-btn" onclick="switchTab(event, 'qibla')">اتجاه القبلة</button>
     <button class="tab-btn" onclick="switchTab(event, 'calendar')">التقويم الهجري</button>
+    <button class="tab-btn" onclick="switchTab(event, 'feedback')">سيب رأيك</button>
   </div>
 
   <!-- TAB 1: MAIN PAGE -->
@@ -959,7 +1148,7 @@ h1 {
 
       <div class="card" style="text-align:center; margin:16px 0; border: 1px solid var(--gold);">
         <div style="font-size:15px; font-weight:bold; color:var(--gold-soft);">🕊️ اللهم صلِّ وسلم على سيدنا محمد ﷺ</div>
-        <audio controls preload="none" id="salawatAudio" style="margin-top:10px; width:100%;">
+        <audio class="hh-native-audio" preload="none" id="salawatAudio" style="margin-top:10px; width:100%;">
           <source src="salawat-clip.mp3" type="audio/mpeg">
           متصفحك لا يدعم تشغيل الصوتيات.
         </audio>
@@ -992,6 +1181,20 @@ h1 {
       <div class="counter-box">
         <div class="counter-title" id="nextPrayerName">جاري تحديد الصلاة القادمة...</div>
         <div class="days-num" id="nextPrayerCountdown">--:--:--</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="label">إذاعة القرآن الكريم</div>
+      <div class="card quran-box" style="text-align:center; border:1px solid var(--gold);">
+        <div class="quran-icon">📻</div>
+        <div class="quran-title">إذاعة القرآن الكريم من القاهرة</div>
+        <div class="quran-note">بث مباشر على مدار الساعة — اضغط تشغيل للاستماع</div>
+        <audio class="hh-native-audio" preload="none" id="quranRadioPlayer" data-hh-live="true">
+          <source src="https://stream.radiojar.com/8s5u5tpdtwzuv" type="audio/mpeg">
+          متصفحك لا يدعم تشغيل البث الصوتي.
+        </audio>
+        <div class="source" style="margin-top:10px;">📖 قرآن كريم وتلاوات وبرامج دينية مباشرة</div>
       </div>
     </section>
 
@@ -1104,7 +1307,7 @@ h1 {
         <select id="quranSurahSelect" onchange="loadFullQuranSurah()" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--line); background:var(--panel); color:var(--text-main); font-family:'Tajawal',sans-serif; font-size:15px; margin-bottom:14px;"></select>
         <div class="quran-title" id="quranCurrentSurah">سورة الفاتحة</div>
         <div class="quran-note">صدقة جارية عن روح الفقيدة</div>
-        <audio controls preload="none" id="fullQuranPlayer">
+        <audio class="hh-native-audio" preload="none" id="fullQuranPlayer">
           <source id="fullQuranSource" src="" type="audio/mpeg">
           متصفحك لا يدعم تشغيل الصوتيات.
         </audio>
@@ -1121,7 +1324,7 @@ h1 {
       <div class="quran-icon">🌅</div>
       <div class="quran-title">أذكار الصباح الكاملة</div>
       <div class="quran-note">استمع مباشرة إلى أذكار الصباح بصوت الشيخ مشاري العفاسي</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none" id="morningAzkarPlayer">
         <source src="https://archive.org/download/way2sona_20160320_2316/athkar_25_3tibi-saba7.mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1136,7 +1339,7 @@ h1 {
       <div class="quran-icon">🌆</div>
       <div class="quran-title">أذكار المساء الكاملة</div>
       <div class="quran-note">استمع مباشرة إلى أذكار المساء بصوت خاشع</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none" id="eveningAzkarPlayer">
         <source src="https://archive.org/download/soso_680_201404/%D8%A3%D8%B0%D9%83%D8%A7%D8%B1%20%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D8%A1.mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1273,7 +1476,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">الاستقامة</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/05_Smir_Mostafa_khotab_estikama(الاستقامــــة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1282,7 +1485,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">الحياة الطيبة</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/10_Smir_Mostafa_khotab_ hyat.tybah(الحياة الطيبة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1291,7 +1494,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">الميت البغيض</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/24_Smir_Mostafa_khotab_baghid(الميت البغيــــــض).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1300,7 +1503,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">رجل من أهل الجنة</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/41_Smir_Mostafa_khotab_r.mn.ahl.jannah(رجل من أهل الجنة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1309,7 +1512,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">زاد المهاجر إلى الله</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/43_Smir_Mostafa_khotab_zad.muhajer(زاد المهاجر الي الله).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1318,7 +1521,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">شرح حديث الصراط</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/46_Smir_Mostafa_khotab_sirat(شرح حديث الصراط).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1327,7 +1530,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">قصة أصحاب الغار</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/52_Smir_Mostafa_khotab_elghar(قصة أصحاب الغار).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1336,7 +1539,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">لا تحسبوه شرًا لكم</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/57_Smir_Mostafa_khotab_la.ta7sabuh(لا تَحْسَبُوهُ شَرًّا لَكُمْ).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1345,7 +1548,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">معارج القلوب</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/69_Smir_Mostafa_khotab_m3arig(معارج القلوب).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1354,7 +1557,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">النذير العريان</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/25_Smir_Mostafa_khotab_nazir_1(النذير العريــان-1).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1363,7 +1566,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">ليس لها من دون الله كاشفة</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/59_Smir_Mostafa_khotab_kashifa(ليس لها من دون الله كاشفة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1372,7 +1575,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">وأفلت الشمس</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/74_Smir_Mostafa_khotab_waflat(وأفلت الشمس).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1381,7 +1584,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">مسير النجاة</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/67_Smir_Mostafa_khotab_masir(مسير النجاة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1390,7 +1593,7 @@ h1 {
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">أصول في المحن</div>
-      <audio controls preload="none">
+      <audio class="hh-native-audio" preload="none">
         <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/03_Smir_Mostafa_khotab_o.f.me7an(أُصول في المحــن).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
@@ -1519,6 +1722,22 @@ h1 {
       </div>
       <div class="source">يكفر السنة الماضية</div>
     </div>
+  </div>
+
+  <!-- TAB 7: FEEDBACK (سيب رأيك) -->
+  <div id="tab-feedback" class="tab-content">
+    <section>
+      <div class="label">سيب رأيك أو دعوتك</div>
+      <div class="card" style="text-align:center;">
+        <div class="quran-icon">✉️</div>
+        <div class="quran-title">شاركنا رأيك أو ادعُ لصاحبة الصفحة</div>
+        <div class="quran-note">رسالتك هتوصل مباشرة لصاحب الصفحة فقط، ومش هتظهر لأي زائر تاني</div>
+        <input type="text" id="feedbackName" class="feedback-input" placeholder="اسمك (اختياري)">
+        <textarea id="feedbackMessage" class="feedback-textarea" rows="4" placeholder="اكتب رأيك أو دعاءك هنا..."></textarea>
+        <button class="action" id="feedbackSendBtn" onclick="sendFeedback()" style="width:100%; margin-top:12px;">📨 إرسال</button>
+        <div id="feedbackStatus" class="source" style="margin-top:10px;"></div>
+      </div>
+    </section>
   </div>
 
   <footer>
@@ -2050,23 +2269,29 @@ function startCompass() {
   const status = document.getElementById('qiblaStatus');
   const qiblaAngle = calculateQibla(userLat, userLng);
 
-  if (window.DeviceOrientationEvent) {
-    window.addEventListener('deviceorientation', function(e) {
-      let compassHeading;
-      if (e.webkitCompassHeading) {
-        compassHeading = e.webkitCompassHeading;
-      } else if (e.alpha !== null) {
-        compassHeading = 360 - e.alpha;
-      }
+  function handleOrientation(e) {
+    let compassHeading;
+    if (typeof e.webkitCompassHeading === 'number') {
+      // آيفون: قراءة بوصلة حقيقية معايرة على الشمال المغناطيسي مباشرة
+      compassHeading = e.webkitCompassHeading;
+    } else if (e.absolute === true && e.alpha !== null) {
+      // أندرويد: alpha بيكون معاير على الشمال الحقيقي فقط لو الحدث "مطلق"
+      compassHeading = 360 - e.alpha;
+    }
 
-      if (compassHeading !== undefined) {
-        let arrowDegree = qiblaAngle - compassHeading;
-        document.getElementById('compassArrow').style.transform = `rotate(${arrowDegree}deg)`;
-        status.textContent = `زاوية القبلة: ${Math.round(qiblaAngle)}° | اتجاهك الحالي: ${Math.round(compassHeading)}°`;
-      } else {
-        status.textContent = "يرجى تحريك الهاتف على شكل رقم 8 لتنشيط البوصلة";
-      }
-    }, true);
+    if (compassHeading !== undefined) {
+      let arrowDegree = qiblaAngle - compassHeading;
+      document.getElementById('compassArrow').style.transform = `rotate(${arrowDegree}deg)`;
+      status.textContent = `زاوية القبلة: ${Math.round(qiblaAngle)}° | اتجاهك الحالي: ${Math.round(compassHeading)}°`;
+    } else {
+      status.textContent = "البوصلة غير معايرة على الشمال — جرّب تحريك الهاتف على شكل رقم 8، أو تأكد إن حساس البوصلة شغال في إعدادات جهازك";
+    }
+  }
+
+  if ('ondeviceorientationabsolute' in window) {
+    window.addEventListener('deviceorientationabsolute', handleOrientation, true);
+  } else if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', handleOrientation, true);
   } else {
     status.textContent = "مستشعر البوصلة غير مدعوم في جهازك";
   }
@@ -2119,6 +2344,178 @@ window.addEventListener("scroll", function(){
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ============== مشغلات الصوت الفاخرة ==============
+   بيشتغل على أي عنصر <audio class="hh-native-audio"> في الصفحة تلقائيًا:
+   بيخفي عناصر التحكم الافتراضية القديمة وبيبني بدالها زر تشغيل وشريط تقدّم بشكل فخم متناسق مع تصميم الصفحة. */
+function hhFormatTime(sec) {
+  if (!isFinite(sec) || isNaN(sec) || sec < 0) return "00:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+}
+
+let hhPlayerSeq = 0;
+
+function hhEnhanceAudio(audio) {
+  if (audio.dataset.hhEnhanced) return;
+  audio.dataset.hhEnhanced = "true";
+  audio.removeAttribute("controls");
+
+  const isLive = audio.dataset.hhLive === "true";
+  const uid = "hh" + (++hhPlayerSeq);
+
+  const wrap = document.createElement("div");
+  wrap.className = "hh-player" + (isLive ? " hh-live-mode" : "");
+
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "hh-player-btn";
+  btn.setAttribute("aria-label", "تشغيل");
+  btn.innerHTML =
+    '<svg class="hh-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' +
+    '<svg class="hh-icon-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+
+  const body = document.createElement("div");
+  body.className = "hh-player-body";
+
+  let track = null, fill = null, curEl = null, durEl = null;
+
+  if (isLive) {
+    body.innerHTML = '<div class="hh-player-live"><span class="hh-dot"></span> بث مباشر الآن</div>';
+  } else {
+    track = document.createElement("div");
+    track.className = "hh-player-track";
+    track.id = uid + "-track";
+    fill = document.createElement("div");
+    fill.className = "hh-player-fill";
+    track.appendChild(fill);
+
+    const meta = document.createElement("div");
+    meta.className = "hh-player-meta";
+    curEl = document.createElement("span");
+    curEl.textContent = "00:00";
+    durEl = document.createElement("span");
+    durEl.textContent = "00:00";
+    meta.appendChild(curEl);
+    meta.appendChild(durEl);
+
+    body.appendChild(track);
+    body.appendChild(meta);
+  }
+
+  wrap.appendChild(btn);
+  wrap.appendChild(body);
+  audio.insertAdjacentElement("afterend", wrap);
+
+  btn.addEventListener("click", function () {
+    if (audio.paused) {
+      document.querySelectorAll("audio.hh-native-audio").forEach(function (a) {
+        if (a !== audio && !a.paused) a.pause();
+      });
+      btn.classList.add("loading");
+      const playPromise = audio.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.catch(function () { btn.classList.remove("loading"); });
+      }
+    } else {
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener("playing", function () {
+    btn.classList.remove("loading");
+    btn.classList.add("playing");
+  });
+  audio.addEventListener("waiting", function () {
+    btn.classList.add("loading");
+  });
+  audio.addEventListener("pause", function () {
+    btn.classList.remove("playing");
+    btn.classList.remove("loading");
+  });
+  audio.addEventListener("ended", function () {
+    btn.classList.remove("playing");
+    btn.classList.remove("loading");
+    if (fill) fill.style.width = "0%";
+    if (curEl) curEl.textContent = "00:00";
+  });
+
+  if (durEl) {
+    audio.addEventListener("loadedmetadata", function () {
+      durEl.textContent = hhFormatTime(audio.duration);
+    });
+  }
+  if (fill || curEl) {
+    audio.addEventListener("timeupdate", function () {
+      if (fill && audio.duration) {
+        fill.style.width = (audio.currentTime / audio.duration * 100) + "%";
+      }
+      if (curEl) curEl.textContent = hhFormatTime(audio.currentTime);
+    });
+  }
+  if (track) {
+    track.addEventListener("click", function (e) {
+      if (!audio.duration) return;
+      const rect = track.getBoundingClientRect();
+      // الصفحة RTL والشريط يمتلئ من اليمين لليسار، فنحسب النسبة من الحافة اليمنى
+      let ratio = (rect.right - e.clientX) / rect.width;
+      ratio = Math.min(1, Math.max(0, ratio));
+      audio.currentTime = ratio * audio.duration;
+    });
+  }
+}
+
+document.querySelectorAll("audio.hh-native-audio").forEach(hhEnhanceAudio);
+
+/* ============== إرسال "سيب رأيك" مباشرة على تليجرام ============== */
+async function sendFeedback() {
+  const nameEl = document.getElementById('feedbackName');
+  const msgEl = document.getElementById('feedbackMessage');
+  const statusEl = document.getElementById('feedbackStatus');
+  const btn = document.getElementById('feedbackSendBtn');
+
+  const message = msgEl.value.trim();
+  if (!message) {
+    statusEl.style.color = "#e0524a";
+    statusEl.textContent = "من فضلك اكتب رسالتك الأول";
+    return;
+  }
+
+  const name = nameEl.value.trim() || "زائر مجهول";
+  const BOT_TOKEN = "8682156062:AAG3EysW2ZBGPHggQMU4enwQj7v4icDC2-E";
+  const CHAT_ID = "5796757063";
+  const text = "📩 رسالة جديدة من صفحة السيدة عبدالعاطي\nالاسم: " + name + "\nالرسالة: " + message;
+
+  btn.disabled = true;
+  btn.style.opacity = "0.6";
+  statusEl.style.color = "var(--ivory-dim)";
+  statusEl.textContent = "جاري الإرسال...";
+
+  try {
+    const res = await fetch("https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      statusEl.style.color = "var(--gold-soft)";
+      statusEl.textContent = "تم إرسال رسالتك بنجاح، جزاك الله خيرًا 🤍";
+      nameEl.value = "";
+      msgEl.value = "";
+    } else {
+      statusEl.style.color = "#e0524a";
+      statusEl.textContent = "حصل خطأ أثناء الإرسال، حاول مرة تانية";
+    }
+  } catch (err) {
+    statusEl.style.color = "#e0524a";
+    statusEl.textContent = "تأكد من اتصال الإنترنت وحاول تاني";
+  } finally {
+    btn.disabled = false;
+    btn.style.opacity = "1";
+  }
 }
 </script>
 </body>
