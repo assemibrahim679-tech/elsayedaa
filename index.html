@@ -2528,7 +2528,9 @@ function hhEnhanceAudio(audio) {
 
 document.querySelectorAll("audio.hh-native-audio").forEach(hhEnhanceAudio);
 
-/* ============== إرسال "سيب رأيك" مباشرة على تليجرام ============== */
+/* ============== إرسال "سيب رأيك" عن طريق Web3Forms (بيوصل الرسالة مباشرة لإيميلك) ============== */
+const WEB3FORMS_ACCESS_KEY = "06cc6554-7252-400b-a35c-5e181736344c";
+
 async function sendFeedback() {
   const nameEl = document.getElementById('feedbackName');
   const msgEl = document.getElementById('feedbackMessage');
@@ -2543,9 +2545,6 @@ async function sendFeedback() {
   }
 
   const name = nameEl.value.trim() || "زائر مجهول";
-  const BOT_TOKEN = "8682156062:AAH75qCSvvb2aqAXzP2wfbJUieyy55_DHO4";
-  const CHAT_ID = "5796757063";
-  const text = "📩 رسالة جديدة من صفحة السيدة عبدالعاطي\nالاسم: " + name + "\nالرسالة: " + message;
 
   btn.disabled = true;
   btn.style.opacity = "0.6";
@@ -2553,13 +2552,18 @@ async function sendFeedback() {
   statusEl.textContent = "جاري الإرسال...";
 
   try {
-    const res = await fetch("https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage", {
+    const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: CHAT_ID, text: text })
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: "رسالة جديدة من صفحة السيدة عبدالعاطي (سيب رأيك)",
+        name: name,
+        message: message
+      })
     });
     const data = await res.json();
-    if (data.ok) {
+    if (data.success) {
       statusEl.style.color = "var(--gold-soft)";
       statusEl.textContent = "تم إرسال رسالتك بنجاح، جزاك الله خيرًا 🤍";
       nameEl.value = "";
