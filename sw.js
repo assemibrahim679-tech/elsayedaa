@@ -8,15 +8,15 @@
      عشان البيانات تفضل حية ومحدّثة ومنعرفش نخزن ملفات صوت كبيرة.
    ============================================================ */
 
-const HH_CACHE_VERSION = "hh-v1";
+const HH_CACHE_VERSION = "hh-v2";
 const HH_APP_SHELL = [
   "./",
   "./index.html",
   "./manifest.json",
   "./offline.html",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-512-maskable.png"
+  "./icon-192.png",
+  "./icon-512.png",
+  "./icon-512-maskable.png"
 ];
 
 // دومينات لازم تروح للنت مباشرة دايمًا (بث/صوت/APIs ديناميكية) وميتخزنش منها حاجة

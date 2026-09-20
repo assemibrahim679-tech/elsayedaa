@@ -34,9 +34,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="صدقة جارية">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -174,6 +174,25 @@ body{
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+.install-app-btn {
+  display: none;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: #102d27;
+  padding: 7px 13px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  align-items: center;
+  gap: 6px;
+}
+
+.install-app-btn.visible {
+  display: inline-flex;
 }
 
 .nav-tabs {
@@ -1193,9 +1212,14 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
       <strong id="visitorCount">...</strong>
     </div>
 
-    <button class="theme-toggle-btn" id="themeBtn">
-      <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
-    </button>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button class="install-app-btn" id="installAppBtn" type="button">
+        <span>📲</span> تثبيت التطبيق
+      </button>
+      <button class="theme-toggle-btn" id="themeBtn" type="button">
+        <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
+      </button>
+    </div>
   </div>
 
   <div class="nav-tabs">
@@ -1862,7 +1886,7 @@ window.HH_FIREBASE_CONFIG = {
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('sw.js').catch(function (err) {
+    navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function (err) {
       console.warn('تعذّر تسجيل Service Worker:', err);
     });
   });
@@ -1870,6 +1894,33 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script>
+// زر تثبيت PWA — يظهر فقط عندما يدعم المتصفح التثبيت.
+let deferredInstallPrompt = null;
+const installAppBtn = document.getElementById('installAppBtn');
+
+window.addEventListener('beforeinstallprompt', function (event) {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  if (installAppBtn && !window.matchMedia('(display-mode: standalone)').matches) {
+    installAppBtn.classList.add('visible');
+  }
+});
+
+if (installAppBtn) {
+  installAppBtn.addEventListener('click', async function () {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice;
+    deferredInstallPrompt = null;
+    installAppBtn.classList.remove('visible');
+  });
+}
+
+window.addEventListener('appinstalled', function () {
+  deferredInstallPrompt = null;
+  if (installAppBtn) installAppBtn.classList.remove('visible');
+});
+
 function safeGet(storage, key) {
   try { return storage.getItem(key); } catch (e) { return null; }
 }
