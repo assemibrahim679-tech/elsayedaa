@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0e2622">
-<meta name="description" content="صدقة جارية عن السيدة عبدالعاطي رحمها الله">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="صفحة صدقة جارية عن روح السيدة عبدالعاطي رحمها الله: ادعُ لها، استمع لإذاعة القرآن الكريم مباشرة، اقرأ القرآن كاملًا بأصوات نخبة القراء، أذكار الصباح والمساء، دروس دينية، مواقيت الصلاة، واتجاه القبلة.">
+<meta name="keywords" content="صدقة جارية, دعاء للمتوفى, إذاعة القرآن الكريم مباشر, القرآن الكريم كامل, أذكار الصباح والمساء, مواقيت الصلاة, اتجاه القبلة, التقويم الهجري, دروس دينية">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="صدقة جارية - السيدة عبدالعاطي">
+<link rel="canonical" href="https://assemibrahim679-tech.github.io/elsayedaa/">
 
 <!-- Open Graph (Facebook, WhatsApp, Telegram, etc.) -->
 <meta property="og:type" content="website">
@@ -21,10 +26,67 @@
 <meta name="twitter:description" content="ادعُ للسيدة عبدالعاطي رحمها الله، واقرأ يس والقرآن، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها">
 <meta name="twitter:image" content="https://assemibrahim679-tech.github.io/elsayedaa/teta-abdelaty.jpg">
 
-<title>السيدة عبدالعاطي رحمها الله</title>
+<title>السيدة عبدالعاطي رحمها الله | صدقة جارية، دعاء، وإذاعة قرآن مباشرة</title>
+
+<!-- PWA: manifest + icons + iOS/Android install meta -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="صدقة جارية">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- SEO: structured data (JSON-LD) describing the site and its main sections/tabs -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://assemibrahim679-tech.github.io/elsayedaa/#website",
+      "url": "https://assemibrahim679-tech.github.io/elsayedaa/",
+      "name": "صدقة جارية - السيدة عبدالعاطي",
+      "description": "صفحة صدقة جارية للدعاء وقراءة القرآن والأذكار عن روح السيدة عبدالعاطي رحمها الله",
+      "inLanguage": "ar"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://assemibrahim679-tech.github.io/elsayedaa/#webpage",
+      "url": "https://assemibrahim679-tech.github.io/elsayedaa/",
+      "name": "السيدة عبدالعاطي رحمها الله | صدقة جارية",
+      "isPartOf": { "@id": "https://assemibrahim679-tech.github.io/elsayedaa/#website" },
+      "inLanguage": "ar",
+      "description": "ادعُ للسيدة عبدالعاطي رحمها الله، واستمع لإذاعة القرآن الكريم مباشرة، واقرأ القرآن كاملًا، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها."
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "name": ["الرئيسية", "القرآن الكامل", "الأذكار والتسابيح", "دروس دينية", "أوقات الصلاة", "اتجاه القبلة", "التقويم الهجري", "سيب رأيك"],
+      "url": [
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-main",
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-quran",
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-azkar",
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-lectures",
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-prayers",
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-qibla",
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-calendar",
+        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-feedback"
+      ]
+    },
+    {
+      "@type": "RadioChannel",
+      "name": "إذاعة القرآن الكريم من القاهرة",
+      "broadcastDisplayName": "إذاعة القرآن الكريم",
+      "inLanguage": "ar",
+      "url": "https://assemibrahim679-tech.github.io/elsayedaa/#tab-main"
+    }
+  ]
+}
+</script>
 
 <style>
 :root{
@@ -257,7 +319,8 @@ section{
   gap:10px;
   color:var(--sage);
   font-size:14px;
-  margin-bottom:17px;
+  font-weight:400;
+  margin:0 0 17px;
 }
 
 .label::after{
@@ -1069,6 +1132,23 @@ body.light-mode .hh-player-track {
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(201,162,76,.15);
 }
+
+
+/* تحسينات الوصول والأداء */
+button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--gold-soft);
+  outline-offset: 3px;
+}
+[aria-hidden="true"] { pointer-events: none; }
+.error-text { color: #e0524a !important; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 
 </head>
@@ -1095,7 +1175,7 @@ body.light-mode .hh-player-track {
       اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى سَيِّدِنَا مُحَمَّدٍ، ثم ادخل الموقع وادعُ لصاحبة هذه الصفحة رحمها الله
     </div>
 
-    <button id="entryBtn">
+    <button id="entryBtn" type="button" aria-label="دخول إلى الصفحة">
       ✨ دخول
     </button>
   </div>
@@ -1177,7 +1257,7 @@ body.light-mode .hh-player-track {
     <div class="divider"><span>۞</span></div>
 
     <section>
-      <div class="label">الصلاة القادمة</div>
+      <h2 class="label">الصلاة القادمة</h2>
       <div class="counter-box">
         <div class="counter-title" id="nextPrayerName">جاري تحديد الصلاة القادمة...</div>
         <div class="days-num" id="nextPrayerCountdown">--:--:--</div>
@@ -1185,7 +1265,7 @@ body.light-mode .hh-player-track {
     </section>
 
     <section>
-      <div class="label">إذاعة القرآن الكريم</div>
+      <h2 class="label">إذاعة القرآن الكريم</h2>
       <div class="card quran-box" style="text-align:center; border:1px solid var(--gold);">
         <div class="quran-icon">📻</div>
         <div class="quran-title">إذاعة القرآن الكريم من القاهرة</div>
@@ -1199,7 +1279,7 @@ body.light-mode .hh-player-track {
     </section>
 
     <section>
-      <div class="label">دعاء للمتوفاة</div>
+      <h2 class="label">دعاء للمتوفاة</h2>
       <div class="card">
         <div class="arabic">
           اللهم اجعل قبرها روضة من رياض الجنة، ولا تجعله حفرة من حفر النار. اللهم أنزل على قبرها الضياء والنور والفسحة والسرور.
@@ -1213,9 +1293,10 @@ body.light-mode .hh-player-track {
     </section>
 
     <section>
-      <div class="label">عداد الحسنات والتسابيح</div>
+      <h2 class="label">عداد الحسنات والتسابيح</h2>
       <div class="tasbih">
         <div class="tasbih-intro">شارك في إهداء أجر هذه التسابيح لروح المغفور لها بإذن الله</div>
+        <div class="source" style="margin-bottom:14px;">🤝 إجمالي تسابيح كل الزوار: <strong id="tasbihGlobalTotal">...</strong></div>
 
         <div class="tasbih-item">
           <div class="arabic">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ</div>
@@ -1249,16 +1330,17 @@ body.light-mode .hh-player-track {
     </section>
 
     <section>
-      <div class="label">عداد الدعاء</div>
+      <h2 class="label">عداد الدعاء</h2>
       <div class="card dua-counter">
-        <div class="source">إجمالي الدعوات التي قُدمت للفقيدة</div>
+        <div class="source">عدد دعواتك من هذا الجهاز</div>
         <div class="dua-number" id="duaCount">0</div>
         <button class="dua-button" onclick="addDua()">🤲 أمّن على الدعاء (أضف دعوة)</button>
+        <div class="source" style="margin-top:10px;">🌍 إجمالي دعوات كل الزوار: <strong id="duaGlobalTotal">...</strong></div>
       </div>
     </section>
 
     <section>
-      <div class="label">تذكير يومي بالدعاء</div>
+      <h2 class="label">تذكير يومي بالدعاء</h2>
       <div class="card" style="text-align:center;">
         <div class="source" style="margin-top:0;">فعّل تذكير يومي يفكّرك تدخل تدعي لها وتقرأ يس</div>
         <button class="dua-button" id="reminderBtn" onclick="setupDailyReminder()" style="margin-top:12px;">🔔 تفعيل التذكير اليومي</button>
@@ -1267,7 +1349,7 @@ body.light-mode .hh-player-track {
     </section>
 
     <section>
-      <div class="label">مشاركة الخير والتواصل</div>
+      <h2 class="label">مشاركة الخير والتواصل</h2>
       <div class="share-grid">
         <button class="action" id="copyBtn">📋 نسخ رابط الموقع</button>
         <button class="action" onclick="shareWhatsapp()">📱 مشاركة عبر الواتساب</button>
@@ -1278,7 +1360,7 @@ body.light-mode .hh-player-track {
     </section>
 
     <section class="qr">
-      <div class="label">رمز QR للموقع</div>
+      <h2 class="label">رمز QR للموقع</h2>
       <div id="qrcode">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://assemibrahim679-tech.github.io/elsayedaa/" alt="QR Code">
       </div>
@@ -1290,7 +1372,7 @@ body.light-mode .hh-player-track {
   <div id="tab-quran" class="tab-content">
 
     <section>
-      <div class="label">اختر القارئ</div>
+      <h2 class="label">اختر القارئ</h2>
       <div class="reciter-picker" style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;">
         <button class="action quran-reciter-btn active" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('yasser', this)">ياسر الدوسري</button>
         <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('minsh', this)">المنشاوي</button>
@@ -1301,7 +1383,7 @@ body.light-mode .hh-player-track {
         <button class="action quran-reciter-btn" style="flex:1 1 auto; min-width:90px; padding:10px 6px; font-size:13px;" onclick="setQuranReciter('banna', this)">البنا</button>
       </div>
 
-      <div class="label">اختر السورة</div>
+      <h2 class="label">اختر السورة</h2>
       <div class="card quran-box">
         <div class="quran-icon">📖</div>
         <select id="quranSurahSelect" onchange="loadFullQuranSurah()" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--line); background:var(--panel); color:var(--text-main); font-family:'Tajawal',sans-serif; font-size:15px; margin-bottom:14px;"></select>
@@ -1349,7 +1431,7 @@ body.light-mode .hh-player-track {
       </a>
     </div>
 
-    <div class="label">أذكار الصباح والمساء المكتوبة للتسبيح</div>
+    <h2 class="label">أذكار الصباح والمساء المكتوبة للتسبيح</h2>
 
     <div class="azkar-card">
       <div class="arabic">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ</div>
@@ -1471,7 +1553,7 @@ body.light-mode .hh-player-track {
 
   <!-- TAB 3: RELIGIOUS LECTURES -->
   <div id="tab-lectures" class="tab-content">
-    <div class="label">دروس دينية مؤثرة - فضيلة الشيخ سمير مصطفى</div>
+    <h2 class="label">دروس دينية مؤثرة - فضيلة الشيخ سمير مصطفى</h2>
 
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
@@ -1602,7 +1684,7 @@ body.light-mode .hh-player-track {
 
   <!-- TAB 4: PRAYER TIMES -->
   <div id="tab-prayers" class="tab-content">
-    <div class="label">مواقيت الصلاة اليومية</div>
+    <h2 class="label">مواقيت الصلاة اليومية</h2>
     <div class="card" style="text-align: center;">
       <div class="kicker" id="locationText">جاري تحديد موقعك الجغرافي...</div>
     </div>
@@ -1634,7 +1716,7 @@ body.light-mode .hh-player-track {
       </div>
     </div>
 
-    <div class="label" style="margin-top:24px;">أحاديث نبوية عن الصلاة</div>
+    <h2 class="label" style="margin-top:24px;">أحاديث نبوية عن الصلاة</h2>
 
     <div class="azkar-card">
       <div class="arabic">عَنِ ابْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا قَالَ: قَالَ رَسُولُ اللَّهِ ﷺ: "بُنِيَ الإِسْلاَمُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لاَ إِلَهَ إِلاَّ اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلاَةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ"</div>
@@ -1664,7 +1746,7 @@ body.light-mode .hh-player-track {
 
   <!-- TAB 5: QIBLA -->
   <div id="tab-qibla" class="tab-content">
-    <div class="label">اتجاه القبلة المباشر</div>
+    <h2 class="label">اتجاه القبلة المباشر</h2>
     <div class="card qibla-box">
       <div class="arabic">قم بتوجيه الهاتف نحو اتجاه السهم</div>
       <div class="source">يرجى السماح بصلاحية الموقع والبوصلة</div>
@@ -1681,7 +1763,7 @@ body.light-mode .hh-player-track {
 
   <!-- TAB 6: CALENDAR -->
   <div id="tab-calendar" class="tab-content">
-    <div class="label">التقويم الهجري والأيام الفضيلة</div>
+    <h2 class="label">التقويم الهجري والأيام الفضيلة</h2>
     
     <div class="card" style="text-align: center; margin-bottom: 20px;">
       <div class="kicker">التاريخ اليوم</div>
@@ -1689,7 +1771,7 @@ body.light-mode .hh-player-track {
       <div class="source" id="gregorianDateDisplay">--</div>
     </div>
 
-    <div class="label">من الأيام الفضيلة المندوب صيامها والتعبد فيها</div>
+    <h2 class="label">من الأيام الفضيلة المندوب صيامها والتعبد فيها</h2>
 
     <div class="calendar-card">
       <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -1727,13 +1809,14 @@ body.light-mode .hh-player-track {
   <!-- TAB 7: FEEDBACK (سيب رأيك) -->
   <div id="tab-feedback" class="tab-content">
     <section>
-      <div class="label">سيب رأيك أو دعوتك</div>
+      <h2 class="label">سيب رأيك أو دعوتك</h2>
       <div class="card" style="text-align:center;">
         <div class="quran-icon">✉️</div>
         <div class="quran-title">شاركنا رأيك أو ادعُ لصاحبة الصفحة</div>
         <div class="quran-note">رسالتك هتوصل مباشرة لصاحب الصفحة فقط، ومش هتظهر لأي زائر تاني</div>
-        <input type="text" id="feedbackName" class="feedback-input" placeholder="اسمك (اختياري)">
-        <textarea id="feedbackMessage" class="feedback-textarea" rows="4" placeholder="اكتب رأيك أو دعاءك هنا..."></textarea>
+        <input type="text" id="feedbackWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; opacity:0;">
+        <input type="text" id="feedbackName" class="feedback-input" placeholder="اسمك (اختياري)" maxlength="80" autocomplete="name">
+        <textarea id="feedbackMessage" class="feedback-textarea" rows="4" placeholder="اكتب رأيك أو دعاءك هنا..." maxlength="1200"></textarea>
         <button class="action" id="feedbackSendBtn" onclick="sendFeedback()" style="width:100%; margin-top:12px;">📨 إرسال</button>
         <div id="feedbackStatus" class="source" style="margin-top:10px;"></div>
       </div>
@@ -1755,6 +1838,37 @@ body.light-mode .hh-player-track {
 <button class="top-btn" id="topBtn" onclick="scrollToTop()">↑</button>
 <div class="toast" id="toast">تم النسخ بنجاح</div>
 
+<!-- ============== Backend موثوق (Firebase) ==============
+     1) اعمل مشروع مجاني على https://console.firebase.google.com
+     2) فعّل Firestore Database (Production mode) من القائمة الجانبية
+     3) من إعدادات المشروع (Project settings) انسخ بيانات الـ Web App والصقها هنا بدل PASTE_...
+     4) ارفع ملف firestore.rules المرفق من "Firestore > Rules"
+     الموقع بيشتغل عادي حتى قبل ما تعمل الخطوات دي (بيرجع تلقائيًا للتخزين المحلي). -->
+<script>
+window.HH_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyCA5QvfzXN_TQwBQCJQXdhqNtH0EhIPpog",
+  authDomain: "elsayedaa-memorial.firebaseapp.com",
+  projectId: "elsayedaa-memorial",
+  storageBucket: "elsayedaa-memorial.firebasestorage.app",
+  messagingSenderId: "33840918257",
+  appId: "1:33840918257:web:784d672d6160240aab4350"
+};
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
+<script src="firebase-backend.js"></script>
+
+<!-- تسجيل الـ Service Worker لتفعيل PWA والعمل أوفلاين -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function (err) {
+      console.warn('تعذّر تسجيل Service Worker:', err);
+    });
+  });
+}
+</script>
+
 <script>
 function safeGet(storage, key) {
   try { return storage.getItem(key); } catch (e) { return null; }
@@ -1763,17 +1877,31 @@ function safeSet(storage, key, value) {
   try { storage.setItem(key, value); } catch (e) {}
 }
 
-// عداد الزوار
+// عداد الزوار — Firestore أولاً (موثوق ودائم)، وإلا countapi، وإلا تخزين محلي
 async function fetchGlobalVisitors() {
   const visitorElem = document.getElementById('visitorCount');
-  const COUNTER_KEY = 'assemibrahim679_elsayda_abdelaty_memorial'; // unique key so it never collides with anyone else's counter
-
+  const COUNTER_KEY = 'assemibrahim679_elsayda_abdelaty_memorial';
   const alreadyCountedThisSession = safeGet(sessionStorage, 'visit_counted');
 
+  // 1) Backend موثوق (Firebase) — لو متفعّل
+  if (window.hhBackendReady) {
+    if (!alreadyCountedThisSession) {
+      window.hhIncrementStat('visitors', 1);
+      safeSet(sessionStorage, 'visit_counted', '1');
+    }
+    window.hhWatchStats(function (data) {
+      if (typeof data.visitors === 'number') {
+        visitorElem.textContent = data.visitors.toLocaleString('ar-EG');
+      }
+    });
+    return;
+  }
+
+  // 2) احتياطي: countapi
   try {
     const endpoint = alreadyCountedThisSession
-      ? `https://countapi.mileshilliard.com/api/v1/get/${COUNTER_KEY}`   // just read the value, don't increment again
-      : `https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`;  // increment by 1 for a new visitor
+      ? `https://countapi.mileshilliard.com/api/v1/get/${COUNTER_KEY}`
+      : `https://countapi.mileshilliard.com/api/v1/hit/${COUNTER_KEY}`;
 
     const res = await fetch(endpoint);
     const data = await res.json();
@@ -1785,6 +1913,7 @@ async function fetchGlobalVisitors() {
       throw new Error('Invalid response');
     }
   } catch (e) {
+    // 3) احتياطي أخير: تخزين محلي على الجهاز فقط
     let local = parseInt(safeGet(localStorage, 'local_visit_fallback') || '0');
     if (!alreadyCountedThisSession) {
       local++;
@@ -1794,14 +1923,15 @@ async function fetchGlobalVisitors() {
     visitorElem.textContent = local > 0 ? local.toLocaleString('ar-EG') : '—';
   }
 }
-fetchGlobalVisitors();
+// نأجّل قليلًا لإعطاء firebase-backend.js فرصة يتهيأ (hhBackendReady)
+setTimeout(fetchGlobalVisitors, 150);
 
 // عداد الأيام
 function updateDeathCounter() {
   const deathDate = new Date("2026-07-13T00:00:00");
   const now = new Date();
-  const diffTime = Math.abs(now - deathDate);
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const diffTime = now - deathDate;
+  const diffDays = Math.floor(Math.abs(diffTime) / (1000 * 60 * 60 * 24));
   
   const daysElem = document.getElementById("passedDays");
   if (now >= deathDate) {
@@ -2024,12 +2154,46 @@ const themeBtn = document.getElementById("themeBtn");
 const themeIcon = document.getElementById("themeIcon");
 const themeText = document.getElementById("themeText");
 
-themeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light-mode");
-  const isLight = document.body.classList.contains("light-mode");
+function applyTheme(isLight) {
+  document.body.classList.toggle("light-mode", Boolean(isLight));
   themeIcon.textContent = isLight ? "☀️" : "🌙";
   themeText.textContent = isLight ? "الوضع النهاري" : "الوضع الليلي";
+}
+
+const savedTheme = safeGet(localStorage, "theme");
+applyTheme(savedTheme === "light");
+
+themeBtn.addEventListener("click", () => {
+  const isLight = !document.body.classList.contains("light-mode");
+  applyTheme(isLight);
+  safeSet(localStorage, "theme", isLight ? "light" : "dark");
 });
+
+// بيانات SEO مستقلة لكل قسم/تاب — بتتحدث فيها عنوان الصفحة والوصف ورابط المشاركة
+// كل ما المستخدم يفتح قسم تاني، عشان يبقى للرابط والمشاركة معنى مرتبط بالمحتوى الفعلي
+const HH_TAB_SEO = {
+  main:      { title: "السيدة عبدالعاطي رحمها الله | صدقة جارية وإذاعة قرآن مباشرة", desc: "ادعُ للسيدة عبدالعاطي رحمها الله واستمع لإذاعة القرآن الكريم مباشرة" },
+  quran:     { title: "القرآن الكريم كاملًا بأصوات نخبة القراء | صدقة جارية", desc: "استمع للقرآن الكريم كاملًا بأصوات ياسر الدوسري والمنشاوي وماهر المعيقلي وغيرهم، صدقة جارية عن روح الفقيدة" },
+  azkar:     { title: "أذكار الصباح والمساء والتسابيح | صدقة جارية", desc: "استمع لأذكار الصباح والمساء كاملة وشارك في عداد التسابيح صدقة جارية عن روح الفقيدة" },
+  lectures:  { title: "دروس دينية وخطب صوتية | صدقة جارية", desc: "استمع لمجموعة من الدروس الدينية والخطب الصوتية المختارة" },
+  prayers:   { title: "مواقيت الصلاة اليوم وأحاديث نبوية عن الصلاة", desc: "مواقيت الصلاة اليومية محسوبة حسب موقعك، مع أحاديث نبوية صحيحة عن فضل الصلاة" },
+  qibla:     { title: "اتجاه القبلة المباشر بالبوصلة", desc: "حدد اتجاه القبلة مباشرة من موقعك باستخدام بوصلة هاتفك" },
+  calendar:  { title: "التقويم الهجري اليوم", desc: "تعرّف على التاريخ الهجري لليوم ومناسباته" },
+  feedback:  { title: "سيب رأيك وتواصل معنا | صدقة جارية", desc: "شاركنا رأيك أو تواصل معنا مباشرة عبر الواتساب" }
+};
+
+function applyTabSEO(tabId) {
+  const info = HH_TAB_SEO[tabId];
+  if (!info) return;
+  document.title = info.title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', info.desc);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.setAttribute('content', info.desc);
+  if (history.replaceState) {
+    history.replaceState(null, info.title, '#tab-' + tabId);
+  }
+}
 
 function switchTab(evt, tabId) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -2037,7 +2201,24 @@ function switchTab(evt, tabId) {
   
   evt.currentTarget.classList.add('active');
   document.getElementById(`tab-${tabId}`).classList.add('active');
+  applyTabSEO(tabId);
 }
+
+// لو حد فتح رابط فيه #tab-quran مباشرة (من نتائج بحث أو مشاركة)، نفتحله نفس القسم
+(function openTabFromHash() {
+  const hash = (location.hash || '').replace('#tab-', '');
+  if (hash && HH_TAB_SEO[hash]) {
+    const btn = document.querySelector(`.tab-btn[onclick*="'${hash}'"]`);
+    if (btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const el = document.getElementById('tab-' + hash);
+      if (el) el.classList.add('active');
+      applyTabSEO(hash);
+    }
+  }
+})();
 
 function countAzkar(btn, max) {
   let countElem = btn.querySelector('.az-c');
@@ -2104,6 +2285,7 @@ function incBead(id) {
   document.getElementById(`count-${id}`).textContent = counts[id];
   saveTasbihCounts();
   playTasbihClick();
+  if (window.hhBackendReady) window.hhIncrementStat(`tasbih${id}`, 1);
 }
 
 function resetBead(id) {
@@ -2122,13 +2304,31 @@ function resetAllBeads() {
   showToast("تم تصفير جميع التسابيح");
 }
 
-let duaTotal = 0;
-document.getElementById("duaCount").textContent = duaTotal;
+let duaTotal = parseInt(safeGet(localStorage, "dua_total") || "0", 10);
+if (!Number.isFinite(duaTotal) || duaTotal < 0) duaTotal = 0;
+document.getElementById("duaCount").textContent = duaTotal.toLocaleString("ar-EG");
 
 function addDua() {
   duaTotal++;
-  document.getElementById("duaCount").textContent = duaTotal;
+  safeSet(localStorage, "dua_total", String(duaTotal));
+  document.getElementById("duaCount").textContent = duaTotal.toLocaleString("ar-EG");
   showToast("جزاك الله خيرًا على الدعاء ❤️");
+  if (window.hhBackendReady) window.hhIncrementStat("dua", 1);
+}
+
+// عرض إجمالي التسابيح والدعوات من كل الزوار (مجموع حقيقي من قاعدة البيانات)
+if (window.hhBackendReady) {
+  window.hhWatchStats(function (data) {
+    const duaGlobalEl = document.getElementById("duaGlobalTotal");
+    if (duaGlobalEl && typeof data.dua === "number") {
+      duaGlobalEl.textContent = data.dua.toLocaleString("ar-EG");
+    }
+    const tasbihGlobalEl = document.getElementById("tasbihGlobalTotal");
+    if (tasbihGlobalEl) {
+      const sum = (data.tasbih1 || 0) + (data.tasbih2 || 0) + (data.tasbih3 || 0);
+      tasbihGlobalEl.textContent = sum.toLocaleString("ar-EG");
+    }
+  });
 }
 
 let userLat = 30.0444; // Default Cairo
@@ -2156,10 +2356,15 @@ function to12Hour(timeStr) {
 }
 
 function getPrayerTimesByCoords(lat, lng) {
+  const locationEl = document.getElementById('locationText');
+  if (locationEl) locationEl.textContent = "جاري تحميل مواقيت الصلاة...";
   fetch(`https://api.aladhan.com/v1/timings?latitude=${lat}&longitude=${lng}&method=5`)
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error(`Prayer API HTTP ${res.status}`);
+      return res.json();
+    })
     .then(data => {
-      if(data.code === 200) {
+      if(data.code === 200 && data.data && data.data.timings) {
         const timings = data.data.timings;
         document.getElementById('fajr').textContent = to12Hour(timings.Fajr);
         document.getElementById('sunrise').textContent = to12Hour(timings.Sunrise);
@@ -2174,9 +2379,36 @@ function getPrayerTimesByCoords(lat, lng) {
         document.getElementById('gregorianDateDisplay').textContent = `الموافق: ${greg.weekday.ar} ${greg.day} ${greg.month.en} ${greg.year} م`;
 
         prayerTimingsToday = timings;
+        safeSet(localStorage, "last_prayer_data", JSON.stringify({ timings, date: data.data.date }));
+        if (locationEl) locationEl.textContent = "تم تحديد مواقيت الصلاة حسب موقعك الجغرافي";
         updateNextPrayerCountdown();
+      } else {
+        throw new Error("Invalid prayer API response");
       }
-    }).catch(e => console.log(e));
+    }).catch(e => {
+      console.warn(e);
+      const cached = safeGet(localStorage, "last_prayer_data");
+      try {
+        const parsed = cached ? JSON.parse(cached) : null;
+        if (parsed && parsed.timings) {
+          prayerTimingsToday = parsed.timings;
+          ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"].forEach(key => {
+            const el = document.getElementById(key.toLowerCase());
+            if (el && parsed.timings[key]) el.textContent = to12Hour(parsed.timings[key]);
+          });
+          if (locationEl) locationEl.textContent = "تعذر التحديث؛ المعروض آخر توقيت محفوظ";
+          updateNextPrayerCountdown();
+        } else if (locationEl) {
+          locationEl.textContent = "تعذر تحميل مواقيت الصلاة حاليًا";
+          locationEl.classList.add("error-text");
+        }
+      } catch (_) {
+        if (locationEl) {
+          locationEl.textContent = "تعذر تحميل مواقيت الصلاة حاليًا";
+          locationEl.classList.add("error-text");
+        }
+      }
+    });
 }
 
 function parsePrayerTimeToday(timeStr) {
@@ -2475,11 +2707,19 @@ const WEB3FORMS_ACCESS_KEY = "06cc6554-7252-400b-a35c-5e181736344c";
 
 async function sendFeedback() {
   const nameEl = document.getElementById('feedbackName');
+  const websiteEl = document.getElementById('feedbackWebsite');
   const msgEl = document.getElementById('feedbackMessage');
   const statusEl = document.getElementById('feedbackStatus');
   const btn = document.getElementById('feedbackSendBtn');
 
   const message = msgEl.value.trim();
+  const lastSent = parseInt(safeGet(sessionStorage, "feedback_last_sent") || "0", 10);
+  if (websiteEl && websiteEl.value.trim()) return;
+  if (Date.now() - lastSent < 30000) {
+    statusEl.style.color = "#e0524a";
+    statusEl.textContent = "انتظر قليلًا قبل إرسال رسالة أخرى";
+    return;
+  }
   if (!message) {
     statusEl.style.color = "#e0524a";
     statusEl.textContent = "من فضلك اكتب رسالتك الأول";
@@ -2493,6 +2733,12 @@ async function sendFeedback() {
   statusEl.style.color = "var(--ivory-dim)";
   statusEl.textContent = "جاري الإرسال...";
 
+  // نخزّن الرسالة في Backend موثوق (Firestore) بشكل مستقل عن الإيميل، عشان
+  // ما نفقدش أي رسالة حتى لو Web3Forms فشل أو وصل حده اليومي
+  const savedToFirestore = window.hhBackendReady
+    ? await window.hhSaveFeedback({ name: name, message: message })
+    : false;
+
   try {
     const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -2505,9 +2751,10 @@ async function sendFeedback() {
       })
     });
     const data = await res.json();
-    if (data.success) {
+    if (data.success || savedToFirestore) {
       statusEl.style.color = "var(--gold-soft)";
       statusEl.textContent = "تم إرسال رسالتك بنجاح، جزاك الله خيرًا 🤍";
+      safeSet(sessionStorage, "feedback_last_sent", String(Date.now()));
       nameEl.value = "";
       msgEl.value = "";
     } else {
@@ -2515,8 +2762,16 @@ async function sendFeedback() {
       statusEl.textContent = "حصل خطأ أثناء الإرسال، حاول مرة تانية";
     }
   } catch (err) {
-    statusEl.style.color = "#e0524a";
-    statusEl.textContent = "تأكد من اتصال الإنترنت وحاول تاني";
+    if (savedToFirestore) {
+      statusEl.style.color = "var(--gold-soft)";
+      statusEl.textContent = "تم حفظ رسالتك بنجاح، جزاك الله خيرًا 🤍";
+      safeSet(sessionStorage, "feedback_last_sent", String(Date.now()));
+      nameEl.value = "";
+      msgEl.value = "";
+    } else {
+      statusEl.style.color = "#e0524a";
+      statusEl.textContent = "تأكد من اتصال الإنترنت وحاول تاني";
+    }
   } finally {
     btn.disabled = false;
     btn.style.opacity = "1";
