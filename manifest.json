@@ -1,0 +1,35 @@
+{
+  "name": "صدقة جارية - السيدة عبدالعاطي رحمها الله",
+  "short_name": "صدقة جارية",
+  "description": "ادعُ للسيدة عبدالعاطي رحمها الله، استمع لإذاعة القرآن الكريم مباشرة، اقرأ القرآن كاملًا، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e2622",
+  "theme_color": "#0e2622",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["lifestyle", "religion", "books"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
