@@ -2048,8 +2048,16 @@ function loadFullQuranSurah() {
 
   const surahNum = parseInt(select.value || "1", 10);
   const urlBuilder = QURAN_RECITERS[currentQuranReciter] || QURAN_RECITERS.yasser;
+  const audioUrl = urlBuilder(surahNum);
 
-  source.src = urlBuilder(surahNum);
+  // نوقف الملف القديم ونضع الرابط مباشرة على عنصر الصوت نفسه؛
+  // الاعتماد على <source> فقط كان أحيانًا يترك المشغل لحظيًا على السورة السابقة.
+  player.pause();
+  player.removeAttribute("src");
+  source.src = audioUrl;
+  player.src = audioUrl;
+  player.dataset.surah = String(surahNum);
+  player.dataset.reciter = currentQuranReciter;
   player.load();
   if (titleEl) titleEl.textContent = `سورة ${QURAN_SURAHS[surahNum - 1]}`;
 }
