@@ -8,7 +8,8 @@
      عشان البيانات تفضل حية ومحدّثة ومنعرفش نخزن ملفات صوت كبيرة.
    ============================================================ */
 
-const HH_CACHE_VERSION = "hh-v2";
+const HH_CACHE_VERSION = "hh-v3";
+const HH_PRESERVED_CACHES = new Set([HH_CACHE_VERSION, "quran-audio-v1"]);
 const HH_APP_SHELL = [
   "./",
   "./index.html",
@@ -52,7 +53,7 @@ self.addEventListener("activate", function (event) {
       return Promise.all(
         keys
           .filter(function (key) {
-            return key !== HH_CACHE_VERSION;
+            return !HH_PRESERVED_CACHES.has(key);
           })
           .map(function (key) {
             return caches.delete(key);

@@ -390,6 +390,70 @@ section{
   margin-bottom:15px;
 }
 
+.quran-tools{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.quran-search,
+.reminder-time{
+  width:100%;
+  padding:11px 13px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--bg-deep);
+  color:var(--text-main);
+  font-family:'Tajawal',sans-serif;
+  font-size:14px;
+}
+
+.quran-nav{
+  display:flex;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.quran-nav .action,
+.download-btn,
+.azkar-filter-btn{
+  flex:1;
+  padding:9px 10px;
+  font-size:13px;
+}
+
+.download-btn.is-downloaded{
+  border-color:#75b995;
+  color:#9fe0b9;
+}
+
+.azkar-filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 0 18px;
+}
+
+.azkar-filter-btn.active{
+  background:var(--gold);
+  color:#102d27;
+}
+
+.reminder-settings{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  align-items:center;
+  margin-top:12px;
+}
+
+@media (max-width:520px){
+  .quran-tools{grid-template-columns:1fr;}
+  .reminder-settings{grid-template-columns:1fr;}
+}
+
 audio{
   width:100%;
   margin-top:10px;
@@ -1367,7 +1431,10 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
       <h2 class="label">تذكير يومي بالدعاء</h2>
       <div class="card" style="text-align:center;">
         <div class="source" style="margin-top:0;">فعّل تذكير يومي يفكّرك تدخل تدعي لها وتقرأ يس</div>
-        <button class="dua-button" id="reminderBtn" onclick="setupDailyReminder()" style="margin-top:12px;">🔔 تفعيل التذكير اليومي</button>
+        <div class="reminder-settings">
+          <input class="reminder-time" id="reminderTime" type="time" value="20:00" aria-label="وقت التذكير اليومي">
+          <button class="dua-button" id="reminderBtn" onclick="setupDailyReminder()" style="margin-top:0;">🔔 تفعيل التذكير اليومي</button>
+        </div>
         <div class="source" id="reminderStatus"></div>
       </div>
     </section>
@@ -1410,13 +1477,23 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
       <h2 class="label">اختر السورة</h2>
       <div class="card quran-box">
         <div class="quran-icon">📖</div>
+        <div class="quran-tools">
+          <input id="quranSearch" class="quran-search" type="search" placeholder="ابحث باسم السورة أو رقمها" autocomplete="off">
+          <button class="action" id="clearQuranSearch" type="button">مسح</button>
+        </div>
         <select id="quranSurahSelect" onchange="loadFullQuranSurah()" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--line); background:var(--panel); color:var(--text-main); font-family:'Tajawal',sans-serif; font-size:15px; margin-bottom:14px;"></select>
+        <div class="quran-nav">
+          <button class="action" type="button" onclick="goToPreviousSurah()">→ السابقة</button>
+          <button class="action" type="button" onclick="goToNextSurah()">التالية ←</button>
+        </div>
         <div class="quran-title" id="quranCurrentSurah">سورة الفاتحة</div>
         <div class="quran-note">صدقة جارية عن روح الفقيدة</div>
         <audio class="hh-native-audio" preload="none" id="fullQuranPlayer">
           <source id="fullQuranSource" src="" type="audio/mpeg">
           متصفحك لا يدعم تشغيل الصوتيات.
         </audio>
+        <button class="action download-btn" id="downloadSurahBtn" type="button" onclick="downloadCurrentSurah()">⬇️ حفظ السورة للأوفلاين</button>
+        <div class="source" id="quranOfflineStatus" aria-live="polite"></div>
       </div>
     </section>
 
@@ -1456,6 +1533,12 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
     </div>
 
     <h2 class="label">أذكار الصباح والمساء المكتوبة للتسبيح</h2>
+    <div class="azkar-filters" role="group" aria-label="تصنيف الأذكار">
+      <button class="action azkar-filter-btn active" type="button" data-azkar-filter="all">الكل</button>
+      <button class="action azkar-filter-btn" type="button" data-azkar-filter="morning">أذكار الصباح</button>
+      <button class="action azkar-filter-btn" type="button" data-azkar-filter="evening">أذكار المساء</button>
+      <button class="action azkar-filter-btn" type="button" data-azkar-filter="general">أذكار متنوعة</button>
+    </div>
 
     <div class="azkar-card">
       <div class="arabic">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ</div>
@@ -2020,16 +2103,37 @@ const QURAN_RECITERS = {
 };
 
 let currentQuranReciter = "yasser";
+let quranObjectUrl = null;
+const QURAN_AUDIO_CACHE = "quran-audio-v1";
+
+function getSelectedQuranNumber() {
+  const select = document.getElementById("quranSurahSelect");
+  return parseInt(select && select.value ? select.value : "1", 10);
+}
+
+function getCurrentQuranUrl() {
+  const urlBuilder = QURAN_RECITERS[currentQuranReciter] || QURAN_RECITERS.yasser;
+  return urlBuilder(getSelectedQuranNumber());
+}
 
 function populateQuranSurahList() {
   const select = document.getElementById("quranSurahSelect");
   if (!select) return;
+  select.innerHTML = "";
   QURAN_SURAHS.forEach((name, i) => {
     const opt = document.createElement("option");
     opt.value = i + 1;
     opt.textContent = `${i + 1}. ${name}`;
     select.appendChild(opt);
   });
+  const saved = safeGet(localStorage, "quran_last_selection");
+  if (saved) {
+    try {
+      const data = JSON.parse(saved);
+      if (data.reciter && QURAN_RECITERS[data.reciter]) currentQuranReciter = data.reciter;
+      if (data.surah >= 1 && data.surah <= QURAN_SURAHS.length) select.value = String(data.surah);
+    } catch (e) {}
+  }
 }
 
 function setQuranReciter(reciterCode, btnEl) {
@@ -2060,10 +2164,93 @@ function loadFullQuranSurah() {
   player.dataset.reciter = currentQuranReciter;
   player.load();
   if (titleEl) titleEl.textContent = `سورة ${QURAN_SURAHS[surahNum - 1]}`;
+  safeSet(localStorage, "quran_last_selection", JSON.stringify({ surah: surahNum, reciter: currentQuranReciter }));
+  updateQuranDownloadState(audioUrl);
+
+  // لو السورة محفوظة، نشغل نسخة الكاش بدل إعادة تنزيلها من الإنترنت.
+  caches.match(audioUrl).then(function (cached) {
+    if (!cached || player.dataset.surah !== String(surahNum) || player.dataset.reciter !== currentQuranReciter) return;
+    return cached.blob().then(function (blob) {
+      if (quranObjectUrl) URL.revokeObjectURL(quranObjectUrl);
+      quranObjectUrl = URL.createObjectURL(blob);
+      player.src = quranObjectUrl;
+      player.load();
+    });
+  }).catch(function () {});
 }
 
 populateQuranSurahList();
 loadFullQuranSurah();
+
+function setupQuranControls() {
+  const search = document.getElementById("quranSearch");
+  const clear = document.getElementById("clearQuranSearch");
+  const select = document.getElementById("quranSurahSelect");
+  if (!search || !select) return;
+  const filter = function () {
+    const query = search.value.trim().toLocaleLowerCase("ar-EG");
+    const current = select.value;
+    Array.from(select.options).forEach(function (option) {
+      const haystack = `${option.value} ${option.textContent}`.toLocaleLowerCase("ar-EG");
+      option.hidden = Boolean(query) && !haystack.includes(query);
+    });
+    const visible = Array.from(select.options).find(function (option) { return !option.hidden; });
+    if (visible && (select.options[select.selectedIndex]?.hidden || !select.value)) {
+      select.value = visible.value;
+      loadFullQuranSurah();
+    } else if (current) {
+      select.value = current;
+    }
+  };
+  search.addEventListener("input", filter);
+  if (clear) clear.addEventListener("click", function () { search.value = ""; filter(); search.focus(); });
+}
+
+function goToPreviousSurah() {
+  const select = document.getElementById("quranSurahSelect");
+  if (!select) return;
+  select.value = String(Math.max(1, getSelectedQuranNumber() - 1));
+  loadFullQuranSurah();
+}
+
+function goToNextSurah() {
+  const select = document.getElementById("quranSurahSelect");
+  if (!select) return;
+  select.value = String(Math.min(QURAN_SURAHS.length, getSelectedQuranNumber() + 1));
+  loadFullQuranSurah();
+}
+
+async function updateQuranDownloadState(url) {
+  const btn = document.getElementById("downloadSurahBtn");
+  if (!btn || !window.caches) return;
+  const cached = await caches.match(url).catch(function () { return null; });
+  btn.classList.toggle("is-downloaded", Boolean(cached));
+  btn.textContent = cached ? "✅ السورة محفوظة للأوفلاين" : "⬇️ حفظ السورة للأوفلاين";
+}
+
+async function downloadCurrentSurah() {
+  const btn = document.getElementById("downloadSurahBtn");
+  const status = document.getElementById("quranOfflineStatus");
+  const url = getCurrentQuranUrl();
+  if (!window.caches) { if (status) status.textContent = "المتصفح لا يدعم الحفظ للأوفلاين"; return; }
+  if (btn) { btn.disabled = true; btn.textContent = "⏳ جاري حفظ السورة..."; }
+  try {
+    const response = await fetch(url, { mode: "cors" });
+    if (!response.ok) throw new Error("download failed");
+    const cache = await caches.open(QURAN_AUDIO_CACHE);
+    await cache.put(url, response.clone());
+    if (status) status.textContent = "تم حفظ السورة، ويمكن تشغيلها بدون إنترنت";
+    showToast("تم حفظ السورة للأوفلاين");
+    await updateQuranDownloadState(url);
+  } catch (e) {
+    if (status) status.textContent = "تعذّر حفظ السورة؛ جرّب تشغيلها مرة مع وجود الإنترنت";
+    if (btn) btn.textContent = "⬇️ إعادة المحاولة";
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
+setupQuranControls();
 
 function loadBaqarahReciter(reciterCode, btnEl) {
   const player = document.getElementById("baqarahPlayer");
@@ -2154,9 +2341,17 @@ if (entryOverlay && entryBtn) {
   });
 }
 
+let reminderTimer = null;
+
+function getReminderTime() {
+  return safeGet(localStorage, "reminder_time") || document.getElementById("reminderTime")?.value || "20:00";
+}
+
 function setupDailyReminder() {
   const status = document.getElementById("reminderStatus");
   const btn = document.getElementById("reminderBtn");
+  const timeInput = document.getElementById("reminderTime");
+  const reminderTime = timeInput?.value || "20:00";
 
   if (!("Notification" in window)) {
     if (status) status.textContent = "متصفحك لا يدعم الإشعارات";
@@ -2166,8 +2361,9 @@ function setupDailyReminder() {
   Notification.requestPermission().then(permission => {
     if (permission === "granted") {
       safeSet(localStorage, "reminder_enabled", "1");
+      safeSet(localStorage, "reminder_time", reminderTime);
       if (btn) btn.textContent = "🔔 التذكير مفعّل";
-      if (status) status.textContent = "هيوصلك تذكير يومي طالما الصفحة مفتوحة على جهازك";
+      if (status) status.textContent = `هيوصلك تذكير يومي الساعة ${reminderTime} طالما الصفحة مفتوحة على جهازك`;
       showToast("تم تفعيل التذكير اليومي بإذن الله");
       scheduleNextReminder();
     } else {
@@ -2179,32 +2375,37 @@ function setupDailyReminder() {
 }
 
 function scheduleNextReminder() {
-  const lastReminderStr = safeGet(localStorage, "last_reminder_sent");
-  const now = Date.now();
-  const oneDay = 24 * 60 * 60 * 1000;
-  const lastReminder = lastReminderStr ? parseInt(lastReminderStr) : 0;
-  const msUntilNext = Math.max(oneDay - (now - lastReminder), 0);
+  if (reminderTimer) clearTimeout(reminderTimer);
+  const [hours, minutes] = getReminderTime().split(":").map(Number);
+  const now = new Date();
+  const next = new Date(now);
+  next.setHours(Number.isFinite(hours) ? hours : 20, Number.isFinite(minutes) ? minutes : 0, 0, 0);
+  if (next <= now) next.setDate(next.getDate() + 1);
 
-  setTimeout(function fireReminder() {
+  reminderTimer = setTimeout(function fireReminder() {
     try {
       if (Notification.permission === "granted") {
-        new Notification("صدقة جارية 🤲", {
+        const notification = new Notification("صدقة جارية", {
           body: "خُد دقيقة وادعِ للسيدة عبدالعاطي رحمها الله، واقرأ يس أو الأذكار",
-          icon: "teta-abdelaty.jpg"
+          icon: "icon-192.png",
+          tag: "daily-dua-reminder"
         });
-        safeSet(localStorage, "last_reminder_sent", Date.now().toString());
+        notification.onclick = function () { window.focus(); notification.close(); };
       }
     } catch (e) {}
-    setTimeout(fireReminder, oneDay);
-  }, msUntilNext);
+    scheduleNextReminder();
+  }, Math.max(1000, next.getTime() - Date.now()));
 }
 
 if (safeGet(localStorage, "reminder_enabled") === "1" && "Notification" in window && Notification.permission === "granted") {
   document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("reminderBtn");
     const status = document.getElementById("reminderStatus");
+    const timeInput = document.getElementById("reminderTime");
+    const savedTime = getReminderTime();
+    if (timeInput) timeInput.value = savedTime;
     if (btn) btn.textContent = "🔔 التذكير مفعّل";
-    if (status) status.textContent = "هيوصلك تذكير يومي طالما الصفحة مفتوحة على جهازك";
+    if (status) status.textContent = `هيوصلك تذكير يومي الساعة ${savedTime} طالما الصفحة مفتوحة على جهازك`;
   });
   scheduleNextReminder();
 }
@@ -2285,6 +2486,8 @@ function countAzkar(btn, max) {
   if(current < max) {
     current++;
     countElem.textContent = current;
+    const card = btn.closest('.azkar-card');
+    if (card) safeSet(localStorage, `azkar_count_${card.dataset.azkarIndex}`, String(current));
     if(current === max) {
       btn.style.background = "var(--sage)";
       btn.style.color = "#ffffff";
@@ -2295,12 +2498,38 @@ function countAzkar(btn, max) {
 
 function resetAllAzkar() {
   document.querySelectorAll('.az-c').forEach(el => el.textContent = '0');
+  document.querySelectorAll('#tab-azkar .azkar-card').forEach(card => safeSet(localStorage, `azkar_count_${card.dataset.azkarIndex}`, '0'));
   document.querySelectorAll('.azkar-btn').forEach(btn => {
     btn.style.background = "var(--gold)";
     btn.style.color = "#102d27";
   });
   showToast("تم إعادة تصفير أذكار الصباح والمساء");
 }
+
+function setupAzkarFilters() {
+  const cards = Array.from(document.querySelectorAll("#tab-azkar .azkar-card"));
+  cards.forEach(function (card, index) {
+    const text = card.textContent || "";
+    const target = card.querySelector(".azkar-target")?.textContent || "";
+    const group = text.includes("أَمْسَيْنَا") || target.includes("للمساء") ? "evening" : (index < 5 ? "morning" : "general");
+    card.dataset.azkarGroup = group;
+    card.dataset.azkarIndex = String(index);
+  });
+  document.querySelectorAll("[data-azkar-filter]").forEach(function (button) {
+    button.addEventListener("click", function () {
+      const filter = button.dataset.azkarFilter;
+      document.querySelectorAll("[data-azkar-filter]").forEach(b => b.classList.toggle("active", b === button));
+      cards.forEach(card => { card.style.display = filter === "all" || card.dataset.azkarGroup === filter ? "block" : "none"; });
+    });
+  });
+}
+
+setupAzkarFilters();
+document.querySelectorAll("#tab-azkar .azkar-card").forEach(function (card) {
+  const saved = safeGet(localStorage, `azkar_count_${card.dataset.azkarIndex}`);
+  const counter = card.querySelector('.az-c');
+  if (saved && counter) counter.textContent = saved;
+});
 
 let counts;
 try {
