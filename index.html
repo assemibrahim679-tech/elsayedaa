@@ -2363,7 +2363,7 @@ function setupDailyReminder() {
       safeSet(localStorage, "reminder_enabled", "1");
       safeSet(localStorage, "reminder_time", reminderTime);
       if (btn) btn.textContent = "🔔 التذكير مفعّل";
-      if (status) status.textContent = `هيوصلك تذكير يومي الساعة ${reminderTime} طالما الصفحة مفتوحة على جهازك`;
+      if (status) status.textContent = `هيوصلك إشعار يومي الساعة ${reminderTime} أثناء تشغيل التطبيق أو وجوده بالخلفية`;
       showToast("تم تفعيل التذكير اليومي بإذن الله");
       scheduleNextReminder();
     } else {
@@ -2385,12 +2385,22 @@ function scheduleNextReminder() {
   reminderTimer = setTimeout(function fireReminder() {
     try {
       if (Notification.permission === "granted") {
-        const notification = new Notification("صدقة جارية", {
+        const reminderTitle = "صدقة جارية";
+        const reminderOptions = {
           body: "خُد دقيقة وادعِ للسيدة عبدالعاطي رحمها الله، واقرأ يس أو الأذكار",
           icon: "icon-192.png",
-          tag: "daily-dua-reminder"
-        });
-        notification.onclick = function () { window.focus(); notification.close(); };
+          badge: "icon-192.png",
+          tag: "daily-dua-reminder",
+          renotify: true,
+          data: { url: "./#tab-main" }
+        };
+        if (navigator.serviceWorker && navigator.serviceWorker.ready) {
+          navigator.serviceWorker.ready.then(function (registration) {
+            return registration.showNotification(reminderTitle, reminderOptions);
+          }).catch(function () { new Notification(reminderTitle, reminderOptions); });
+        } else {
+          new Notification(reminderTitle, reminderOptions);
+        }
       }
     } catch (e) {}
     scheduleNextReminder();
@@ -2405,7 +2415,7 @@ if (safeGet(localStorage, "reminder_enabled") === "1" && "Notification" in windo
     const savedTime = getReminderTime();
     if (timeInput) timeInput.value = savedTime;
     if (btn) btn.textContent = "🔔 التذكير مفعّل";
-    if (status) status.textContent = `هيوصلك تذكير يومي الساعة ${savedTime} طالما الصفحة مفتوحة على جهازك`;
+    if (status) status.textContent = `هيوصلك إشعار يومي الساعة ${savedTime} أثناء تشغيل التطبيق أو وجوده بالخلفية`;
   });
   scheduleNextReminder();
 }
