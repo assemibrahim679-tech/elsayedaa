@@ -3003,6 +3003,15 @@ document.querySelectorAll("audio.hh-native-audio").forEach(hhEnhanceAudio);
 /* ============== إرسال "سيب رأيك" عن طريق Web3Forms (بيوصل الرسالة مباشرة لإيميلك) ============== */
 const WEB3FORMS_ACCESS_KEY = "06cc6554-7252-400b-a35c-5e181736344c";
 
+function withTimeout(promise, timeoutMs) {
+  return Promise.race([
+    Promise.resolve(promise),
+    new Promise(function (_, reject) {
+      setTimeout(function () { reject(new Error("request_timeout")); }, timeoutMs);
+    })
+  ]);
+}
+
 async function sendFeedback() {
   const nameEl = document.getElementById('feedbackName');
   const websiteEl = document.getElementById('feedbackWebsite');
@@ -3033,12 +3042,20 @@ async function sendFeedback() {
 
   // نخزّن الرسالة في Backend موثوق (Firestore) بشكل مستقل عن الإيميل، عشان
   // ما نفقدش أي رسالة حتى لو Web3Forms فشل أو وصل حده اليومي
-  const savedToFirestore = window.hhBackendReady
-    ? await window.hhSaveFeedback({ name: name, message: message })
-    : false;
+  let savedToFirestore = false;
+  if (window.hhBackendReady) {
+    try {
+      savedToFirestore = await withTimeout(
+        window.hhSaveFeedback({ name: name, message: message }),
+        8000
+      );
+    } catch (e) {
+      savedToFirestore = false;
+    }
+  }
 
   try {
-    const res = await fetch("https://api.web3forms.com/submit", {
+    const res = await withTimeout(fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
@@ -3047,7 +3064,7 @@ async function sendFeedback() {
         name: name,
         message: message
       })
-    });
+    }), 12000);
     const data = await res.json();
     if (data.success || savedToFirestore) {
       statusEl.style.color = "var(--gold-soft)";
