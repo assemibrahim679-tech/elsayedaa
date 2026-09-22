@@ -813,7 +813,7 @@ footer{
 }
 
 @media(max-width:480px){
-  .wrap{ padding-left:12px; padding-right:12px; padding-bottom:55px; }
+  .wrap{ width:100%; max-width:none; margin:0; padding-left:10px; padding-right:10px; padding-bottom:55px; }
   .top-nav{ gap:7px; align-items:flex-start; }
   .top-nav > div:last-child{ gap:5px !important; flex-wrap:wrap; justify-content:flex-end; }
   .visitor-badge,.theme-toggle-btn,.install-app-btn{ font-size:11px; padding:5px 8px; }
@@ -830,7 +830,9 @@ footer{
   .entry-desc{ font-size:12px; margin-bottom:22px; }
   #entryBtn{ padding:12px 42px; font-size:14px; }
   .entry-hint{ font-size:12px; bottom:18px; }
-  #tab-feedback .card{ padding:16px 13px; }
+  #tab-feedback{ width:100%; }
+  #tab-feedback section{ width:100%; }
+  #tab-feedback .card{ width:100%; padding:18px 14px; margin-left:0; margin-right:0; }
   #tab-feedback .quran-title{ font-size:20px; line-height:1.6; }
   #tab-feedback .quran-note{ font-size:12px; line-height:1.7; }
   .feedback-input,.feedback-textarea{ font-size:14px; padding:10px; }
