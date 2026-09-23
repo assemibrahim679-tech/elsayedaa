@@ -1,0 +1,49 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.elsayedaa.app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:2:5-67
+11-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:2:22-64
+12    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+12-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:3:5-77
+12-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:3:22-74
+13
+14    <application
+14-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:4:5-11:19
+15        android:debuggable="true"
+16        android:extractNativeLibs="false"
+17        android:icon="@drawable/icon"
+17-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:4:77-106
+18        android:label="صدقة جارية"
+18-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:4:50-76
+19        android:theme="@style/AppTheme" >
+19-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:4:18-49
+20        <activity
+20-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:5:9-10:20
+21            android:name="com.elsayedaa.app.MainActivity"
+21-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:5:19-47
+22            android:exported="true"
+22-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:5:85-108
+23            android:screenOrientation="portrait" >
+23-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:5:48-84
+24            <intent-filter>
+24-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:6:13-9:29
+25                <action android:name="android.intent.action.MAIN" />
+25-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:7:17-69
+25-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:7:25-66
+26
+27                <category android:name="android.intent.category.LAUNCHER" />
+27-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:8:17-77
+27-->/home/ubuntu/elsayedaa/android-app/app/src/main/AndroidManifest.xml:8:27-74
+28            </intent-filter>
+29        </activity>
+30    </application>
+31
+32</manifest>

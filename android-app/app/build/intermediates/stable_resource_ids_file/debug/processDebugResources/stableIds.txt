@@ -1,0 +1,2 @@
+com.elsayedaa.app:style/AppTheme = 0x7f020000
+com.elsayedaa.app:drawable/icon = 0x7f010000
