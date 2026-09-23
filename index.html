@@ -1293,9 +1293,9 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
     </div>
 
     <div style="display:flex; align-items:center; gap:8px;">
-      <button class="install-app-btn" id="installAppBtn" type="button">
-        <span>📲</span> تثبيت التطبيق
-      </button>
+      <a class="install-app-btn visible" id="apkDownloadBtn" href="https://github.com/assemibrahim679-tech/elsayedaa/releases/latest/download/elsayedaa.apk" download>
+        <span>📦</span> تحميل APK
+      </a>
       <button class="theme-toggle-btn" id="themeBtn" type="button">
         <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
       </button>
@@ -1993,33 +1993,7 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script>
-// زر تثبيت PWA — يظهر فقط عندما يدعم المتصفح التثبيت.
-let deferredInstallPrompt = null;
-const installAppBtn = document.getElementById('installAppBtn');
-
-window.addEventListener('beforeinstallprompt', function (event) {
-  event.preventDefault();
-  deferredInstallPrompt = event;
-  if (installAppBtn && !window.matchMedia('(display-mode: standalone)').matches) {
-    installAppBtn.classList.add('visible');
-  }
-});
-
-if (installAppBtn) {
-  installAppBtn.addEventListener('click', async function () {
-    if (!deferredInstallPrompt) return;
-    deferredInstallPrompt.prompt();
-    await deferredInstallPrompt.userChoice;
-    deferredInstallPrompt = null;
-    installAppBtn.classList.remove('visible');
-  });
-}
-
-window.addEventListener('appinstalled', function () {
-  deferredInstallPrompt = null;
-  if (installAppBtn) installAppBtn.classList.remove('visible');
-});
-
+// التطبيق الحقيقي يُحمّل من رابط APK في أعلى الصفحة؛ لم نعد نستخدم زر تثبيت PWA.
 function safeGet(storage, key) {
   try { return storage.getItem(key); } catch (e) { return null; }
 }
@@ -2118,7 +2092,7 @@ const QURAN_RECITERS = {
   banna: (n) => `https://server8.mp3quran.net/bna/${String(n).padStart(3,"0")}.mp3`
 };
 
-let currentQuranReciter = "yasser";
+let currentQuranReciter = "minsh";
 let quranObjectUrl = null;
 const QURAN_AUDIO_CACHE = "quran-audio-v1";
 
