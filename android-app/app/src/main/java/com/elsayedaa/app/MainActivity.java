@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends Activity {
-    private static final String SITE_URL = "https://assemibrahim679-tech.github.io/elsayedaa/?android=1";
+    private static final String SITE_URL = "https://assemibrahim679-tech.github.io/elsayedaa/?android=1&v=2";
     private WebView webView;
     private final Map<String, String> hostToReciter = new HashMap<>();
 
