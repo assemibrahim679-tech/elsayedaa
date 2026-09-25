@@ -1471,6 +1471,15 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 #tab-main > section:not(:first-of-type), footer, .qr { content-visibility: auto; contain-intrinsic-size: 420px; }
 </style>
 
+<script>
+(() => {
+  const lowEnd = matchMedia('(max-width: 900px)').matches ||
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4);
+  if (lowEnd) document.documentElement.classList.add('low-performance');
+})();
+</script>
+
 </head>
 
 <body>
@@ -3325,10 +3334,7 @@ async function sendFeedback() {
 </script>
 <script>
 (() => {
-  const lowPerformance = window.matchMedia('(max-width: 900px)').matches ||
-    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
-    (navigator.deviceMemory && navigator.deviceMemory <= 4);
-  if (lowPerformance) document.documentElement.classList.add('low-performance');
+  const lowPerformance = document.documentElement.classList.contains('low-performance');
   const wrap = document.querySelector('.wrap');
   const hero = document.querySelector('.hero');
   if (!wrap || !hero || lowPerformance || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

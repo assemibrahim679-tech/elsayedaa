@@ -8,7 +8,7 @@
      عشان البيانات تفضل حية ومحدّثة ومنعرفش نخزن ملفات صوت كبيرة.
    ============================================================ */
 
-const HH_CACHE_VERSION = "hh-v4";
+const HH_CACHE_VERSION = "hh-v5";
 const HH_PRESERVED_CACHES = new Set([HH_CACHE_VERSION, "quran-audio-v1"]);
 const HH_APP_SHELL = [
   "./",
