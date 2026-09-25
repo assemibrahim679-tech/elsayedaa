@@ -8,7 +8,7 @@
      عشان البيانات تفضل حية ومحدّثة ومنعرفش نخزن ملفات صوت كبيرة.
    ============================================================ */
 
-const HH_CACHE_VERSION = "hh-v3";
+const HH_CACHE_VERSION = "hh-v4";
 const HH_PRESERVED_CACHES = new Set([HH_CACHE_VERSION, "quran-audio-v1"]);
 const HH_APP_SHELL = [
   "./",
@@ -17,7 +17,9 @@ const HH_APP_SHELL = [
   "./offline.html",
   "./icon-192.png",
   "./icon-512.png",
-  "./icon-512-maskable.png"
+  "./icon-512-maskable.png",
+  "./teta-abdelaty.jpg",
+  "./salawat-clip.mp3"
 ];
 
 // دومينات لازم تروح للنت مباشرة دايمًا (بث/صوت/APIs ديناميكية) وميتخزنش منها حاجة
