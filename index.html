@@ -1469,6 +1469,71 @@ button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible
 /* Safe loading optimizations: keep first screen responsive while preserving visuals. */
 .tab-content:not(.active) { content-visibility: auto; contain-intrinsic-size: 720px; }
 #tab-main > section:not(:first-of-type), footer, .qr { content-visibility: auto; contain-intrinsic-size: 420px; }
+
+/* Performance pass: remove always-running effects that keep weak devices busy. */
+body,
+.arch,
+.arch::before,
+h1,
+.hero::before,
+.hero::after,
+body:not(.light-mode)::after,
+.entry-frame::before,
+.entry-frame::after,
+#entryOverlay .entry-icon,
+#entryBtn,
+.dua-button,
+#entryOverlay::after,
+#entryOverlay .entry-card,
+#entryOverlay .entry-card::before,
+#entryOverlay .entry-card::after,
+#entryOverlay .entry-ornament,
+#entryOverlay .entry-visual img,
+#entryOverlay .entry-visual-ring,
+#entryOverlay .entry-visual::after {
+  animation: none !important;
+}
+
+/* Blur and oversized shadows are expensive on mobile GPUs. */
+.nav-tabs,
+.hero,
+.card,
+.counter-box,
+.tasbih-item,
+.azkar-card,
+.lecture-card,
+#entryOverlay .entry-card {
+  backdrop-filter: none !important;
+}
+.card,
+.counter-box,
+.tasbih-item,
+.azkar-card,
+.lecture-card {
+  box-shadow: 0 10px 26px rgba(0,0,0,.18), inset 0 1px rgba(255,255,255,.045) !important;
+}
+.particle { display: none !important; }
+
+/* Low-end mode: no parallax, hover lifting or decorative transitions. */
+html.low-performance *,
+html.low-performance *::before,
+html.low-performance *::after {
+  transition-duration: .01ms !important;
+}
+html.low-performance .card:hover,
+html.low-performance .counter-box:hover,
+html.low-performance .tasbih-item:hover,
+html.low-performance .azkar-card:hover,
+html.low-performance .lecture-card:hover,
+html.low-performance .tab-btn:hover,
+html.low-performance .action:hover,
+html.low-performance .bead:hover,
+html.low-performance .dua-button:hover,
+html.low-performance .reset-btn:hover,
+html.low-performance .external-link-btn:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
 </style>
 
 <script>
