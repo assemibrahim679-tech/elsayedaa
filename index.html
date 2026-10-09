@@ -1594,9 +1594,7 @@ html.low-performance .external-link-btn:hover {
     </div>
 
     <div style="display:flex; align-items:center; gap:8px;">
-      <a class="install-app-btn visible" id="apkDownloadBtn" href="https://github.com/assemibrahim679-tech/elsayedaa/releases/latest/download/elsayedaa.apk" download>
-        <span>📦</span> تحميل APK
-      </a>
+      <!-- يُعرض زر APK بعد نشر إصدار فعلي في GitHub Releases. -->
       <button class="theme-toggle-btn" id="themeBtn" type="button">
         <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
       </button>
@@ -2737,11 +2735,13 @@ function applyTheme(isLight) {
 const savedTheme = safeGet(localStorage, "theme");
 applyTheme(savedTheme === "light");
 
-themeBtn.addEventListener("click", () => {
-  const isLight = !document.body.classList.contains("light-mode");
-  applyTheme(isLight);
-  safeSet(localStorage, "theme", isLight ? "light" : "dark");
-});
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    const isLight = !document.body.classList.contains("light-mode");
+    applyTheme(isLight);
+    safeSet(localStorage, "theme", isLight ? "light" : "dark");
+  });
+}
 
 // بيانات SEO مستقلة لكل قسم/تاب — بتتحدث فيها عنوان الصفحة والوصف ورابط المشاركة
 // كل ما المستخدم يفتح قسم تاني، عشان يبقى للرابط والمشاركة معنى مرتبط بالمحتوى الفعلي
