@@ -1683,6 +1683,25 @@ body:not(.light-mode){
 .hh-player{background-position:center 42% !important;}
 </style>
 
+
+<style id="feedback-tab-highlight">
+.nav-tabs .feedback-tab-btn{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  color:#fff1c9 !important;
+  background:linear-gradient(135deg,rgba(215,173,98,.28),rgba(81,57,24,.56)) !important;
+  border:1px solid rgba(242,220,167,.82) !important;
+  box-shadow:0 0 0 2px rgba(215,173,98,.10),0 7px 18px rgba(0,0,0,.22) !important;
+  font-weight:700;
+}
+.nav-tabs .feedback-tab-btn:hover,.nav-tabs .feedback-tab-btn.active{
+  color:#13271e !important;
+  background:linear-gradient(135deg,#f3d99e,#c48d3c) !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -1743,7 +1762,7 @@ body:not(.light-mode){
     <button class="tab-btn" onclick="switchTab(event, 'lectures')">دروس دينية</button>
     <button class="tab-btn" onclick="switchTab(event, 'prayers')">أوقات الصلاة</button>
     <button class="tab-btn" onclick="switchTab(event, 'calendar')">التقويم الهجري</button>
-    <button class="tab-btn" onclick="switchTab(event, 'feedback')">سيب رأيك</button>
+    <button class="tab-btn feedback-tab-btn" id="feedbackNavBtn" onclick="switchTab(event, 'feedback')">✍️ سيب رأيك</button>
   </div>
 
   <!-- TAB 1: MAIN PAGE -->
