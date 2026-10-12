@@ -18,15 +18,15 @@ service cloud.firestore {
       // ومن أن قيمته زادت بمقدار واحد فقط.
       allow update: if
         (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['visitors']) &&
-          request.resource.data.visitors == resource.data.visitors + 1) ||
+          request.resource.data.visitors is number && resource.data.visitors is number && request.resource.data.visitors == resource.data.visitors + 1) ||
         (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['tasbih1']) &&
-          request.resource.data.tasbih1 == resource.data.tasbih1 + 1) ||
+          request.resource.data.tasbih1 is number && resource.data.tasbih1 is number && request.resource.data.tasbih1 == resource.data.tasbih1 + 1) ||
         (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['tasbih2']) &&
-          request.resource.data.tasbih2 == resource.data.tasbih2 + 1) ||
+          request.resource.data.tasbih2 is number && resource.data.tasbih2 is number && request.resource.data.tasbih2 == resource.data.tasbih2 + 1) ||
         (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['tasbih3']) &&
-          request.resource.data.tasbih3 == resource.data.tasbih3 + 1) ||
+          request.resource.data.tasbih3 is number && resource.data.tasbih3 is number && request.resource.data.tasbih3 == resource.data.tasbih3 + 1) ||
         (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['dua']) &&
-          request.resource.data.dua == resource.data.dua + 1);
+          request.resource.data.dua is number && resource.data.dua is number && request.resource.data.dua == resource.data.dua + 1);
 
       allow delete: if false;
     }

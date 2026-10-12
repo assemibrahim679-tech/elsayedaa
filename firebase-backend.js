@@ -49,6 +49,8 @@
   // زيادة إحصائية جماعية بأمان (عملية atomic increment على السيرفر نفسه،
   // مفيش سباق قراءة/كتابة ولا فقدان زيارات لو حصل تزامن)
   window.hhIncrementStat = function (field, amount) {
+    const allowedFields = new Set(["visitors", "tasbih1", "tasbih2", "tasbih3", "dua"]);
+    if (!allowedFields.has(field) || amount !== 1) return Promise.reject(new Error("invalid stat increment"));
     return statsRef
       .set(
         { [field]: firebase.firestore.FieldValue.increment(amount) },

@@ -8,7 +8,7 @@
      عشان البيانات تفضل حية ومحدّثة ومنعرفش نخزن ملفات صوت كبيرة.
    ============================================================ */
 
-const HH_CACHE_VERSION = "hh-v5";
+const HH_CACHE_VERSION = "hh-v6-20261012";
 const HH_PRESERVED_CACHES = new Set([HH_CACHE_VERSION, "quran-audio-v1"]);
 const HH_APP_SHELL = [
   "./",
@@ -18,7 +18,8 @@ const HH_APP_SHELL = [
   "./icon-192.png",
   "./icon-512.png",
   "./icon-512-maskable.png",
-  "./teta-abdelaty.jpg",
+  "./teta-abdelaty.webp",
+  "./mosque-hero.webp",
   "./salawat-clip.mp3"
 ];
 
