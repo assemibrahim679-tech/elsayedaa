@@ -601,6 +601,19 @@ audio{
   text-align:center;
 }
 
+.dua-text{
+  max-width:560px;
+  margin:0 auto 16px;
+  padding:14px 16px;
+  border:1px solid rgba(201,162,76,.28);
+  border-radius:16px;
+  color:var(--ivory);
+  background:rgba(201,162,76,.08);
+  font-family:'Amiri',serif;
+  font-size:23px;
+  line-height:1.8;
+}
+
 .dua-number{
   font-family:'Amiri',serif;
   font-size:46px;
@@ -1904,6 +1917,7 @@ body:not(.light-mode){
     <section>
       <h2 class="label">عداد الدعاء</h2>
       <div class="card dua-counter">
+        <div class="dua-text" id="duaText" aria-live="polite">اللهم اغفر لها وارحمها وعافها واعف عنها</div>
         <div class="source">عدد دعواتك من هذا الجهاز</div>
         <div class="dua-number" id="duaCount">0</div>
         <button class="dua-button" onclick="addDua()">🤲 أمّن على الدعاء (أضف دعوة)</button>
@@ -3075,13 +3089,32 @@ function resetAllBeads() {
   showToast("تم تصفير جميع التسابيح");
 }
 
+const DUA_MESSAGES = [
+  "اللهم اغفر لها وارحمها وعافها واعف عنها",
+  "اللهم اجعل قبرها روضة من رياض الجنة، ولا تجعله حفرة من حفر النار",
+  "اللهم آنس وحشتها، وارحم غربتها، ونوّر قبرها، ووسّع مدخلها",
+  "اللهم ارفع درجتها في المهديين، واخلفها في عقبها في الغابرين",
+  "اللهم اسقها من حوض نبيك شربة هنيئة لا تظمأ بعدها أبدًا",
+  "اللهم اجعل القرآن الكريم شفيعًا لها ونورًا في قبرها ورفيقًا لها في الجنة",
+  "اللهم اجزها عن الإحسان إحسانًا، وعن الإساءة عفوًا وغفرانًا",
+  "اللهم اجمعها مع النبيين والصديقين والشهداء والصالحين وحسن أولئك رفيقًا",
+  "اللهم أبدلها دارًا خيرًا من دارها، وأهلًا خيرًا من أهلها، وأدخلها الجنة بغير حساب",
+  "اللهم اجعل ما قدمته من خير وصدقة جارية نورًا لها في قبرها ورفعةً في درجاتها"
+];
 let duaTotal = parseInt(safeGet(localStorage, "dua_total") || "0", 10);
 if (!Number.isFinite(duaTotal) || duaTotal < 0) duaTotal = 0;
+let duaMessageIndex = parseInt(safeGet(localStorage, "dua_message_index") || "0", 10);
+if (!Number.isFinite(duaMessageIndex) || duaMessageIndex < 0) duaMessageIndex = 0;
+const duaTextEl = document.getElementById("duaText");
+if (duaTextEl) duaTextEl.textContent = DUA_MESSAGES[duaMessageIndex % DUA_MESSAGES.length];
 document.getElementById("duaCount").textContent = duaTotal.toLocaleString("ar-EG");
 
 function addDua() {
   duaTotal++;
+  duaMessageIndex = (duaMessageIndex + 1) % DUA_MESSAGES.length;
   safeSet(localStorage, "dua_total", String(duaTotal));
+  safeSet(localStorage, "dua_message_index", String(duaMessageIndex));
+  if (duaTextEl) duaTextEl.textContent = DUA_MESSAGES[duaMessageIndex];
   document.getElementById("duaCount").textContent = duaTotal.toLocaleString("ar-EG");
   showToast("جزاك الله خيرًا على الدعاء ❤️");
   if (window.hhBackendReady) window.hhIncrementStat("dua", 1);
