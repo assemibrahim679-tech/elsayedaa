@@ -1291,8 +1291,13 @@ html.low-performance section,.low-performance .top-nav,.low-performance .nav-tab
 
 <style id="modern-audio-controls">
 /* إخفاء مشغل الصوت الافتراضي القديم من المتصفح (لأن تنسيقه محدود جدًا خصوصًا على الموبايل) */
-audio.hh-native-audio {
+html.audio-ui-ready audio.hh-native-audio {
   display: none;
+}
+/* تظهر أدوات المتصفح مؤقتًا إذا تأخر بناء المشغل المخصص بدل اختفاء الصوت */
+audio.hh-native-audio {
+  width: 100%;
+  min-height: 42px;
 }
 
 /* ============== مشغل صوت فاخر مخصص ============== */
@@ -1586,6 +1591,86 @@ body:not(.light-mode)::after{background:radial-gradient(circle at 24% 24%,rgba(2
 @media(max-width:520px){.top-nav{flex-wrap:wrap}.top-nav:before{order:-2;width:100%;text-align:center;margin:0 0 8px}.top-nav .visitor-badge{margin:0}.ref-service-strip{grid-template-columns:1fr 1fr}.ref-service-card{min-height:112px;padding:13px}.ref-service-card strong{font-size:18px}.ref-stats{gap:8px;padding:14px 12px}.ref-stat{gap:7px;padding-left:8px}.ref-stat b{font-size:18px}.ref-stat i{font-size:20px}.ref-stat span{font-size:10px}#tab-main .hero h1{font-size:42px}}
 </style>
 
+
+<style id="mosque-sitewide-background">
+body:not(.light-mode){
+  background:
+    linear-gradient(180deg,rgba(2,10,8,.48),rgba(3,18,14,.82) 42%,rgba(2,12,10,.94)),
+    url('mosque-hero.jpg') center top / cover fixed no-repeat !important;
+}
+body:not(.light-mode)::before{opacity:.10 !important;background-image:linear-gradient(120deg,transparent 46%,rgba(227,201,136,.18) 49%,transparent 52%),linear-gradient(60deg,transparent 46%,rgba(111,156,134,.12) 49%,transparent 52%) !important;}
+.wrap{position:relative;}
+.top-nav,.nav-tabs{background-color:rgba(3,15,12,.60);}
+.tab-content:not(#tab-main){background:linear-gradient(145deg,rgba(3,19,15,.60),rgba(3,12,10,.78));backdrop-filter:blur(7px);}
+#tab-main>section:nth-of-type(n+2){background:linear-gradient(145deg,rgba(8,39,30,.70),rgba(3,17,14,.78));backdrop-filter:blur(5px);}
+.card,.counter-box,.tasbih-item,.azkar-card,.lecture-card{background:linear-gradient(145deg,rgba(24,76,60,.76),rgba(3,22,17,.88));}
+.ref-service-strip,.ref-stats{position:relative;z-index:1;}
+</style>
+
+
+<style id="dark-only-and-service-backgrounds">
+#tab-qibla{display:none !important;}
+body.light-mode{--bg:#061713 !important;--bg-deep:#04110d !important;--panel:#123b32 !important;--gold:#d5ad5e !important;--gold-soft:#f0d69a !important;--ivory:#f5efe2 !important;--ivory-dim:#b8c8bd !important;--text-main:#f5efe2 !important;}
+.tasbih,.quran-box,.azkar-card,.lecture-card,.dua-counter,.share-grid,.qr{background:linear-gradient(145deg,rgba(8,42,32,.70),rgba(2,16,13,.82)),url('mosque-hero.jpg') center/cover !important;border-color:rgba(215,173,98,.34);}
+.tasbih-item{background:linear-gradient(145deg,rgba(19,74,56,.66),rgba(3,21,16,.78)),url('mosque-hero.jpg') 56% center/cover !important;}
+.tab-content:not(#tab-main){background:linear-gradient(145deg,rgba(3,19,15,.54),rgba(3,12,10,.74)),url('mosque-hero.jpg') center/cover fixed !important;}
+</style>
+
+<style id="lag-fix-only">
+/* إصلاح اللاج فقط: نفس الواجهة السابقة بدون تغيير تصميم الصوتيات */
+body:not(.light-mode)::after,.wrap::after,.hero::before,.hero::after{animation:none !important;}
+#entryOverlay::after,#entryOverlay .entry-card::before,#entryOverlay .entry-card::after,#entryOverlay .entry-visual-ring{animation:none !important;}
+body:not(.light-mode){background-attachment:scroll !important;}
+.nav-tabs,.card,.counter-box,.tasbih-item,.azkar-card,.lecture-card,#tab-main>section:nth-of-type(n+2),.tab-content:not(#tab-main){backdrop-filter:none !important;}
+</style>
+
+
+<style id="final-light-preview">
+/* خلفية المسجد واضحة في كل الصفحات مع طبقة قراءة ثابتة وخفيفة */
+body:not(.light-mode){
+  background-color:#061713 !important;
+  background-image:linear-gradient(180deg,rgba(2,12,10,.34),rgba(2,15,12,.78) 58%,rgba(2,10,8,.90)),url('mosque-hero.jpg') !important;
+  background-position:center top !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+  background-attachment:scroll !important;
+}
+.wrap{background:transparent !important;}
+.tab-content:not(#tab-main){background:linear-gradient(145deg,rgba(3,19,15,.34),rgba(3,12,10,.56)) !important;}
+#tab-main>section:nth-of-type(n+2){background:linear-gradient(145deg,rgba(8,39,30,.46),rgba(3,17,14,.58)) !important;}
+.card,.counter-box,.tasbih-item,.azkar-card,.lecture-card{background:linear-gradient(145deg,rgba(20,74,57,.58),rgba(3,22,17,.72)) !important;}
+/* عناصر غير أساسية للمعاينة فقط */
+.qr,.particle,.toast{display:none !important;}
+/* تقليل اللاج لأقصى درجة مع الحفاظ على التخطيط */
+*,*::before,*::after{animation:none !important;transition:none !important;}
+.card:hover,.counter-box:hover,.tasbih-item:hover,.azkar-card:hover,.lecture-card:hover,.ref-service-card:hover{transform:none !important;}
+</style>
+
+
+<style id="entry-mosque-background">
+#entryOverlay{
+  background:
+    linear-gradient(180deg,rgba(2,10,8,.34),rgba(2,15,12,.78)),
+    url('mosque-hero.jpg') center/cover no-repeat !important;
+}
+#entryOverlay::before{opacity:.08 !important;}
+</style>
+
+
+<style id="visible-sitewide-mosque">
+body:not(.light-mode){
+  background-image:linear-gradient(180deg,rgba(2,10,8,.12),rgba(2,15,12,.42) 62%,rgba(2,10,8,.58)),url('mosque-hero.jpg') !important;
+  background-position:center top !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+}
+.tab-content:not(#tab-main){background:linear-gradient(145deg,rgba(3,19,15,.18),rgba(3,12,10,.38)) !important;}
+#tab-main>section:nth-of-type(n+2){background:linear-gradient(145deg,rgba(8,39,30,.22),rgba(3,17,14,.40)) !important;}
+.card,.counter-box,.tasbih-item,.azkar-card,.lecture-card{background:linear-gradient(145deg,rgba(20,74,57,.36),rgba(3,22,17,.54)) !important;}
+#entryOverlay::after,#entryOverlay .entry-visual-ring{display:none !important;}
+#entryOverlay .entry-card{background:linear-gradient(135deg,rgba(3,19,15,.26),rgba(3,20,16,.50)),url('mosque-hero.jpg') center/cover !important;backdrop-filter:none !important;}
+</style>
+
 </head>
 
 <body>
@@ -1636,9 +1721,6 @@ body:not(.light-mode)::after{background:radial-gradient(circle at 24% 24%,rgba(2
 
     <div style="display:flex; align-items:center; gap:8px;">
       <!-- يُعرض زر APK بعد نشر إصدار فعلي في GitHub Releases. -->
-      <button class="theme-toggle-btn" id="themeBtn" type="button">
-        <span id="themeIcon">🌙</span> <span id="themeText">الوضع الليلي</span>
-      </button>
     </div>
   </div>
 
@@ -1648,7 +1730,6 @@ body:not(.light-mode)::after{background:radial-gradient(circle at 24% 24%,rgba(2
     <button class="tab-btn" onclick="switchTab(event, 'azkar')">الأذكار والتسابيح</button>
     <button class="tab-btn" onclick="switchTab(event, 'lectures')">دروس دينية</button>
     <button class="tab-btn" onclick="switchTab(event, 'prayers')">أوقات الصلاة</button>
-    <button class="tab-btn" onclick="switchTab(event, 'qibla')">اتجاه القبلة</button>
     <button class="tab-btn" onclick="switchTab(event, 'calendar')">التقويم الهجري</button>
     <button class="tab-btn" onclick="switchTab(event, 'feedback')">سيب رأيك</button>
   </div>
@@ -2784,8 +2865,8 @@ const themeText = document.getElementById("themeText");
 
 function applyTheme(isLight) {
   document.body.classList.toggle("light-mode", Boolean(isLight));
-  themeIcon.textContent = isLight ? "☀️" : "🌙";
-  themeText.textContent = isLight ? "الوضع النهاري" : "الوضع الليلي";
+  if (themeIcon) themeIcon.textContent = isLight ? "☀️" : "🌙";
+  if (themeText) themeText.textContent = isLight ? "الوضع النهاري" : "الوضع الليلي";
 }
 
 const savedTheme = safeGet(localStorage, "theme");
@@ -3359,6 +3440,7 @@ function hhEnhanceAudio(audio) {
 }
 
 document.querySelectorAll("audio.hh-native-audio").forEach(hhEnhanceAudio);
+document.documentElement.classList.add("audio-ui-ready");
 
 /* ============== إرسال "سيب رأيك" عن طريق Web3Forms (بيوصل الرسالة مباشرة لإيميلك) ============== */
 const WEB3FORMS_ACCESS_KEY = "06cc6554-7252-400b-a35c-5e181736344c";
@@ -3489,5 +3571,14 @@ async function sendFeedback() {
   document.addEventListener('DOMContentLoaded',function(){sync();setInterval(sync,1200);});
 })();
 </script>
+
+<script id="force-dark-mode">
+(function(){
+  function forceDark(){document.body.classList.remove('light-mode'); try{localStorage.removeItem('hh_theme');}catch(e){}}
+  document.addEventListener('DOMContentLoaded',forceDark);
+  forceDark();
+})();
+</script>
+
 </body>
 </html>
