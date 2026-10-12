@@ -1230,8 +1230,6 @@ body:not(.light-mode){background:radial-gradient(circle at 78% 8%,rgba(213,173,9
 /* Requested preview-only removal */
 .nav-tabs button[onclick*="qibla"],
 .nav-tabs button[onclick*="feedback"],
-#tab-qibla,
-#tab-feedback{display:none!important}
 
 /* Light performance pass: calmer motion, less blur, cleaner visual weight */
 body:not(.light-mode)::after{opacity:.38;filter:none;animation:none}
@@ -1545,6 +1543,49 @@ html.low-performance .external-link-btn:hover {
 })();
 </script>
 
+
+<style id="elsayedaa-reference-theme">
+:root{--ref-ink:#061713;--ref-ink-2:#0b2821;--ref-glass:rgba(5,22,18,.72);--ref-gold:#d7ad62;--ref-gold-light:#f2dca7;--ref-muted:#c6c8bd}
+body:not(.light-mode){background:radial-gradient(circle at 50% -16%,rgba(198,148,67,.22),transparent 28%),linear-gradient(135deg,#020b09 0%,#09231d 44%,#12382c 100%);background-attachment:fixed}
+body:not(.light-mode)::after{background:radial-gradient(circle at 24% 24%,rgba(229,180,95,.10),transparent 18%),radial-gradient(circle at 80% 60%,rgba(49,139,100,.14),transparent 24%);filter:blur(20px);animation:none}
+.wrap{max-width:1480px;padding:20px 44px 90px}
+.top-nav{position:relative;z-index:30;max-width:1480px;margin:0 auto 12px;padding:0;gap:22px;flex-direction:row-reverse}
+.top-nav:before{content:"صَدَقَة جَارِيَة";font-family:Amiri,serif;font-size:34px;font-weight:700;letter-spacing:.03em;color:var(--ref-gold-light);margin-left:auto;text-shadow:0 4px 24px rgba(215,173,98,.24)}
+.top-nav:after{display:none}
+.top-nav .visitor-badge{margin-right:auto;background:rgba(4,16,13,.62);border-color:rgba(215,173,98,.30);color:var(--ref-gold-light)}
+.theme-toggle-btn{background:rgba(5,19,16,.64);border-color:rgba(215,173,98,.42);color:var(--ref-gold-light)}
+.nav-tabs{position:relative;top:auto;z-index:20;max-width:940px;margin:0 auto 22px;padding:8px 10px;border-radius:999px;background:rgba(4,16,13,.70);border:1px solid rgba(215,173,98,.30);box-shadow:0 16px 50px rgba(0,0,0,.32)}
+.tab-btn{flex:0 1 auto;border:0;border-radius:999px;color:#e0ded3;padding:9px 17px;font-size:13px;background:transparent}
+.tab-btn.active{background:linear-gradient(135deg,#f0d39b,#c18d3e);color:#0a211b;box-shadow:0 7px 20px rgba(215,173,98,.20)}
+#tab-main{padding-top:0}
+#tab-main .hero{position:relative;display:grid;grid-template-columns:minmax(340px,.88fr) minmax(480px,1.12fr);grid-template-rows:auto auto auto auto;gap:0 72px;align-items:center;text-align:right;min-height:620px;margin:0 0 26px;padding:65px 72px;border:1px solid rgba(215,173,98,.30);border-radius:30px;background:linear-gradient(110deg,rgba(5,22,18,.88),rgba(10,47,36,.62) 46%,rgba(56,47,26,.22)),url('teta-abdelaty.jpg') left center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 34px 90px rgba(0,0,0,.38);overflow:hidden}
+#tab-main .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,12,10,.15),rgba(3,17,14,.72) 48%,rgba(3,16,13,.96));pointer-events:none}
+#tab-main .hero>*{position:relative;z-index:1}
+#tab-main .hero .arch{grid-column:1;grid-row:1 / span 4;width:100%;max-width:410px;height:470px;margin:0 auto;border:1px solid var(--ref-gold-light);padding:9px;border-radius:210px 210px 18px 18px;background:#04100c;box-shadow:0 0 0 8px rgba(215,173,98,.08),0 32px 80px rgba(0,0,0,.55)}
+#tab-main .hero .arch img{filter:saturate(.86) contrast(1.08)}
+#tab-main .hero h1{grid-column:2;grid-row:1;font-size:clamp(52px,6vw,94px);line-height:1;margin:0 0 8px;text-align:right;color:var(--ref-gold-light);background:none;-webkit-text-fill-color:initial;filter:drop-shadow(0 8px 22px rgba(0,0,0,.28))}
+#tab-main .hero .rahima{grid-column:2;grid-row:2;text-align:right;font-size:23px;color:var(--ref-gold-light);margin:0 0 22px}
+#tab-main .hero .card{grid-column:2;grid-row:3;margin:0 0 18px;padding:18px 22px;border:1px solid rgba(215,173,98,.45);border-right:3px solid var(--ref-gold);border-radius:18px;background:rgba(4,17,14,.66);box-shadow:none}
+#tab-main .hero .counter-box{grid-column:2;grid-row:4;margin:0;text-align:right;border:0;border-right:1px solid var(--ref-gold);border-radius:0;background:transparent;box-shadow:none;padding:4px 18px}
+#tab-main .hero .days-num{font-size:44px;color:var(--ref-gold-light)}
+#tab-main .hero .hero-dua,#tab-main .hero #lastVisitBadge{display:none}
+.ref-service-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:0 0 18px}
+.ref-service-card{position:relative;min-height:128px;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;border:1px solid rgba(230,201,137,.35);border-radius:16px;overflow:hidden;text-decoration:none;color:#fff;background:linear-gradient(0deg,rgba(3,16,12,.95),rgba(3,16,12,.14)),url('teta-abdelaty.jpg') center/cover;box-shadow:0 14px 34px rgba(0,0,0,.25);transition:transform .25s ease,border-color .25s ease,filter .25s ease}
+.ref-service-card:nth-child(2){background-position:22% center}.ref-service-card:nth-child(3){background-position:70% center}.ref-service-card:nth-child(4){background-position:42% center}.ref-service-card:nth-child(5){background-position:88% center}
+.ref-service-card:hover{transform:translateY(-4px);border-color:var(--ref-gold-light);filter:saturate(1.1)}
+.ref-service-card strong{font-family:Amiri,serif;font-size:21px;color:var(--ref-gold-light)}
+.ref-service-card span{font-size:12px;color:#e9e6db}
+.ref-stats{display:grid;grid-template-columns:repeat(4,1fr) auto;align-items:center;gap:16px;padding:17px 24px;margin:0 0 36px;border:1px solid rgba(215,173,98,.30);border-radius:16px;background:rgba(4,19,15,.70);box-shadow:0 14px 36px rgba(0,0,0,.20)}
+.ref-stat{display:flex;align-items:center;gap:12px;border-left:1px solid rgba(215,173,98,.24);padding-left:16px}.ref-stat:last-of-type{border:0}.ref-stat b{display:block;font-size:22px;color:#fff}.ref-stat span{font-size:12px;color:var(--ref-muted)}.ref-stat i{font-style:normal;font-size:25px;color:var(--ref-gold-light)}
+.ref-quote{font-family:Amiri,serif;color:var(--ref-gold-light);font-size:18px;white-space:nowrap}
+#tab-main>section{max-width:none;margin-bottom:30px}.divider{margin:12px auto 36px}
+#tab-main>section:nth-of-type(n+2){padding:24px;border:1px solid rgba(215,173,98,.18);border-radius:20px;background:rgba(5,22,18,.38)}
+#tab-main>section:nth-of-type(n+2)>.label{margin-top:0}
+.card,.counter-box,.tasbih-item,.azkar-card,.lecture-card{border-color:rgba(215,173,98,.24);background:linear-gradient(145deg,rgba(25,71,58,.72),rgba(4,21,17,.86));}
+@media(max-width:900px){.wrap{padding:16px 18px 70px}.top-nav:before{font-size:27px}.nav-tabs{border-radius:18px;justify-content:flex-start}.ref-service-strip{grid-template-columns:repeat(2,1fr)}.ref-stats{grid-template-columns:repeat(2,1fr)}.ref-quote{grid-column:1/-1;white-space:normal;text-align:center}.ref-stat:nth-of-type(2){border:0}#tab-main .hero{display:block;text-align:center;min-height:0;padding:34px 22px 38px}#tab-main .hero .arch{width:230px;height:290px;margin:0 auto 28px}#tab-main .hero h1,#tab-main .hero .rahima{text-align:center}#tab-main .hero h1{font-size:55px}#tab-main .hero .card{margin:20px 0 16px}#tab-main .hero .counter-box{text-align:center;border-right:0;border-top:1px solid rgba(215,173,98,.3);padding-top:14px}}
+@media(max-width:520px){.top-nav{flex-wrap:wrap}.top-nav:before{order:-2;width:100%;text-align:center;margin:0 0 8px}.top-nav .visitor-badge{margin:0}.ref-service-strip{grid-template-columns:1fr 1fr}.ref-service-card{min-height:112px;padding:13px}.ref-service-card strong{font-size:18px}.ref-stats{gap:8px;padding:14px 12px}.ref-stat{gap:7px;padding-left:8px}.ref-stat b{font-size:18px}.ref-stat i{font-size:20px}.ref-stat span{font-size:10px}#tab-main .hero h1{font-size:42px}}
+</style>
+
 </head>
 
 <body>
@@ -1651,6 +1692,21 @@ html.low-performance .external-link-btn:hover {
       </div>
     </div>
 
+
+    <div class="ref-service-strip" aria-label="أبواب الخير الأساسية">
+      <a class="ref-service-card" href="#tab-quran" onclick="switchTab(event, 'quran')"><strong>القرآن الكريم</strong><span>استماع وقراءة وتفسير</span></a>
+      <a class="ref-service-card" href="#tab-azkar" onclick="switchTab(event, 'azkar')"><strong>الأذكار والتسابيح</strong><span>أذكار يومية وأجر مستمر</span></a>
+      <a class="ref-service-card" href="#tab-lectures" onclick="switchTab(event, 'lectures')"><strong>مقالات إسلامية</strong><span>محتوى نافع ومفيد</span></a>
+      <a class="ref-service-card" href="#tab-prayers" onclick="switchTab(event, 'prayers')"><strong>أوقات الصلاة</strong><span>صلاتك في وقتها</span></a>
+      <a class="ref-service-card" href="#tab-calendar" onclick="switchTab(event, 'calendar')"><strong>التقويم الهجري</strong><span>اعرف التاريخ اليوم</span></a>
+    </div>
+    <div class="ref-stats" aria-label="إحصائيات الموقع">
+      <div class="ref-stat"><i>♥</i><div><b id="refDuaStat">0</b><span>دعاء من هذا الجهاز</span></div></div>
+      <div class="ref-stat"><i>▣</i><div><b id="refVisitorStat">...</b><span>زائر للموقع</span></div></div>
+      <div class="ref-stat"><i>✦</i><div><b id="refTasbihStat">...</b><span>تسبيحة جماعية</span></div></div>
+      <div class="ref-stat"><i>☾</i><div><b>24/7</b><span>إذاعة القرآن</span></div></div>
+      <div class="ref-quote">ما من مسلم يدعو لأخيه بظهر الغيب إلا قال الملك: ولك بمثل</div>
+    </div>
     <div id="fridayCard" class="card" style="display:none; text-align:center; margin:0 16px 16px; border: 2px solid #d4af37;">
       <div style="font-size:28px;">🕌</div>
       <div class="quran-title" style="margin-top:6px;">اليوم يوم الجمعة</div>
@@ -3420,6 +3476,17 @@ async function sendFeedback() {
     });
   });
   hero.addEventListener('pointerleave', reset);
+})();
+</script>
+
+<script id="reference-stats-sync">
+(function(){
+  function sync(){
+    var v=document.getElementById('visitorCount'),d=document.getElementById('duaCount'),t=document.getElementById('tasbihGlobalTotal');
+    var rv=document.getElementById('refVisitorStat'),rd=document.getElementById('refDuaStat'),rt=document.getElementById('refTasbihStat');
+    if(rv&&v)rv.textContent=v.textContent;if(rd&&d)rd.textContent=d.textContent;if(rt&&t)rt.textContent=t.textContent;
+  }
+  document.addEventListener('DOMContentLoaded',function(){sync();setInterval(sync,1200);});
 })();
 </script>
 </body>
