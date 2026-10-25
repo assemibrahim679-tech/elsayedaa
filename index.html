@@ -1855,7 +1855,7 @@ body:not(.light-mode){
         <div class="quran-icon">📻</div>
         <div class="quran-title">إذاعة القرآن الكريم من القاهرة</div>
         <div class="quran-note">بث مباشر على مدار الساعة — اضغط تشغيل للاستماع</div>
-        <audio class="hh-native-audio" preload="none" id="quranRadioPlayer" data-hh-live="true" data-radio-fallback="https://service.webvideocore.net/CL1olYogIrDWvwqiIKK7eCxOS4PStqG9DuEjAr2ZjZQtvS3d4y9r0cvRhvS17SGN/a_7a4vuubc6mo8.m3u8">
+        <audio class="hh-native-audio" preload="none" id="quranRadioPlayer" data-hh-live="true" data-radio-primary="https://stream.radiojar.com/8s5u5tpdtwzuv" data-radio-fallback="https://service.webvideocore.net/CL1olYogIrDWvwqiIKK7eCxOS4PStqG9DuEjAr2ZjZQtvS17SGN/a_7a4vuubc6mo8.m3u8">
           <source src="https://stream.radiojar.com/8s5u5tpdtwzuv" type="audio/mpeg">
           متصفحك لا يدعم تشغيل البث الصوتي.
         </audio>
@@ -3452,6 +3452,12 @@ function hhEnhanceAudio(audio) {
         if (a !== audio && !a.paused) a.pause();
       });
       btn.classList.add("loading");
+      /* البث الحي يحتاج load() بعد تفاعل المستخدم، خصوصًا على Chrome/Android. */
+      if (isLive && audio.dataset.radioPrimary) {
+        audio.pause();
+        audio.src = audio.dataset.radioPrimary;
+        audio.load();
+      }
       const playPromise = audio.play();
       if (playPromise && playPromise.catch) {
         playPromise.catch(function () { btn.classList.remove("loading"); });
@@ -3525,19 +3531,23 @@ function hhStartRadioFallback(audio, btn) {
   audio.dataset.radioFallbackStarted = "true";
   if (btn) btn.classList.add("loading");
   hhLoadHls().then(function(HlsCtor) {
-    if (audio.canPlayType("application/vnd.apple.mpegurl")) {
-      audio.src = fallback;
-      return audio.play();
-    }
-    if (!HlsCtor || !HlsCtor.isSupported()) throw new Error("HLS unsupported");
-    const hls = new HlsCtor({ enableWorker: true, lowLatencyMode: true });
+    /* Chrome/Android يقول أحيانًا إنه يدعم HLS ثم يفشل في فك الصوت؛ استخدم hls.js أولًا. */
+    if (HlsCtor && HlsCtor.isSupported()) {
+      const hls = new HlsCtor({ enableWorker: true, lowLatencyMode: false, backBufferLength: 0 });
     audio._hhHls = hls;
     hls.loadSource(fallback);
     hls.attachMedia(audio);
     hls.on(HlsCtor.Events.MANIFEST_PARSED, function() { audio.play().catch(function() {}); });
-    hls.on(HlsCtor.Events.ERROR, function(_, data) {
-      if (data && data.fatal && btn) btn.classList.remove("loading");
-    });
+      hls.on(HlsCtor.Events.ERROR, function(_, data) {
+        if (data && data.fatal && btn) btn.classList.remove("loading");
+      });
+      return;
+    }
+    if (audio.canPlayType("application/vnd.apple.mpegurl")) {
+      audio.src = fallback;
+      return audio.play();
+    }
+    throw new Error("HLS unsupported");
   }).catch(function() {
     if (btn) btn.classList.remove("loading");
   });
@@ -3549,9 +3559,15 @@ document.querySelectorAll("audio.hh-native-audio").forEach(function(audio) {
     const liveBtn = liveWrap && liveWrap.querySelector(".hh-player-btn");
     audio.addEventListener("error", function() { hhStartRadioFallback(audio, liveBtn); });
     audio.addEventListener("stalled", function() {
+      /* لا ننقل المستخدم للمصدر الآخر بسرعة؛ نعيد محاولة MP3 الأصلي أولًا. */
       window.setTimeout(function() {
-        if (!audio.paused && audio.readyState < 3) hhStartRadioFallback(audio, liveBtn);
-      }, 4000);
+        if (!audio.paused && audio.readyState < 3 && audio.dataset.radioPrimary && !audio.dataset.radioRetried) {
+          audio.dataset.radioRetried = "true";
+          audio.src = audio.dataset.radioPrimary;
+          audio.load();
+          audio.play().catch(function() {});
+        }
+      }, 5000);
     });
   }
 });
