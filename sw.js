@@ -32,7 +32,6 @@ const HH_NETWORK_ONLY_HOSTS = [
   "everyayah.com",
   "mp3quran.net",
   "api.aladhan.com",
-  "api.web3forms.com",
   "countapi.mileshilliard.com",
   "firestore.googleapis.com",
   "firebaseinstallations.googleapis.com",

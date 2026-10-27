@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0e2622">
 <meta name="color-scheme" content="dark light">
-<meta name="description" content="صفحة صدقة جارية عن روح السيدة عبدالعاطي رحمها الله: ادعُ لها، استمع لإذاعة القرآن الكريم مباشرة، اقرأ القرآن كاملًا بأصوات نخبة القراء، أذكار الصباح والمساء، دروس دينية، مواقيت الصلاة، واتجاه القبلة.">
+<meta name="description" content="صدقة جارية عن السيدة عبدالعاطي رحمها الله: ادعُ لها، واستمع للقرآن والأذكار، وشارك في الدعاء والتسابيح.">
 <meta name="keywords" content="صدقة جارية, دعاء للمتوفى, إذاعة القرآن الكريم مباشر, القرآن الكريم كامل, أذكار الصباح والمساء, مواقيت الصلاة, اتجاه القبلة, التقويم الهجري, دروس دينية">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="صدقة جارية - السيدة عبدالعاطي">
@@ -13,9 +13,13 @@
 
 <!-- Open Graph (Facebook, WhatsApp, Telegram, etc.) -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="صدقة جارية - السيدة عبدالعاطي رحمها الله">
-<meta property="og:description" content="ادعُ للسيدة عبدالعاطي رحمها الله، واقرأ يس والقرآن، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها">
+<meta property="og:title" content="السيدة عبدالعاطي | صدقة جارية ودعاء">
+<meta property="og:description" content="ادعُ للسيدة عبدالعاطي رحمها الله، واستمع للقرآن والأذكار، وشارك في الدعاء والتسابيح.">
 <meta property="og:image" content="https://assemibrahim679-tech.github.io/elsayedaa/teta-abdelaty.webp?v=20261012">
+<meta property="og:image:width" content="1120">
+<meta property="og:image:height" content="1405">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:alt" content="السيدة عبدالعاطي رحمها الله">
 <meta property="og:url" content="https://assemibrahim679-tech.github.io/elsayedaa/">
 <meta property="og:locale" content="ar_AR">
 <meta property="og:site_name" content="صدقة جارية - السيدة عبدالعاطي">
@@ -24,9 +28,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="صدقة جارية - السيدة عبدالعاطي رحمها الله">
 <meta name="twitter:description" content="ادعُ للسيدة عبدالعاطي رحمها الله، واقرأ يس والقرآن، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها">
+<meta name="twitter:url" content="https://assemibrahim679-tech.github.io/elsayedaa/">
 <meta name="twitter:image" content="https://assemibrahim679-tech.github.io/elsayedaa/teta-abdelaty.webp?v=20261012">
+<meta name="twitter:image:alt" content="السيدة عبدالعاطي رحمها الله">
 
-<title>السيدة عبدالعاطي رحمها الله | صدقة جارية، دعاء، وإذاعة قرآن مباشرة</title>
+<title>السيدة عبدالعاطي | صدقة جارية ودعاء</title>
 
 <!-- PWA: manifest + icons + iOS/Android install meta -->
 <link rel="manifest" href="manifest.json">
@@ -60,7 +66,7 @@
       "@type": "WebPage",
       "@id": "https://assemibrahim679-tech.github.io/elsayedaa/#webpage",
       "url": "https://assemibrahim679-tech.github.io/elsayedaa/",
-      "name": "السيدة عبدالعاطي رحمها الله | صدقة جارية",
+      "name": "السيدة عبدالعاطي | صدقة جارية ودعاء",
       "isPartOf": { "@id": "https://assemibrahim679-tech.github.io/elsayedaa/#website" },
       "inLanguage": "ar",
       "description": "ادعُ للسيدة عبدالعاطي رحمها الله، واستمع لإذاعة القرآن الكريم مباشرة، واقرأ القرآن كاملًا، وشارك في الأذكار والتسابيح والدروس الدينية عن روحها."
@@ -74,7 +80,6 @@
         "https://assemibrahim679-tech.github.io/elsayedaa/#tab-azkar",
         "https://assemibrahim679-tech.github.io/elsayedaa/#tab-lectures",
         "https://assemibrahim679-tech.github.io/elsayedaa/#tab-prayers",
-        "https://assemibrahim679-tech.github.io/elsayedaa/#tab-qibla",
         "https://assemibrahim679-tech.github.io/elsayedaa/#tab-calendar",
         "https://assemibrahim679-tech.github.io/elsayedaa/#tab-feedback"
       ]
@@ -3568,9 +3573,7 @@ document.querySelectorAll("audio.hh-native-audio").forEach(function(audio) {
 });
 document.documentElement.classList.add("audio-ui-ready");
 
-/* ============== إرسال "سيب رأيك" عن طريق Web3Forms (بيوصل الرسالة مباشرة لإيميلك) ============== */
-const WEB3FORMS_ACCESS_KEY = "06cc6554-7252-400b-a35c-5e181736344c";
-
+/* ============== إرسال "سيب رأيك" إلى Firebase فقط ============== */
 function withTimeout(promise, timeoutMs) {
   return Promise.race([
     Promise.resolve(promise),
@@ -3603,64 +3606,28 @@ async function sendFeedback() {
 
   const name = (nameEl.value || "").trim().slice(0, 80) || "زائر مجهول";
   const boundedMessage = message.slice(0, 1200);
-  if (boundedMessage.length > 1200) {
-    statusEl.style.color = "#e0524a";
-    statusEl.textContent = "الرسالة طويلة جدًا";
-    return;
-  }
-
   btn.disabled = true;
   btn.style.opacity = "0.6";
   statusEl.style.color = "var(--ivory-dim)";
   statusEl.textContent = "جاري الإرسال...";
 
-  // نخزّن الرسالة في Backend موثوق (Firestore) بشكل مستقل عن الإيميل، عشان
-  // ما نفقدش أي رسالة حتى لو Web3Forms فشل أو وصل حده اليومي
-  let savedToFirestore = false;
-  if (window.hhBackendReady) {
-    try {
-      savedToFirestore = await withTimeout(
-        window.hhSaveFeedback({ name: name, message: boundedMessage }),
-        8000
-      );
-    } catch (e) {
-      savedToFirestore = false;
-    }
-  }
-
   try {
-    const res = await withTimeout(fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_ACCESS_KEY,
-        subject: "رسالة جديدة من صفحة السيدة عبدالعاطي (سيب رأيك)",
-        name: name,
-        message: boundedMessage
-      })
-    }), 12000);
-    const data = await res.json();
-    if (data.success || savedToFirestore) {
-      statusEl.style.color = "var(--gold-soft)";
-      statusEl.textContent = "تم إرسال رسالتك بنجاح، جزاك الله خيرًا 🤍";
-      safeSet(sessionStorage, "feedback_last_sent", String(Date.now()));
-      nameEl.value = "";
-      msgEl.value = "";
-    } else {
-      statusEl.style.color = "#e0524a";
-      statusEl.textContent = "حصل خطأ أثناء الإرسال، حاول مرة تانية";
+    if (!window.hhBackendReady || typeof window.hhSaveFeedback !== "function") {
+      throw new Error("feedback_backend_unavailable");
     }
+    const saved = await withTimeout(
+      window.hhSaveFeedback({ name: name, message: boundedMessage }),
+      8000
+    );
+    if (!saved) throw new Error("feedback_save_failed");
+    statusEl.style.color = "var(--gold-soft)";
+    statusEl.textContent = "تم إرسال رسالتك بنجاح، جزاك الله خيرًا 🤍";
+    safeSet(sessionStorage, "feedback_last_sent", String(Date.now()));
+    nameEl.value = "";
+    msgEl.value = "";
   } catch (err) {
-    if (savedToFirestore) {
-      statusEl.style.color = "var(--gold-soft)";
-      statusEl.textContent = "تم حفظ رسالتك بنجاح، جزاك الله خيرًا 🤍";
-      safeSet(sessionStorage, "feedback_last_sent", String(Date.now()));
-      nameEl.value = "";
-      msgEl.value = "";
-    } else {
-      statusEl.style.color = "#e0524a";
-      statusEl.textContent = "تأكد من اتصال الإنترنت وحاول تاني";
-    }
+    statusEl.style.color = "#e0524a";
+    statusEl.textContent = "تعذر إرسال الرسالة حاليًا، حاول مرة أخرى";
   } finally {
     btn.disabled = false;
     btn.style.opacity = "1";
