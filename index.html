@@ -2304,7 +2304,7 @@ body:not(.light-mode){
   <div id="tab-prayers" class="tab-content">
     <h2 class="label">مواقيت الصلاة اليومية</h2>
     <div class="card" style="text-align: center;">
-      <div class="kicker" id="locationText">جاري تحديد موقعك الجغرافي...</div>
+      <div class="kicker" id="locationText">جاري تحميل مواقيت القاهرة...</div>
     </div>
     
     <div class="grid-2">
@@ -3184,7 +3184,7 @@ function getPrayerTimesByCoords(lat, lng) {
 
         prayerTimingsToday = timings;
         safeSet(localStorage, "last_prayer_data", JSON.stringify({ timings, date: data.data.date }));
-        if (locationEl) locationEl.textContent = "تم تحديد مواقيت الصلاة حسب موقعك الجغرافي";
+        if (locationEl) locationEl.textContent = "مواقيت الصلاة حسب توقيت القاهرة";
         updateNextPrayerCountdown();
       } else {
         throw new Error("Invalid prayer API response");
@@ -3258,19 +3258,14 @@ function updateNextPrayerCountdown() {
 
 setInterval(updateNextPrayerCountdown, 1000);
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(pos => {
-    userLat = pos.coords.latitude;
-    userLng = pos.coords.longitude;
-    document.getElementById('locationText').textContent = "تم تحديد مواقيت الصلاة حسب موقعك الجغرافي المباشر";
-    getPrayerTimesByCoords(userLat, userLng);
-  }, () => {
-    document.getElementById('locationText').textContent = "أوقات الصلاة التقديرية (توقيت القاهرة والمدن القريبة)";
-    getPrayerTimesByCoords(userLat, userLng);
-  });
-} else {
-  getPrayerTimesByCoords(userLat, userLng);
-}
+// مواقيت ثابتة على القاهرة لجميع الزوار — بدون طلب الموقع الجغرافي.
+const CAIRO_LAT = 30.0444;
+const CAIRO_LNG = 31.2357;
+userLat = CAIRO_LAT;
+userLng = CAIRO_LNG;
+const fixedLocationEl = document.getElementById('locationText');
+if (fixedLocationEl) fixedLocationEl.textContent = "مواقيت الصلاة حسب توقيت القاهرة";
+getPrayerTimesByCoords(CAIRO_LAT, CAIRO_LNG);
 
 function calculateQibla(lat, lng) {
   const kaabaLat = 21.4225 * Math.PI / 180;
