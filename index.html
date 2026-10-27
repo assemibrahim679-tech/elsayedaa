@@ -2017,7 +2017,7 @@ body:not(.light-mode){
 
   <!-- TAB 2: AZKAR (محدثة بالروابط المباشرة والشغالة 100%) -->
   <div id="tab-azkar" class="tab-content">
-    
+
     <!-- AUDIO PLAYER FOR MORNING AZKAR -->
     <div class="card quran-box" style="margin-bottom: 20px;">
       <div class="quran-icon">🌅</div>
@@ -2176,13 +2176,24 @@ body:not(.light-mode){
 
   <!-- TAB 3: RELIGIOUS LECTURES -->
   <div id="tab-lectures" class="tab-content">
-    <h2 class="label">دروس دينية مؤثرة - فضيلة الشيخ سمير مصطفى</h2>
-
+    <h2 class="label">دروس دينية مؤثرة</h2>
+    <div class="card lecture-sheikh-picker" style="text-align:center; margin-bottom:18px;">
+      <div class="quran-title" style="margin-bottom:12px;">اختر الشيخ ثم اختر الدرس</div>
+      <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+        <button class="action quran-reciter-btn lecture-sheikh-btn active" data-lecture-sheikh="samir-mostafa" onclick="selectLectureSheikh('samir-mostafa', this)">سمير مصطفى</button>
+        <button class="action quran-reciter-btn lecture-sheikh-btn" data-lecture-sheikh="amgad-samir" onclick="selectLectureSheikh('amgad-samir', this)">أمجد سمير</button>
+        <button class="action quran-reciter-btn lecture-sheikh-btn" data-lecture-sheikh="ahmed-elaraby" onclick="selectLectureSheikh('ahmed-elaraby', this)">أحمد العربي</button>
+        <button class="action quran-reciter-btn lecture-sheikh-btn" data-lecture-sheikh="mohamed-elghaliz" onclick="selectLectureSheikh('mohamed-elghaliz', this)">محمد الغليظ</button>
+      </div>
+    </div>
+    <div class="lecture-sheikh-panel" data-lecture-panel="samir-mostafa">
+      <h3 class="label" style="font-size:20px;">دروس الشيخ سمير مصطفى</h3>
+      <div class="lecture-list">
     <div class="card quran-box">
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">الاستقامة</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/05_Smir_Mostafa_khotab_estikama(الاستقامــــة).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/05_Smir_Mostafa_khotab_estikama(الاستقامــــة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2191,7 +2202,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">الحياة الطيبة</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/10_Smir_Mostafa_khotab_ hyat.tybah(الحياة الطيبة).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/10_Smir_Mostafa_khotab_ hyat.tybah(الحياة الطيبة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2200,7 +2211,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">الميت البغيض</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/24_Smir_Mostafa_khotab_baghid(الميت البغيــــــض).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/24_Smir_Mostafa_khotab_baghid(الميت البغيــــــض).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2209,7 +2220,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">رجل من أهل الجنة</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/41_Smir_Mostafa_khotab_r.mn.ahl.jannah(رجل من أهل الجنة).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/41_Smir_Mostafa_khotab_r.mn.ahl.jannah(رجل من أهل الجنة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2218,7 +2229,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">زاد المهاجر إلى الله</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/43_Smir_Mostafa_khotab_zad.muhajer(زاد المهاجر الي الله).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/43_Smir_Mostafa_khotab_zad.muhajer(زاد المهاجر الي الله).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2227,7 +2238,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">شرح حديث الصراط</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/46_Smir_Mostafa_khotab_sirat(شرح حديث الصراط).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/46_Smir_Mostafa_khotab_sirat(شرح حديث الصراط).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2236,7 +2247,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">قصة أصحاب الغار</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/52_Smir_Mostafa_khotab_elghar(قصة أصحاب الغار).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/52_Smir_Mostafa_khotab_elghar(قصة أصحاب الغار).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2245,7 +2256,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">لا تحسبوه شرًا لكم</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/57_Smir_Mostafa_khotab_la.ta7sabuh(لا تَحْسَبُوهُ شَرًّا لَكُمْ).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/57_Smir_Mostafa_khotab_la.ta7sabuh(لا تَحْسَبُوهُ شَرًّا لَكُمْ).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2254,7 +2265,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">معارج القلوب</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/69_Smir_Mostafa_khotab_m3arig(معارج القلوب).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/69_Smir_Mostafa_khotab_m3arig(معارج القلوب).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2263,7 +2274,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">النذير العريان</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/25_Smir_Mostafa_khotab_nazir_1(النذير العريــان-1).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/25_Smir_Mostafa_khotab_nazir_1(النذير العريــان-1).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2272,7 +2283,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">ليس لها من دون الله كاشفة</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/59_Smir_Mostafa_khotab_kashifa(ليس لها من دون الله كاشفة).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/59_Smir_Mostafa_khotab_kashifa(ليس لها من دون الله كاشفة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2281,7 +2292,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">وأفلت الشمس</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/74_Smir_Mostafa_khotab_waflat(وأفلت الشمس).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/74_Smir_Mostafa_khotab_waflat(وأفلت الشمس).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2290,7 +2301,7 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">مسير النجاة</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/67_Smir_Mostafa_khotab_masir(مسير النجاة).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/67_Smir_Mostafa_khotab_masir(مسير النجاة).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
@@ -2299,10 +2310,186 @@ body:not(.light-mode){
       <div class="quran-icon">🎙️</div>
       <div class="quran-title">أصول في المحن</div>
       <audio class="hh-native-audio" preload="none">
-        <source src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/03_Smir_Mostafa_khotab_o.f.me7an(أُصول في المحــن).mp3" type="audio/mpeg">
+        <source data-src="https://archive.org/download/khotab_minbriah-sh_samir-mostafa/03_Smir_Mostafa_khotab_o.f.me7an(أُصول في المحــن).mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الصوتيات.
       </audio>
     </div>
+      </div>
+    </div>
+
+    <div class="lecture-sheikh-panel" data-lecture-panel="amgad-samir" style="display:none;">
+      <h3 class="label" style="font-size:20px;">دروس الشيخ أمجد سمير</h3>
+      <div class="lecture-list">
+        <div class="card quran-box lecture-audio-card" data-lecture-number="1">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">أخطاء نرتكبها يوميًا تدمر شخصيتك</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 0:54 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/3_khtaea_nrtkbha_ewmea_tdmr_shkhsetk_dwn_an_nsh3r___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="2">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">طرق تكشف عيوب نفسك الخفية وعلاجها</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 0:54 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/4_trk_tkshf_3ewb_nfsk_alkhfea_whza_3lagha___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="3">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">آفات يومية تدمر قلبك وكيف تتغلب عليها</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 1:04 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/5_afat_ewmea_tdmr_klbk_wkef_ttghlb_3leha___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="4">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">احذر الشيطان واحمِ قلبك من المهلكات</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 0:51 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/ahzr.._alshetan_edrs_nkat_d3fk_t3lm_kef_thme_klbk_mn_almhlkat___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="5">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">أسرع طريقة لتدمر نفسك وأنت تظن أنك على حق</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 0:50 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/akhtr_7_aeat_fe_heatk_alewmea.._thtagha_aksr_mn_alt3am_walshrab___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="6">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">كيف تضمن مستقبلك وتنجح في حياتك</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 0:41 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/asr3_treka_ltdmer_nfsk_want_tzn_ank_3le_hk___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="7">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">عايش ليه؟ السر الذي يغير نظرتك للحياة</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 0:51 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/azae_tdmn_mstkblk_wtngh_fe_zwag_._shghl_._skn_alsr_alkhfe___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="8">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">سر الفاتحة الذي يغير صلاتك</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 0:49 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4573/ezae_tkhle_abnk_ragl_ewagh_ftn_aldnea.._wmetksrsh___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="9">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">سر القوة والعزة في شخصية المرأة المسلمة</div>
+          <div class="quran-note">الشيخ أمجد سمير · المدة 1:07 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4577/3aesh_leh___alsr_alle_hegher_nzrtk_llheaa___alshekh_amgd_smer.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+      </div>
+    </div>
+
+    <div class="lecture-sheikh-panel" data-lecture-panel="ahmed-elaraby" style="display:none;">
+      <h3 class="label" style="font-size:20px;">دروس الشيخ أحمد العربي</h3>
+      <div class="lecture-list">
+
+        <div class="card quran-box lecture-audio-card" data-lecture-number="1">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">اسم الله الرحمن الرحيم</div>
+          <div class="quran-note">الشيخ أحمد العربي · المدة 0:47 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source src="https://archive.org/download/20250307_20250307_1803/1%20_%20%D8%A7%D8%B3%D9%85%20%D8%A7%D9%84%D9%84%D9%87%20%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86%20%D8%A7%D9%84%D8%B1%D8%AD%D9%8A%D9%85%20%20%D8%AF%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="2">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">إشكالية الهوية لدى الشباب المسلم</div>
+          <div class="quran-note">الشيخ أحمد العربي · المدة 0:58 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source src="https://archive.org/download/20250307_20250307_1803/11%20_%20%D8%A5%D8%B4%D9%83%D8%A7%D9%84%D9%8A%D8%A9%20%D8%A7%D9%84%D9%87%D9%88%D9%8A%D8%A9%20%D9%84%D8%AF%D9%89%20%D8%A7%D9%84%D8%B4%D8%A8%D8%A7%D8%A8%20%D8%A7%D9%84%D9%85%D8%B3%D9%84%D9%85%20%20%D8%AF.%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="3">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">أين فِصلاتنا التعبدية؟</div>
+          <div class="quran-note">الشيخ أحمد العربي · المدة 0:31 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source src="https://archive.org/download/20250307_20250307_1803/14%20_%20%D8%A3%D9%8A%D9%86%20%D9%81%D8%B5%D9%84%D8%A7%D8%AA%D9%86%D8%A7%20%D8%A7%D9%84%D8%AA%D8%B9%D8%A8%D8%AF%D9%8A%D8%A9%20%20%D8%A7%D9%84%D8%B4%D9%8A%D8%AE%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="4">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">كيف نطهر قلوبنا قبل رمضان</div>
+          <div class="quran-note">الشيخ أحمد العربي · المدة 1:48 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source src="https://archive.org/download/20250307_20250307_1803/3%20_%20%D9%83%D9%8A%D9%81%20%D9%86%D8%B7%D9%87%D8%B1%20%D9%82%D9%84%D9%88%D8%A8%D9%86%D8%A7%20%D9%82%D8%A8%D9%84%20%D8%B1%D9%85%D8%B6%D8%A7%D9%86%20%20%D8%AF.%20%D8%A3%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="lecture-sheikh-panel" data-lecture-panel="mohamed-elghaliz" style="display:none;">
+      <h3 class="label" style="font-size:20px;">دروس الشيخ محمد الغليظ</h3>
+      <div class="lecture-list">
+        <div class="card quran-box lecture-audio-card" data-lecture-number="1">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">علاقتك بالقرآن</div>
+          <div class="quran-note">الشيخ محمد الغليظ · المدة 1:13 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4162/Moh.ElGhaleez_mhmd_alghlez_-_3laktk_balkran_-_klmat_-_mhmd_alghlez.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="2">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">هل نحاكم القرآن؟</div>
+          <div class="quran-note">الشيخ محمد الغليظ · المدة 1:15 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4162/Moh.ElGhaleez_mhmd_alghlez_-_hl_nthakm_llkran_-_klmat_-_mhmd_alghlez.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="3">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">كيف تتأثر بالقرآن؟</div>
+          <div class="quran-note">الشيخ محمد الغليظ · المدة 1:16 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4162/Moh.ElGhaleez_mhmd_alghlez_-_kef_ttasr_balkran_-_klmat-_mhmd_alghlez.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+        <div class="card quran-box lecture-audio-card" data-lecture-number="4">
+          <div class="quran-icon">🎙️</div>
+          <div class="quran-title">خطوات العمل بالقرآن</div>
+          <div class="quran-note">الشيخ محمد الغليظ · المدة 1:31 تقريبًا</div>
+          <audio class="hh-native-audio" preload="none">
+            <source data-src="https://archive.org/download/media-way2allah-_4162/Moh.ElGhaleez_mhmd_alghlez_-_khtwat_al3ml_balkran_-_klmat_-_mhmd_alghlez.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+          </audio>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- TAB 4: PRAYER TIMES -->
@@ -2311,7 +2498,7 @@ body:not(.light-mode){
     <div class="card" style="text-align: center;">
       <div class="kicker" id="locationText">جاري تحميل مواقيت القاهرة...</div>
     </div>
-    
+
     <div class="grid-2">
       <div class="prayer-card">
         <div class="prayer-name">الفجر</div>
@@ -2373,7 +2560,7 @@ body:not(.light-mode){
     <div class="card qibla-box">
       <div class="arabic">قم بتوجيه الهاتف نحو اتجاه السهم</div>
       <div class="source">يرجى السماح بصلاحية الموقع والبوصلة</div>
-      
+
       <div class="compass-container">
         <div class="kaaba-icon">🕋</div>
         <div class="compass-arrow" id="compassArrow"></div>
@@ -2387,7 +2574,7 @@ body:not(.light-mode){
   <!-- TAB 6: CALENDAR -->
   <div id="tab-calendar" class="tab-content">
     <h2 class="label">التقويم الهجري والأيام الفضيلة</h2>
-    
+
     <div class="card" style="text-align: center; margin-bottom: 20px;">
       <div class="kicker">التاريخ اليوم</div>
       <div class="arabic" id="hijriDateDisplay">جاري التحميل...</div>
@@ -2556,7 +2743,7 @@ function updateDeathCounter() {
   const now = new Date();
   const diffTime = now - deathDate;
   const diffDays = Math.floor(Math.abs(diffTime) / (1000 * 60 * 60 * 24));
-  
+
   const daysElem = document.getElementById("passedDays");
   if (now >= deathDate) {
     daysElem.textContent = `${diffDays} يومًا`;
@@ -2624,6 +2811,16 @@ function populateQuranSurahList() {
       if (data.surah >= 1 && data.surah <= QURAN_SURAHS.length) select.value = String(data.surah);
     } catch (e) {}
   }
+}
+
+function selectLectureSheikh(sheikhId, btnEl) {
+  document.querySelectorAll('[data-lecture-panel]').forEach(function(panel) {
+    panel.style.display = panel.dataset.lecturePanel === sheikhId ? '' : 'none';
+  });
+  document.querySelectorAll('.lecture-sheikh-btn').forEach(function(button) {
+    button.classList.toggle('active', button === btnEl);
+  });
+  safeSet(localStorage, 'lecture_last_sheikh', sheikhId);
 }
 
 function setQuranReciter(reciterCode, btnEl) {
@@ -2960,7 +3157,7 @@ function applyTabSEO(tabId) {
 function switchTab(evt, tabId) {
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-  
+
   evt.currentTarget.classList.add('active');
   document.getElementById(`tab-${tabId}`).classList.add('active');
   applyTabSEO(tabId);
@@ -3181,7 +3378,7 @@ function getPrayerTimesByCoords(lat, lng) {
         document.getElementById('asr').textContent = to12Hour(timings.Asr);
         document.getElementById('maghrib').textContent = to12Hour(timings.Maghrib);
         document.getElementById('isha').textContent = to12Hour(timings.Isha);
-        
+
         const hijri = data.data.date.hijri;
         const greg = data.data.date.gregorian;
         document.getElementById('hijriDateDisplay').textContent = `${hijri.day} ${hijri.month.ar} ${hijri.year} هـ`;
@@ -3286,7 +3483,7 @@ function calculateQibla(lat, lng) {
 
 function requestCompassPermission() {
   const status = document.getElementById('qiblaStatus');
-  
+
   if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
     DeviceOrientationEvent.requestPermission()
       .then(response => {
@@ -3457,6 +3654,19 @@ function hhEnhanceAudio(audio) {
         audio.pause();
         audio.src = audio.dataset.radioPrimary;
         audio.load();
+      }
+      /* دروس المشايخ تُحمّل عند أول ضغط فقط، حتى لا يفحص المتصفح عشرات ملفات MP3 عند فتح الصفحة. */
+      if (!isLive && audio.dataset.hhLazyLoaded !== "true") {
+        const lazySource = audio.querySelector("source[data-src]");
+        if (lazySource) {
+          const requestedAudioUrl = lazySource.dataset.src;
+          /* تعيين src مباشرة على عنصر audio أكثر ثباتًا في Chrome/Android من تغيير source فقط. */
+          audio.src = requestedAudioUrl;
+          lazySource.src = requestedAudioUrl;
+          lazySource.removeAttribute("data-src");
+          audio.dataset.hhLazyLoaded = "true";
+          audio.load();
+        }
       }
       const playPromise = audio.play();
       if (playPromise && playPromise.catch) {
